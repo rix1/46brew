@@ -4,9 +4,10 @@
     "airbnb",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "prettier/react"
+    "prettier/react",
+    "plugin:flowtype/recommended"
   ],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "flowtype"],
   "rules": {
     "react/jsx-filename-extension": [
       "off",
