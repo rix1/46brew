@@ -1,8 +1,8 @@
 {
-  "name": "with-flow",
+  "name": "46brew",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Jag Reehal",
+  "author": "rix1",
   "scripts": {
     "dev": "next",
     "build": "next build",
