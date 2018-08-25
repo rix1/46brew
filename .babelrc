@@ -1,4 +1,14 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["transform-flow-strip-types"]
+  "plugins": [
+    [
+      "emotion",
+      {
+        "sourceMap": true,
+        "autoLabel": true,
+        "inline": true
+      }
+    ],
+    "transform-flow-strip-types"
+  ]
 }

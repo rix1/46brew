@@ -7,13 +7,18 @@
     "dev": "next",
     "build": "next build",
     "flow": "flow",
-    "start": "next start",
+    "start": "next dev",
+    "start:production": "next build && next start",
     "eslint": "eslint . --cache"
   },
   "dependencies": {
+    "babel-plugin-emotion": "^9.2.6",
+    "emotion": "^9.2.6",
+    "emotion-server": "^9.2.6",
     "next": "^6.1.1",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-emotion": "^9.2.6"
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
