@@ -81,7 +81,7 @@ I'm thinking about using Jest, but I guess I'll with installing this until I nee
 
 ## Style guide
 
-Using Eslint and Flowtype.
+Using Prettier for formatting, Eslint for linting and Flowtype for static type checking.
 
 
 ## Licensing
