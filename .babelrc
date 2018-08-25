@@ -1,4 +1,4 @@
 {
-  "presets": ["next/babel", "airbnb"],
+  "presets": ["next/babel"],
   "plugins": ["transform-flow-strip-types"]
 }
