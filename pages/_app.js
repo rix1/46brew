@@ -27,7 +27,7 @@ export default class MyApp extends App {
           <Component {...pageProps} />
 
           <footer className="tc f6 moon-gray mb3">
-            Created by rix1 a 25 August 2018
+            Created by rix1 on 25-26 August 2018
           </footer>
         </div>
       </Container>

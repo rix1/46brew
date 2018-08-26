@@ -1,5 +1,8 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
+
+import Range from './Range';
+import Line from './Line';
 
 type Props = {};
 type State = {
@@ -13,9 +16,7 @@ class ProfileSlider extends PureComponent<Props, State> {
     strengthValue: 50,
   };
 
-  componentDidMount() {
-    console.log('mounted');
-  }
+  componentDidMount() {}
 
   onChange = (type: string) => (
     event: SyntheticInputEvent<HTMLFormElement>,
@@ -26,21 +27,36 @@ class ProfileSlider extends PureComponent<Props, State> {
   };
 
   render() {
+    const { strengthValue, tasteValue } = this.state;
+
     return (
-      <div className="flex">
-        <input
-          type="range"
-          className="w-40"
-          onChange={this.onChange('tasteValue')}
-          value={this.state.tasteValue}
-        />
-        <input
-          type="range"
-          className="w-60"
-          onChange={this.onChange('strengthValue')}
-          value={this.state.strengthValue}
-        />
-      </div>
+      <Fragment>
+        <div className="flex">
+          <Range
+            className="w-40"
+            onChange={this.onChange('tasteValue')}
+            value={tasteValue}
+            separators={[50]}
+            idleSlider="☕️"
+            activeSliders={['🤤', '😯']}
+          />
+
+          <Line position={0} contained />
+          <Range
+            className="w-60"
+            onChange={this.onChange('strengthValue')}
+            value={strengthValue}
+            separators={[33, 66]}
+            idleSlider="☕️"
+            activeSliders={['😌', '😯', '😵']}
+          />
+        </div>
+        <p className="mt4">
+          <strong>Taste:</strong> {tasteValue}{' '}
+          {tasteValue < 50 ? '(more sweet)' : '(more bitter)'}
+          <strong className="ml3">Strength:</strong> {strengthValue}
+        </p>
+      </Fragment>
     );
   }
 }

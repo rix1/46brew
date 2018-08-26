@@ -15,10 +15,12 @@
     "babel-plugin-emotion": "^9.2.6",
     "emotion": "^9.2.6",
     "emotion-server": "^9.2.6",
+    "emotion-theming": "^9.2.6",
     "next": "^6.1.1",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-emotion": "^9.2.6"
+    "react-emotion": "^9.2.6",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
@@ -26,6 +28,7 @@
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
