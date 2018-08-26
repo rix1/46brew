@@ -1,6 +1,6 @@
 <!-- ![Logo of the project](./images/logo.sample.png) -->
 
-# 46brew &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# 46brew &middot;
 > A simple app to help you brew the perfect cup ☕️
 
 Inspired by the 4:6 brewing method I wanted to create a simple tool that would help me along the way, giving me the stats I need while I brew my coffee ☕️ 👷‍♂️
@@ -17,13 +17,11 @@ This runs the server in production.
 ## Developing
 
 ### Built With
-This project uses [Next.js](nextjs.org) which makes it easy to create React apps with zero config.
-In addition the project uses Flowtype and Eslint to improve code quality.
+This project uses [Next.js](nextjs.org) which makes it easy to create React apps with zero config. Styling is done with [Tachyons](http://tachyons.io/), and custom stuff is achieved with [Emotion](https://emotion.sh/).
 
 ### Prerequisites
 
-A fresh Node version (I think 7 is the minimum requirement). 
-
+A fresh Node version (I think 7 is the minimum requirement).
 
 ### Setting up Dev
 
