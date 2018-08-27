@@ -2,8 +2,7 @@
 import React from 'react';
 import styled, { css } from 'react-emotion';
 import { withTheme } from 'emotion-theming';
-
-const LINE_WIDTH = '3px';
+import type { ThemeProps } from '../FlowTypes';
 
 type Props = {
   position: number,
@@ -12,18 +11,23 @@ type Props = {
 
 const StyledLine = styled.div`
   position: absolute;
-  width: ${LINE_WIDTH};
-  background-color: ${props => props.theme.orange};
+  width: ${props => props.theme.sizes.lineWidth};
+  background-color: ${props => props.theme.colors.orange};
   height: 100%;
   left: ${props => props.position}%;
 `;
 
-const Line = ({ position, contained = false, ...rest }: Props = {}) => {
+const Line = ({
+  position,
+  contained = false,
+  theme,
+  ...rest
+}: Props & ThemeProps = {}) => {
   if (contained) {
     return (
       <div
         className={css`
-          width: ${LINE_WIDTH};
+          width: ${theme.sizes.lineWidth};
           position: relative;
           z-index: 1;
         `}>
