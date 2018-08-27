@@ -1,10 +1,14 @@
 {
+  "env": {
+    "browser": true
+  },
   "parser": "babel-eslint",
   "extends": [
     "airbnb",
     "plugin:flowtype/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "prettier",
     "prettier/react",
     "prettier/flowtype"
   ],
