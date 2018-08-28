@@ -18,6 +18,7 @@ export type Props = {
     currentWeight: number,
     targetWeight: number,
     timeToNextStep: number,
+    weightSteps: Array<number>,
   |}) => React$Node,
   onFinished: () => void,
   time: number, // eslint-disable-line
@@ -80,6 +81,7 @@ class BrewTracker extends PureComponent<Props, State> {
 
     return children({
       activity,
+      weightSteps,
       pourNumber: pourNumber + 1, // For non-zero indexed people
       currentWeight:
         activity === 'done'

@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 
 import Navigation from '../components/Navigation';
+import Link from '../components/Link';
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -23,11 +24,16 @@ export default class MyApp extends App {
             <h1 className="f1 fw7 ttu tracked">4:6brew</h1>
             <Navigation />
           </header>
+          <div>
+            <Component {...pageProps} />
+          </div>
 
-          <Component {...pageProps} />
-
-          <footer className="tc f6 moon-gray mb3">
-            Created by rix1 on 25-26 August 2018
+          <footer className="tc f6 moon-gray mb3 mt7">
+            Created by{' '}
+            <Link className="underline silver" href="https://twitter.com/rix1">
+              rix1
+            </Link>{' '}
+            a weekend in August 2018
           </footer>
         </div>
       </Container>

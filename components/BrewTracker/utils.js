@@ -38,8 +38,8 @@ export const convertStrenghtToWeight = (
 ): Array<number> => {
   const strenghtWeight = baseWeight * COFFEE_MULTIPLIER * STRENGTH_BASE_PARTS;
   const separators = getSeparators(strength);
-  return [...Array(separators.length + 1)].map(
-    (el, i, array) => strenghtWeight / array.length,
+  return [...Array(separators.length + 1)].map((el, i, array) =>
+    Math.round(strenghtWeight / array.length),
   );
 };
 
@@ -60,10 +60,6 @@ export const getWeightSteps = (
   strength: number,
 ) => {
   const coffeeWeight = getCoffeeWeight(baseWeight, baseMesurement);
-  console.log([
-    ...convertTasteToWeight(coffeeWeight, taste),
-    ...convertStrenghtToWeight(coffeeWeight, strength),
-  ]);
   return [
     ...convertTasteToWeight(coffeeWeight, taste),
     ...convertStrenghtToWeight(coffeeWeight, strength),

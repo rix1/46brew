@@ -45,14 +45,16 @@ class ResetScaleStep extends PureComponent<Props, State> {
     const { resetWeight, inputError } = this.state;
     return (
       <Fragment>
-        <p className="f3">
+        <p>
           Place your container on the scale and zero out. Place (wet) filter and
-          add coffee. Now, let me know what the scale reads:{' '}
+          add coffee.
+        </p>
+        <p className="f3">
+          Now, let me know what the scale reads:
           <InlineInput
             type="text"
             className="ph1"
             value={resetWeight}
-            onBlur={this.completeStep}
             onChange={this.handleChange}
             error={inputError}
           />{' '}

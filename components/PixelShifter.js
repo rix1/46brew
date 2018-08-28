@@ -10,6 +10,7 @@ type Props = {
 
 const PixelShifter = ({ x = 0, y = 0, children }: Props = {}) => (
   <span
+    className="dib"
     style={{
       transform: `translate(${x}px, ${y}px)`,
     }}>

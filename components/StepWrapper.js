@@ -5,12 +5,21 @@ import { cx, css } from 'react-emotion';
 type StepWrapperProps = {
   children: React$Node,
   isActive: boolean,
+  forwardRef: React$Ref<'div'>,
+  className?: string,
 };
 
-const StepWrapper = ({ children, isActive }: StepWrapperProps) => (
+const StepWrapper = ({
+  children,
+  isActive,
+  forwardRef,
+  className = '',
+}: StepWrapperProps = {}) => (
   <div
+    ref={forwardRef}
     className={cx(
-      'mv5',
+      'mv6',
+      className,
       css`
         opacity: ${isActive ? 1 : 0.5};
       `,

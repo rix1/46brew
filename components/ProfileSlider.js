@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent, Fragment } from 'react';
 
+import getStringFromValue from '../lib/getStringFromValue';
 import Range from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';
@@ -11,6 +12,8 @@ type Props = {
 type State = {
   tasteValue: number,
   strengthValue: number,
+  strengthValueSet: boolean,
+  tasteValueSet: boolean,
 };
 
 export const getSeparators = (val: number) => {
@@ -30,6 +33,8 @@ class ProfileSlider extends PureComponent<Props, State> {
   state = {
     tasteValue: 50,
     strengthValue: 50,
+    strengthValueSet: false,
+    tasteValueSet: false,
   };
 
   componentDidMount() {}
@@ -39,29 +44,26 @@ class ProfileSlider extends PureComponent<Props, State> {
   ) => {
     this.setState({
       [type]: event.target.value,
-      [`${type}Changed`]: true,
+      [`${type}Set`]: true,
     });
   };
 
   onComplete = () => {
     const { onComplete } = this.props;
-    const { tasteValue, strengthValue } = this.state;
+    const {
+      tasteValue,
+      strengthValue,
+      strengthValueSet,
+      tasteValueSet,
+    } = this.state;
 
-    if (onComplete) {
+    if (onComplete && tasteValueSet && strengthValueSet) {
       onComplete({ taste: tasteValue, strength: strengthValue });
     }
   };
 
   render() {
     const { strengthValue, tasteValue } = this.state;
-
-    let tasteString = 'Normal';
-    if (tasteValue < 33) {
-      tasteString = 'Sweeter';
-    }
-    if (tasteValue > 66) {
-      tasteString = 'More acidity';
-    }
 
     return (
       <Fragment>
@@ -73,7 +75,11 @@ class ProfileSlider extends PureComponent<Props, State> {
             separators={[50]}
             idleSlider="😴"
             activeSliders={['🤤', '😏']}
-            onBlur={this.onComplete}
+            onBlur={() =>
+              this.setState({
+                tasteValueSet: true,
+              })
+            }
           />
 
           <Line position={0} contained />
@@ -84,12 +90,22 @@ class ProfileSlider extends PureComponent<Props, State> {
             separators={getSeparators(strengthValue)}
             idleSlider="😴"
             activeSliders={['😌', '😊', '😛']}
-            onBlur={this.onComplete}
+            onBlur={() =>
+              this.setState({
+                strengthValueSet: true,
+              })
+            }
           />
         </div>
-        <p className="mt4 f5 f4-ns">
-          <strong>Taste:</strong> {tasteValue} ({tasteString})
-          <strong className="ml3">Strength:</strong> {strengthValue}
+        <p className="mt4 silver f6 f5-ns">
+          <span className="fw5">Taste:</span>{' '}
+          {getStringFromValue(tasteValue, [
+            'Sweeter',
+            'Normal',
+            'More acidity',
+          ])}
+          <span className="ml3 fw5">Strength:</span>{' '}
+          {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
         </p>
         <ColorButton onClick={this.onComplete}>Next</ColorButton>
       </Fragment>

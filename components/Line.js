@@ -31,11 +31,11 @@ const Line = ({
           position: relative;
           z-index: 1;
         `}>
-        <StyledLine position={position} {...rest} />
+        <StyledLine theme={theme} position={position} {...rest} />
       </div>
     );
   }
-  return <StyledLine position={position} {...rest} />;
+  return <StyledLine theme={theme} position={position} {...rest} />;
 };
 
 const Wrapped: React$ComponentType<Props> = withTheme(Line);

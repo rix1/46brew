@@ -59,14 +59,11 @@ class SetAmountStep extends PureComponent<Props, State> {
             className="ph1"
             value={value}
             onChange={this.handleChange}
-            onBlur={this.completeStep}
             error={inputError}
           />{' '}
           g{type && ` of ${type}`}.
         </p>
-        <ColorButton className="db dn-ns" onClick={this.completeStep}>
-          Next
-        </ColorButton>
+        <ColorButton onClick={this.completeStep}>Next</ColorButton>
       </Fragment>
     );
   }
