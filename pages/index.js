@@ -42,13 +42,6 @@ type StepNames =
   | 'resetScaleStep'
   | 'brewTrackerStep';
 class Index extends PureComponent<*, State> {
-  stepRefs = {
-    amountStep: createRef(),
-    profileStep: createRef(),
-    resetScaleStep: createRef(),
-    brewTrackerStep: createRef(),
-  };
-
   state = {
     activeStep: 'weight',
     baseMeasurement: null,
@@ -56,6 +49,13 @@ class Index extends PureComponent<*, State> {
     resetWeight: null,
     strength: null,
     taste: null,
+  };
+
+  stepRefs = {
+    amountStep: createRef(),
+    profileStep: createRef(),
+    resetScaleStep: createRef(),
+    brewTrackerStep: createRef(),
   };
 
   scrollToStep = (stepName: StepNames) => {

@@ -2,7 +2,7 @@
 import React from 'react';
 import Page from '../components/Page';
 
-export default () => (
+const About = () => (
   <Page title="About us">
     <div className="measure f4 f3-ns center mv5 black-80">
       <h1>About 4:6</h1>
@@ -32,3 +32,5 @@ export default () => (
     </div>
   </Page>
 );
+
+export default About;

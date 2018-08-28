@@ -8,7 +8,7 @@ type Props = {
   description?: string,
 };
 
-export default ({
+const Page = ({
   children,
   title = "46 Brew | Let's make some coffee",
   description = 'This is a simple app that makes it easier to brew coffee using the the 4:6 brewing method.',
@@ -27,3 +27,5 @@ export default ({
     {children}
   </section>
 );
+
+export default Page;

@@ -2,7 +2,7 @@
 import { PureComponent } from 'react';
 
 type Props = {
-  multiplier?: number,
+  multiplier: number,
   children: (number, boolean, () => void) => React$Node,
 };
 
@@ -13,9 +13,7 @@ type State = {
 };
 
 class Timer extends PureComponent<Props, State> {
-  static defaultProps = {
-    multiplier: 1,
-  };
+  animationFrameId: number;
 
   state = {
     timeElapsed: 0,
@@ -36,13 +34,14 @@ class Timer extends PureComponent<Props, State> {
     window.cancelAnimationFrame(this.animationFrameId);
   }
 
-  start = () => this.setState(
-    {
-      isRunning: true,
-      lastTickAt: new Date(),
-    },
-    this.tick,
-  );
+  start = () =>
+    this.setState(
+      {
+        isRunning: true,
+        lastTickAt: new Date(),
+      },
+      this.tick,
+    );
 
   tick = () => {
     if (window) {
@@ -65,11 +64,10 @@ class Timer extends PureComponent<Props, State> {
     }
   };
 
-  toggleRunning = () => this.setState(prevState => ({
-    isRunning: !prevState.isRunning,
-  }));
-
-  animationFrameId: number;
+  toggleRunning = () =>
+    this.setState(prevState => ({
+      isRunning: !prevState.isRunning,
+    }));
 
   render() {
     const { isRunning, timeElapsed } = this.state;
