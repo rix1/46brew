@@ -61,9 +61,6 @@ class BrewTracker extends PureComponent<Props, State> {
     const { onFinished } = this.props;
     const { activity } = this.state;
 
-    if (prevState.activity !== activity) {
-      console.log('activity changed to', activity);
-    }
     if (activity === 'done' && prevState.activity !== 'done') {
       onFinished();
     }

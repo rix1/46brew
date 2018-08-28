@@ -22,11 +22,6 @@ const colors = {
   warm: 'rgba(237, 222, 164, 1);',
   peach: 'rgba(247, 160, 114, 1);',
   orange: 'rgba(255, 155, 66, 1);',
-  // dusty: hsla(108%, 22%, 87%, 1);
-  // blue: hsla(195%, 100%, 44%, 1);
-  // warm: hsla(48%, 67%, 79%, 1);
-  // peach: hsla(21%, 89%, 71%, 1);
-  // orange: hsla(28%, 100%, 63%, 1);
 };
 
 const sizes = {
@@ -62,11 +57,6 @@ class Index extends PureComponent<*, State> {
     strength: null,
     taste: null,
   };
-
-  componentDidMount() {
-    console.log('scrolling to smountstep?');
-    // this.scrollToStep('amountStep');
-  }
 
   scrollToStep = (stepName: StepNames) => {
     const stepRef = this.stepRefs[stepName];

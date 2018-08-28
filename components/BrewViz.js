@@ -96,7 +96,7 @@ type HelpTextProps = {
   className?: string,
 };
 
-const HelpText = ({ children = '', className }: HelpTextProps = {}) => (
+const HelpText = ({ children, className = '' }: HelpTextProps = {}) => (
   <span className={cx('dib f6 moon-gray', className)}>{children}</span>
 );
 
