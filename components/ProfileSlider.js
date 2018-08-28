@@ -10,8 +10,6 @@ type Props = {
 type State = {
   tasteValue: number,
   strengthValue: number,
-  tasteValueChanged: boolean,
-  strengthValueChanged: boolean,
 };
 
 export const getSeparators = (val: number) => {
@@ -31,8 +29,6 @@ class ProfileSlider extends PureComponent<Props, State> {
   state = {
     tasteValue: 50,
     strengthValue: 50,
-    tasteValueChanged: false,
-    strengthValueChanged: false,
   };
 
   componentDidMount() {}
@@ -48,14 +44,9 @@ class ProfileSlider extends PureComponent<Props, State> {
 
   onComplete = () => {
     const { onComplete } = this.props;
-    const {
-      tasteValue,
-      strengthValue,
-      tasteValueChanged,
-      strengthValueChanged,
-    } = this.state;
+    const { tasteValue, strengthValue } = this.state;
 
-    if (onComplete && tasteValueChanged && strengthValueChanged) {
+    if (onComplete) {
       onComplete({ taste: tasteValue, strength: strengthValue });
     }
   };

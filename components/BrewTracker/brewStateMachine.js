@@ -3,10 +3,10 @@ import { getWeightSteps, TIME_BETWEEN_POURS, POUR_TIME } from './utils';
 
 import type { Props, State } from './BrewTracker';
 
-export default function(nextProps: Props, prevState: State) {
+export default function(nextProps: Props, prevState: State): State | null {
   const { time, baseWeight, baseMesurement, taste, strength } = nextProps;
   const {
-    currentIndex,
+    pourNumber,
     pouringTimeTarget,
     waitingTimeTarget,
     weightSteps,
@@ -42,28 +42,27 @@ export default function(nextProps: Props, prevState: State) {
 
   // We're finished pouring, now we wait...
   if (time > pouringTimeTarget) {
-    return {
-      ...prevState,
-      pouringTimeTarget: time + TIME_BETWEEN_POURS + POUR_TIME,
-      activity: 'waiting',
-    };
-  }
-
-  // Waiting time is over!
-  if (time > waitingTimeTarget) {
     // We're on our last pour. Not sure if we should end here or not?
-    if (currentIndex === weightSteps.length - 1) {
+    if (pourNumber === weightSteps.length - 1) {
       return {
         ...prevState,
         activity: 'done',
       };
     }
 
-    // We're finished waiting, let's pour!
-
     return {
       ...prevState,
-      currentIndex: currentIndex + 1,
+      pourNumber: pourNumber + 1,
+      pouringTimeTarget: time + TIME_BETWEEN_POURS + POUR_TIME,
+      activity: 'waiting',
+    };
+  }
+
+  // Waiting time is over!
+  // We're finished waiting, let's pour!
+  if (time > waitingTimeTarget) {
+    return {
+      ...prevState,
       waitingTimeTarget: nextProps.time + TIME_BETWEEN_POURS + POUR_TIME,
       activity: 'pouring',
     };

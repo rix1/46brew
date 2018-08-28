@@ -1,13 +1,14 @@
 // @flow
 import { getSeparators } from '../ProfileSlider';
 import { type UnitType } from '../../FlowTypes';
+import { type State } from './BrewTracker';
 
 const TASTE_PARTS = 2;
 const STRENGTH_PARTS = 3;
 const COFFEE_MULTIPLIER = 3;
 const COFFEE_TO_WATER_RATIO = 0.065;
 export const TIME_BETWEEN_POURS = 42; // The meaing 👀
-export const POUR_TIME = 10; // The meaing 👀
+export const POUR_TIME = 10;
 
 export const convertTasteToWeight = (baseWeight: number, taste: number) => {
   const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_PARTS;
@@ -45,6 +46,10 @@ export const getWeightSteps = (
   strength: number,
 ) => {
   const coffeeWeight = getCoffeeWeight(baseWeight, baseMesurement);
+  console.log([
+    ...convertTasteToWeight(coffeeWeight, taste),
+    ...convertStrenghtToWeight(coffeeWeight, strength),
+  ]);
   return [
     ...convertTasteToWeight(coffeeWeight, taste),
     ...convertStrenghtToWeight(coffeeWeight, strength),
@@ -58,3 +63,15 @@ export const sumArrayTo = (arr: Array<number>, sumToIndex: number) =>
     }
     return prev;
   }, 0);
+
+export const getTimeToNextStep = (state: State, time: number) => {
+  const { pouringTimeTarget, waitingTimeTarget, activity } = state;
+
+  if (activity === 'pouring') {
+    return pouringTimeTarget - time;
+  }
+  if (activity === 'waiting') {
+    return waitingTimeTarget - time;
+  }
+  return 0;
+};

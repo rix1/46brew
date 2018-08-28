@@ -14,6 +14,8 @@ import ResetScaleStep from '../components/ResetScaleStep';
 import StepHeading from '../components/StepHeading';
 import StepWrapper from '../components/StepWrapper';
 import Timer from '../components/Timer';
+import Stat from '../components/Stat';
+import { timeToString } from '../lib/formatTime';
 
 const colors = {
   dusty: 'rgba(217, 229, 214, 1);',
@@ -131,8 +133,24 @@ class Index extends PureComponent<*, State> {
                     baseWeight={Number(baseWeight) || 0}
                     baseMesurement={baseMeasurement}
                     onFinished={toggleRunning}
-                    resetWeight={Number(resetWeight)}
-                  />
+                    resetWeight={Number(resetWeight)}>
+                    {({
+                      activity,
+                      pourNumber,
+                      currentWeight,
+                      targetWeight,
+                      timeToNextStep,
+                    }) => (
+                      <div className="flex justify-between flex-wrap">
+                        <Stat desc="Current weight:">{currentWeight}</Stat>
+                        <Stat desc="Activity:">{activity}</Stat>
+                        <Stat desc="Target weight:">{targetWeight}</Stat>
+                        <Stat desc="Pour number:">{pourNumber}</Stat>
+                        <Stat desc="Time">{timeToString(timeElapsed)}</Stat>
+                        <Stat desc="Next step in:">{timeToNextStep}</Stat>
+                      </div>
+                    )}
+                  </BrewTracker>
                 </StepWrapper>
               )}
             </Timer>
