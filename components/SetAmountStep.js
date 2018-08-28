@@ -4,6 +4,7 @@ import React, { Fragment, PureComponent } from 'react';
 import { type UnitType } from '../FlowTypes';
 
 import InlineInput from './InlineInput';
+import ColorButton from './ColorButton';
 
 type Props = {
   onCompleted: ({ baseMeasurement: UnitType, baseWeight: string }) => void,
@@ -63,6 +64,9 @@ class SetAmountStep extends PureComponent<Props, State> {
           />{' '}
           g{type && ` of ${type}`}.
         </p>
+        <ColorButton className="db dn-ns" onClick={this.completeStep}>
+          Next
+        </ColorButton>
       </Fragment>
     );
   }

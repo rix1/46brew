@@ -3,6 +3,7 @@ import React, { PureComponent, Fragment } from 'react';
 
 import Range from './Range/Range';
 import Line from './Line';
+import ColorButton from './ColorButton';
 
 type Props = {
   onComplete: ({ taste: number, strength: number }) => void,
@@ -82,14 +83,15 @@ class ProfileSlider extends PureComponent<Props, State> {
             value={strengthValue}
             separators={getSeparators(strengthValue)}
             idleSlider="😴"
-            activeSliders={['😌']}
+            activeSliders={['😌', '😊', '😛']}
             onBlur={this.onComplete}
           />
         </div>
-        <p className="mt4">
+        <p className="mt4 f5 f4-ns">
           <strong>Taste:</strong> {tasteValue} ({tasteString})
           <strong className="ml3">Strength:</strong> {strengthValue}
         </p>
+        <ColorButton onClick={this.onComplete}>Next</ColorButton>
       </Fragment>
     );
   }

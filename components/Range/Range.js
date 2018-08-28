@@ -53,7 +53,7 @@ class Range extends PureComponent<Props, State> {
 
     return (
       <div
-        className={cx('relative br3', className)}
+        className={cx('relative br3 f4 f3-ns', className)}
         style={{
           backgroundColor: `hsla(
         48,

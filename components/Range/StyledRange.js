@@ -20,13 +20,15 @@ const StyledRange = styled.input`
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><text x="1px" y="16px" font-size="16px" style="isolation:isolate">${props => (props.hasChanged ? getSymbol : props.idleSlider)}</text></svg>');
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18"><text x="1px" y="16px" font-size="16px" style="isolation:isolate">${props =>
+      props.hasChanged ? getSymbol : props.idleSlider}</text></svg>');
     background-size: contain;
     background-repeat: no-repeat;
     border-radius: 100%;
     cursor: pointer;
-    height: 56px;
-    width: 56px;
+    height: 2em;
+    width: 2em;
+    margin-top: -.2em;
     position: relative;
     transition: all 0.1s linear;
   }

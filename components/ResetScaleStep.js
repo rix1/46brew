@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent, Fragment } from 'react';
 import InlineInput from './InlineInput';
+import ColorButton from './ColorButton';
 
 type Props = {
   onCompleted: ({ resetWeight: string }) => void,
@@ -57,6 +58,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
           />{' '}
           grams.
         </p>
+        <ColorButton onClick={this.completeStep}>Next</ColorButton>
       </Fragment>
     );
   }

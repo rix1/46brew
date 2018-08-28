@@ -11,7 +11,7 @@ const BlankButton = ({ children, className = '', ...rest }: Props = {}) => (
   <button
     type="button"
     className={cx(
-      'f5 fw4 dim link navy underline pointer pv1 transparent bn',
+      'f5 fw4 dim link navy underline pointer pv1 bg-transparent bn',
       className,
     )}
     {...rest}>

@@ -1,10 +1,10 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { PureComponent, createRef } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
 import type { UnitType } from '../FlowTypes';
 
-import BlankButton from '../components/BlankButton';
+import ColorButton from '../components/ColorButton';
 import BrewTracker from '../components/BrewTracker/BrewTracker';
 import Content from '../components/Content';
 import SetAmountStep from '../components/SetAmountStep';
@@ -42,8 +42,16 @@ type State = {
   strength: ?number,
   taste: ?number,
 };
-
+type StepNames = 'profileStep' | 'resetScaleStep' | 'brewTrackerStep';
 class Index extends PureComponent<*, State> {
+  stepRefs = {
+    profileStep: createRef(),
+
+    resetScaleStep: createRef(),
+
+    brewTrackerStep: createRef(),
+  };
+
   state = {
     activeStep: 'weight',
     baseMeasurement: null,
@@ -51,6 +59,16 @@ class Index extends PureComponent<*, State> {
     resetWeight: null,
     strength: null,
     taste: null,
+  };
+
+  scrollToStep = (stepName: StepNames) => {
+    const stepRef = this.stepRefs[stepName];
+    if (stepRef.current) {
+      stepRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
   };
 
   render() {
@@ -66,94 +84,101 @@ class Index extends PureComponent<*, State> {
       <ThemeProvider theme={{ colors, sizes }}>
         <Page>
           <Content>
-            <StepWrapper
-              isActive={
-                activeStep === 'weight' || (!!baseMeasurement && !!baseWeight)
-              }>
+            <StepWrapper isActive>
               <StepHeading done={!!baseMeasurement && !!baseWeight}>
                 How much?
               </StepHeading>
               <SetAmountStep
-                onCompleted={data =>
+                onCompleted={data => {
                   this.setState({
                     baseMeasurement: data.baseMeasurement,
                     baseWeight: data.baseWeight,
                     activeStep: 'profile',
-                  })
-                }
+                  });
+
+                  this.scrollToStep('profileStep');
+                }}
               />
             </StepWrapper>
 
-            <StepWrapper
-              isActive={activeStep === 'profile' || (!!taste && !!strength)}>
-              <StepHeading done={!!taste && !!strength}>
-                Set taste profile
-              </StepHeading>
-              <p className="f3">
-                Please let me know how much coffee (or water) you are going to
-                use:
-              </p>
-              <div className="mv4">
-                <ProfileSlider
-                  onComplete={data =>
+            <div ref={this.stepRefs.profileStep}>
+              <StepWrapper
+                isActive={activeStep === 'profile' || (!!taste && !!strength)}>
+                <StepHeading done={!!taste && !!strength}>
+                  Set taste profile
+                </StepHeading>
+                <p className="f3">
+                  Please let me know how much coffee (or water) you are going to
+                  use:
+                </p>
+                <div className="mv4">
+                  <ProfileSlider
+                    onComplete={data => {
+                      this.setState({
+                        taste: data.taste,
+                        strength: data.strength,
+                        activeStep: 'reset',
+                      });
+                      this.scrollToStep('resetScaleStep');
+                    }}
+                  />
+                </div>
+              </StepWrapper>
+            </div>
+
+            <div ref={this.stepRefs.resetScaleStep}>
+              <StepWrapper isActive={activeStep === 'reset' || !!resetWeight}>
+                <StepHeading done={!!resetWeight}>Get ready</StepHeading>
+
+                <ResetScaleStep
+                  onCompleted={data => {
                     this.setState({
-                      taste: data.taste,
-                      strength: data.strength,
-                      activeStep: 'reset',
-                    })
-                  }
+                      resetWeight: data.resetWeight,
+                      activeStep: 'brew',
+                    });
+                    this.scrollToStep('brewTrackerStep');
+                  }}
                 />
-              </div>
-            </StepWrapper>
-            <StepWrapper isActive={activeStep === 'reset' || !!resetWeight}>
-              <StepHeading done={!!resetWeight}>Get ready</StepHeading>
+              </StepWrapper>
+            </div>
 
-              <ResetScaleStep
-                onCompleted={data =>
-                  this.setState({
-                    resetWeight: data.resetWeight,
-                    activeStep: 'brew',
-                  })
-                }
-              />
-            </StepWrapper>
-
-            <Timer>
-              {(timeElapsed, isRunning, toggleRunning) => (
-                <StepWrapper isActive={activeStep === 'brew'}>
-                  <StepHeading done={false}>It&apos;s brew time!</StepHeading>
-                  <p>Time: {timeElapsed}</p>
-                  <BlankButton onClick={toggleRunning}>
-                    {isRunning ? 'Pause' : 'Start'}
-                  </BlankButton>
-                  <BrewTracker
-                    time={timeElapsed}
-                    taste={taste || 0}
-                    strength={strength || 0}
-                    baseWeight={Number(baseWeight) || 0}
-                    baseMesurement={baseMeasurement}
-                    onFinished={toggleRunning}
-                    resetWeight={Number(resetWeight)}>
-                    {({
-                      activity,
-                      pourNumber,
-                      currentWeight,
-                      targetWeight,
-                      timeToNextStep,
-                    }) => (
-                      <div className="flex justify-between flex-wrap">
-                        <Stat desc="Current weight:">{currentWeight}</Stat>
-                        <Stat desc="Activity:">{activity}</Stat>
-                        <Stat desc="Target weight:">{targetWeight}</Stat>
-                        <Stat desc="Pour number:">{pourNumber}</Stat>
-                        <Stat desc="Time">{timeToString(timeElapsed)}</Stat>
-                        <Stat desc="Next step in:">{timeToNextStep}</Stat>
-                      </div>
-                    )}
-                  </BrewTracker>
-                </StepWrapper>
-              )}
-            </Timer>
+            <div ref={this.stepRefs.brewTrackerStep} className="mb7">
+              <Timer>
+                {(timeElapsed, isRunning, toggleRunning) => (
+                  <StepWrapper isActive={activeStep === 'brew'}>
+                    <StepHeading done={false}>It&apos;s brew time!</StepHeading>
+                    <ColorButton onClick={toggleRunning}>
+                      {isRunning ? 'Pause' : 'Start'}
+                    </ColorButton>
+                    <BrewTracker
+                      time={timeElapsed}
+                      taste={taste || 0}
+                      strength={strength || 0}
+                      baseWeight={Number(baseWeight) || 0}
+                      baseMesurement={baseMeasurement}
+                      onFinished={toggleRunning}
+                      resetWeight={Number(resetWeight)}>
+                      {({
+                        activity,
+                        pourNumber,
+                        currentWeight,
+                        targetWeight,
+                        timeToNextStep,
+                      }) => (
+                        <div className="flex justify-between flex-wrap">
+                          <Stat desc="Current weight:">{currentWeight}</Stat>
+                          <Stat desc="Activity:">{activity}</Stat>
+                          <Stat desc="Target weight:">{targetWeight}</Stat>
+                          <Stat desc="Pour number:">{pourNumber}</Stat>
+                          <Stat desc="Time">{timeToString(timeElapsed)}</Stat>
+                          <Stat desc="Next step in:">{timeToNextStep}</Stat>
+                        </div>
+                      )}
+                    </BrewTracker>
+                  </StepWrapper>
+                )}
+              </Timer>
+            </div>
           </Content>
         </Page>
       </ThemeProvider>
