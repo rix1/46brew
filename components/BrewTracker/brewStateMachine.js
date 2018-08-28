@@ -14,17 +14,21 @@ export default function(nextProps: Props, prevState: State): State | null {
   } = prevState;
 
   // Initial setup
-  if (
-    !weightSteps.length &&
-    baseWeight &&
-    baseMesurement &&
-    taste &&
-    strength
-  ) {
-    return {
-      ...prevState,
-      weightSteps: getWeightSteps(baseWeight, baseMesurement, taste, strength),
-    };
+
+  if (baseWeight && baseMesurement && taste && strength) {
+    const newWeightSteps = getWeightSteps(
+      baseWeight,
+      baseMesurement,
+      taste,
+      strength,
+    );
+
+    if (weightSteps.length !== newWeightSteps.length) {
+      return {
+        ...prevState,
+        weightSteps: newWeightSteps,
+      };
+    }
   }
 
   // We done!

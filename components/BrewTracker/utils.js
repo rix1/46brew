@@ -3,15 +3,29 @@ import { getSeparators } from '../ProfileSlider';
 import { type UnitType } from '../../FlowTypes';
 import { type State } from './BrewTracker';
 
-const TASTE_PARTS = 2;
-const STRENGTH_PARTS = 3;
-const COFFEE_MULTIPLIER = 3;
-const COFFEE_TO_WATER_RATIO = 0.065;
-export const TIME_BETWEEN_POURS = 42; // The meaing 👀
+export const TIME_BETWEEN_POURS = 42; // The meaing of everything 👀
 export const POUR_TIME = 10;
 
+const TASTE_BASE_PARTS = 2;
+const STRENGTH_BASE_PARTS = 3;
+const COFFEE_TO_WATER_RATIO = 0.065;
+
+/**
+ * Tetsu Kasuya's original formula is:
+ *    coffee x 3 x pours = water
+ *
+ * That gives us the following coffee to water ratio
+ *    1 / (3 x pours) => 0.0666...
+ *
+ * Which is slightly more than 0.065 (my personal base) and what I use
+ * to convert water to coffee in `getCoffeeWeight()` 👇
+ *
+ * To improve accuracy over Kasuya's formula I calculate a custom COFFEE_MULTIPLIER:
+ */
+const COFFEE_MULTIPLIER = 1 / (COFFEE_TO_WATER_RATIO * 5); // => 3.0765...
+
 export const convertTasteToWeight = (baseWeight: number, taste: number) => {
-  const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_PARTS;
+  const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_BASE_PARTS;
   return [
     Math.round(tasteWeight * (taste / 100)),
     Math.round(tasteWeight * ((100 - taste) / 100)),
@@ -22,7 +36,7 @@ export const convertStrenghtToWeight = (
   baseWeight: number,
   strength: number,
 ): Array<number> => {
-  const strenghtWeight = baseWeight * COFFEE_MULTIPLIER * STRENGTH_PARTS;
+  const strenghtWeight = baseWeight * COFFEE_MULTIPLIER * STRENGTH_BASE_PARTS;
   const separators = getSeparators(strength);
   return [...Array(separators.length + 1)].map(
     (el, i, array) => strenghtWeight / array.length,

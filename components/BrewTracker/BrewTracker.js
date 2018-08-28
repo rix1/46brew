@@ -57,23 +57,8 @@ class BrewTracker extends PureComponent<Props, State> {
   };
 
   componentDidUpdate(prevProps: Props, prevState: State) {
-    const { onFinished, time } = this.props;
-    const { activity, pouringTimeTarget, waitingTimeTarget } = this.state;
-
-    if (prevState.pouringTimeTarget !== pouringTimeTarget) {
-      console.log(
-        `${time} pour target changed from ${
-          prevState.pouringTimeTarget
-        } to ${pouringTimeTarget}`,
-      );
-    }
-    if (prevState.waitingTimeTarget !== waitingTimeTarget) {
-      console.log(
-        `${time} waiting target changed from ${
-          prevState.waitingTimeTarget
-        } to ${waitingTimeTarget}`,
-      );
-    }
+    const { onFinished } = this.props;
+    const { activity } = this.state;
 
     if (prevState.activity !== activity) {
       console.log('activity changed to', activity);
