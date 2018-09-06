@@ -107,8 +107,10 @@ class Index extends PureComponent<*, State> {
                 Set taste profile
               </StepHeading>
               <p className="f3">
-                Please let me know how much coffee (or water) you are going to
-                use:
+                Use the two sliders below to adjust taste profile.
+                <span className="db f6 mt3">
+                  Lines indicate the number of pours
+                </span>
               </p>
               <div className="mv4">
                 <ProfileSlider
