@@ -3,7 +3,6 @@ import React from 'react';
 import { cx, css } from 'emotion';
 import { withTheme } from 'emotion-theming';
 
-
 type Props = {
   children: React$Node,
   className?: string,

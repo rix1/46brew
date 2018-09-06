@@ -1,5 +1,6 @@
 // @flow
-import { getWeightSteps, TIME_BETWEEN_POURS, POUR_TIME } from './utils';
+import { TIME_BETWEEN_POURS, POUR_TIME } from '../../lib/constants';
+import { getWeightSteps } from './utils';
 
 import type { Props, State } from './BrewTracker';
 

@@ -1,15 +1,11 @@
 // @flow
 import { PureComponent } from 'react';
 
-import {
-  getTimeToNextStep,
-  sumArrayTo,
-  TIME_BETWEEN_POURS,
-  POUR_TIME,
-} from './utils';
-import stateMachine from './brewStateMachine';
+import { TIME_BETWEEN_POURS, POUR_TIME } from '../../lib/constants';
+import { sumArrayTo } from '../../lib/sumArrayTo';
 
-// eslint doesnt seem to understand getDerivedStateFromProps...
+import { getTimeToNextStep } from './utils';
+import stateMachine from './brewStateMachine';
 
 export type Props = {
   children: ({|

@@ -5,7 +5,7 @@ import { withTheme } from 'emotion-theming';
 import styled, { cx, css } from 'react-emotion';
 
 import { timeToString } from '../lib/formatTime';
-import { sumArrayTo } from './BrewTracker/utils';
+import { sumArrayTo } from '../lib/sumArrayTo';
 import PixelShifter from './PixelShifter';
 import Stat from './Stat';
 
