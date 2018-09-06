@@ -20,7 +20,7 @@ const ColorButton = ({
       css`
         background-color: ${theme.colors.orange};
       `,
-      'f5 fw4 white-90 pointer pv1 bn br2',
+      'f4 fw4 white-90 pointer pv1 bn br2 w-100 pv2',
       className,
     )}
     {...rest}>
