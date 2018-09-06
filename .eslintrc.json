@@ -3,5 +3,5 @@
     "browser": true
   },
   "parser": "babel-eslint",
-  "extends": ["otovo"]
+  "extends": ["otovo/react-recommended"]
 }

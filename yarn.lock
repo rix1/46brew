@@ -2012,9 +2012,9 @@ eslint-config-airbnb@^17.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-"eslint-config-otovo@https://github.com/otovo/javascript.git":
+"eslint-config-otovo@https://github.com/otovo/eslint-config-otovo.git":
   version "1.0.0"
-  resolved "https://github.com/otovo/javascript.git#b330aada25586fb8dc555d754dbfb4306df01412"
+  resolved "https://github.com/otovo/eslint-config-otovo.git#21f54f8f3e618504e6a329d9115567b9ec485d2d"
 
 eslint-config-prettier@^3.0.1:
   version "3.0.1"
