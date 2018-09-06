@@ -98,13 +98,13 @@ class ProfileSlider extends PureComponent<Props, State> {
           />
         </div>
         <p className="mt4 silver f6 f5-ns">
-          <span className="fw5">Taste:</span>{' '}
+          <span className="fw5">Taste:</span> {tasteValue}{' '}
           {getStringFromValue(tasteValue, [
             'Sweeter',
             'Normal',
             'More acidity',
           ])}
-          <span className="ml3 fw5">Strength:</span>{' '}
+          <span className="ml3 fw5">Strength:</span> {strengthValue}{' '}
           {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
         </p>
         <ColorButton onClick={this.onComplete}>Next</ColorButton>
