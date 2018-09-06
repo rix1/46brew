@@ -15,6 +15,10 @@ type State = {
 class Timer extends PureComponent<Props, State> {
   animationFrameId: number;
 
+  static defaultProps = {
+    multiplier: 1,
+  };
+
   state = {
     timeElapsed: 0,
     isRunning: false,
@@ -46,7 +50,7 @@ class Timer extends PureComponent<Props, State> {
   tick = () => {
     if (window) {
       this.animationFrameId = window.requestAnimationFrame(() => {
-        const { multiplier = 1 } = this.props;
+        const { multiplier } = this.props;
         const { timeElapsed, isRunning, lastTickAt } = this.state;
         if (!isRunning || !lastTickAt) {
           return;
