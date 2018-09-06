@@ -2,7 +2,6 @@
 import React from 'react';
 import { cx, css } from 'react-emotion';
 import { withTheme } from 'emotion-theming';
-import type { ThemeProps } from '../FlowTypes';
 
 type Props = { className?: string, error?: boolean };
 
@@ -11,7 +10,7 @@ const InlineInput = ({
   theme,
   error = false,
   ...rest
-}: Props & ThemeProps = {}) => (
+}: Props & Brew$ThemeProps = {}) => (
   <input
     className={cx(
       'ph2',

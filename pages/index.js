@@ -2,8 +2,6 @@
 import React, { PureComponent, createRef } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
-import type { UnitType } from '../FlowTypes';
-
 import ColorButton from '../components/ColorButton';
 import BrewTracker from '../components/BrewTracker/BrewTracker';
 import Content from '../components/Content';
@@ -30,7 +28,7 @@ const sizes = {
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
-  baseMeasurement: ?UnitType,
+  baseMeasurement: ?Brew$UnitType,
   baseWeight: ?string,
   resetWeight: ?string,
   strength: ?number,

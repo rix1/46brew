@@ -1,6 +1,6 @@
 // @flow
 import { getSeparators } from '../ProfileSlider';
-import { type UnitType } from '../../FlowTypes';
+
 import { type State } from './BrewTracker';
 
 export const TIME_BETWEEN_POURS = 42; // The meaing of everything 👀
@@ -45,7 +45,7 @@ export const convertStrenghtToWeight = (
 
 export const getCoffeeWeight = (
   baseWeight: number,
-  baseMesurement: UnitType,
+  baseMesurement: Brew$UnitType,
 ) => {
   if (baseMesurement === 'coffee') {
     return baseWeight;
@@ -55,7 +55,7 @@ export const getCoffeeWeight = (
 
 export const getWeightSteps = (
   baseWeight: number,
-  baseMesurement: UnitType,
+  baseMesurement: Brew$UnitType,
   taste: number,
   strength: number,
 ) => {

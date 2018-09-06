@@ -1,16 +1,14 @@
 // @flow
 import React, { Fragment, PureComponent } from 'react';
 
-import { type UnitType } from '../FlowTypes';
-
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {
-  onCompleted: ({ baseMeasurement: UnitType, baseWeight: string }) => void,
+  onCompleted: ({ baseMeasurement: Brew$UnitType, baseWeight: string }) => void,
 };
 type State = {
-  type: ?UnitType,
+  type: ?Brew$UnitType,
   value: string,
   inputError: boolean,
 };

@@ -1,6 +1,6 @@
 // @flow
 import { PureComponent } from 'react';
-import { type UnitType } from '../../FlowTypes';
+
 import {
   getTimeToNextStep,
   sumArrayTo,
@@ -25,7 +25,7 @@ export type Props = {
   taste: number, // eslint-disable-line
   strength: number, // eslint-disable-line
   baseWeight: number, // eslint-disable-line
-  baseMesurement: ?UnitType, // eslint-disable-line
+  baseMesurement: ?Brew$UnitType, // eslint-disable-line
   resetWeight?: number,
 };
 

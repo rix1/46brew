@@ -2,7 +2,7 @@
 import React from 'react';
 import { cx, css } from 'emotion';
 import { withTheme } from 'emotion-theming';
-import { type ThemeProps } from '../FlowTypes';
+
 
 type Props = {
   children: React$Node,
@@ -14,7 +14,7 @@ const ColorButton = ({
   className = '',
   theme,
   ...rest
-}: Props & ThemeProps = {}) => (
+}: Props & Brew$ThemeProps = {}) => (
   <button
     type="button"
     className={cx(
