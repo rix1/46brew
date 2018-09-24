@@ -8,11 +8,11 @@
   },
   "author": "rix1",
   "scripts": {
-    "dev": "next",
+    "dev": "next build && node server.js",
     "build": "next build",
     "flow": "flow",
     "start:dev": "next dev",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "eslint": "eslint . --cache",
     "test": "NODE_ENV=test jest"
   },

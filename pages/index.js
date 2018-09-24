@@ -13,6 +13,7 @@ import StepHeading from '../components/StepHeading';
 import StepWrapper from '../components/StepWrapper';
 import Timer from '../components/Timer';
 import BrewViz from '../components/BrewViz';
+import { setupServiceWorker } from '../lib/sw-setup';
 
 const colors = {
   dusty: 'rgba(217, 229, 214, 1);',
@@ -49,6 +50,10 @@ class Index extends PureComponent<*, State> {
     taste: null,
   };
 
+  componentDidMount() {
+    setupServiceWorker();
+  }
+
   stepRefs = {
     amountStep: createRef(),
     profileStep: createRef(),
@@ -79,6 +84,7 @@ class Index extends PureComponent<*, State> {
       strength,
       taste,
     } = this.state;
+
     return (
       <ThemeProvider theme={{ colors, sizes }}>
         <Page>
