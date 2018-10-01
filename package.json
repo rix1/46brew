@@ -2,6 +2,10 @@
   "name": "46brew",
   "version": "1.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rix1/46brew"
+  },
   "author": "rix1",
   "scripts": {
     "dev": "next",
