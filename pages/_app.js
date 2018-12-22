@@ -23,7 +23,7 @@ export default class MyApp extends App {
         <div className="flex flex-column vh-100">
           <header className="tc">
             <h1 className="f1 fw7 ttu tracked relative dib">
-              4:6brew
+              Oles brygg!
               <span
                 className={css`
                   line-height: 1;

@@ -48,7 +48,7 @@ const Page = ({
         animation-delay: 2s;
       `}
       alt="Ole kan laga kaffi"
-      src="/static/ole.png"
+      src="/static/ole-hat.png"
     />
   </section>
 );
