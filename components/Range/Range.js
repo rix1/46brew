@@ -27,7 +27,7 @@ class Range extends PureComponent<Props, State> {
   };
 
   state = {
-    hasChanged: false,
+    hasChanged: true, // Disable idle state for now
   };
 
   onChange = (event: SyntheticInputEvent<HTMLFormElement>) => {
@@ -55,12 +55,7 @@ class Range extends PureComponent<Props, State> {
       <div
         className={cx('relative br3 f4 f3-ns', className)}
         style={{
-          backgroundColor: `hsla(
-        48,
-        ${value}%,
-        ${100 - 0.25 * value}%,
-        1
-      )`,
+          backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
         }}>
         {separators &&
           separators.map(separator => (

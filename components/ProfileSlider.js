@@ -5,6 +5,10 @@ import getStringFromValue from '../lib/getStringFromValue';
 import Range from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';
+import BlankButton from './BlankButton';
+
+const DEFAULT_TASTE_VALUE = 50;
+const DEFAULT_STRENGTH_VALUE = 50;
 
 type Props = {
   onComplete: ({ taste: number, strength: number }) => void,
@@ -31,8 +35,8 @@ export const getSeparators = (val: number) => {
 
 class ProfileSlider extends PureComponent<Props, State> {
   state = {
-    tasteValue: 50,
-    strengthValue: 50,
+    tasteValue: DEFAULT_TASTE_VALUE,
+    strengthValue: DEFAULT_STRENGTH_VALUE,
     strengthValueSet: false,
     tasteValueSet: false,
   };
@@ -63,11 +67,42 @@ class ProfileSlider extends PureComponent<Props, State> {
   };
 
   render() {
-    const { strengthValue, tasteValue } = this.state;
-
+    const {
+      strengthValue,
+      tasteValue,
+      strengthValueSet,
+      tasteValueSet,
+    } = this.state;
+    const hasChanged = strengthValueSet || tasteValueSet;
     return (
       <Fragment>
-        <div className="flex">
+        <p className="mv4">
+          <span className="fw5">Taste:</span> {tasteValue}{' '}
+          {getStringFromValue(tasteValue, [
+            'Sweeter',
+            'Normal',
+            'More acidity',
+          ])}
+          <span className="ml3 fw5">Strength:</span> {strengthValue}{' '}
+          {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
+          {hasChanged &&
+            (tasteValue !== DEFAULT_TASTE_VALUE ||
+              strengthValue !== DEFAULT_STRENGTH_VALUE) && (
+              <BlankButton
+                onClick={() => {
+                  this.setState({
+                    tasteValue: DEFAULT_TASTE_VALUE,
+                    tasteValueSet: true,
+                    strengthValue: DEFAULT_STRENGTH_VALUE,
+                    strengthValueSet: true,
+                  });
+                }}>
+                Reset
+              </BlankButton>
+            )}
+        </p>
+
+        <div className="flex mb4">
           <Range
             className="w-40"
             onChange={this.onChange('tasteValue')}
@@ -97,17 +132,25 @@ class ProfileSlider extends PureComponent<Props, State> {
             }
           />
         </div>
-        <p className="mt4 silver f6 f5-ns">
-          <span className="fw5">Taste:</span> {tasteValue}{' '}
-          {getStringFromValue(tasteValue, [
-            'Sweeter',
-            'Normal',
-            'More acidity',
-          ])}
-          <span className="ml3 fw5">Strength:</span> {strengthValue}{' '}
-          {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
-        </p>
-        <ColorButton onClick={this.onComplete}>Next</ColorButton>
+
+        <ColorButton
+          onClick={() => {
+            if (!hasChanged) {
+              this.setState(
+                {
+                  tasteValue: DEFAULT_TASTE_VALUE,
+                  tasteValueSet: true,
+                  strengthValue: DEFAULT_STRENGTH_VALUE,
+                  strengthValueSet: true,
+                },
+                this.onComplete,
+              );
+            } else {
+              this.onComplete();
+            }
+          }}>
+          {hasChanged ? 'Next' : 'Use defaults'}
+        </ColorButton>
       </Fragment>
     );
   }

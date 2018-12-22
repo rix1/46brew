@@ -117,8 +117,8 @@ class Index extends PureComponent<*, State> {
                 Set taste profile
               </StepHeading>
               <p className="f3">
-                Use the two sliders below to adjust taste profile.
-                <span className="db f6 mt3">
+                Use the two sliders below to adjust taste profile.{' '}
+                <span className="f6 mt3 silver">
                   Lines indicate the number of pours
                 </span>
               </p>
