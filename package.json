@@ -8,12 +8,13 @@
   },
   "author": "rix1",
   "scripts": {
-    "dev": "next",
     "build": "next build",
+    "dev": "next",
+    "eslint": "eslint . --cache",
+    "export": "next export",
     "flow": "flow",
     "start:dev": "next dev",
     "start": "next start",
-    "eslint": "eslint . --cache",
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
