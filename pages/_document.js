@@ -21,6 +21,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
           />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Lobster"
+          />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body className="sans-serif" style={{ fontSize: '18px' }}>
