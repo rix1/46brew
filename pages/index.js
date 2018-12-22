@@ -39,6 +39,14 @@ type StepNames =
   | 'profileStep'
   | 'resetScaleStep'
   | 'brewTrackerStep';
+
+type StepTypes = {
+  amountStep: { current: null | HTMLDivElement },
+  profileStep: { current: null | HTMLDivElement },
+  resetScaleStep: { current: null | HTMLDivElement },
+  brewTrackerStep: { current: null | HTMLDivElement },
+};
+
 class Index extends PureComponent<*, State> {
   state = {
     activeStep: 'weight',
@@ -49,7 +57,7 @@ class Index extends PureComponent<*, State> {
     taste: null,
   };
 
-  stepRefs = {
+  stepRefs: StepTypes = {
     amountStep: createRef(),
     profileStep: createRef(),
     resetScaleStep: createRef(),
@@ -61,10 +69,12 @@ class Index extends PureComponent<*, State> {
     if (stepRef.current) {
       window.requestAnimationFrame(() =>
         window.requestAnimationFrame(() => {
-          stepRef.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
+          if (stepRef.current) {
+            stepRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
         }),
       );
     }
