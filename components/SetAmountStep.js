@@ -4,6 +4,7 @@ import React, { Fragment, PureComponent } from 'react';
 import { coffeeConverter, coffeeToWater } from '../lib/conversion';
 
 import { COFFE_CUP_SIZE } from '../lib/constants';
+import { notifiy } from '../lib/notifitfaction';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
@@ -26,6 +27,9 @@ class SetAmountStep extends PureComponent<Props, State> {
   completeStep = () => {
     const { onCompleted } = this.props;
     const { type, value } = this.state;
+
+    notifiy();
+
     if (type && value) {
       onCompleted({
         baseWeight: value,
