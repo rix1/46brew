@@ -23,8 +23,8 @@
     "emotion-theming": "^9.2.6",
     "eslint-config-otovo": "https://github.com/otovo/eslint-config-otovo.git",
     "next": "^7.0.0",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-emotion": "^9.2.6",
     "uuid": "^3.3.2"
   },
