@@ -1,7 +1,6 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 
-import { css } from 'emotion';
 import Navigation from '../components/Navigation';
 import Link from '../components/Link';
 
@@ -22,26 +21,7 @@ export default class MyApp extends App {
       <Container>
         <div className="flex flex-column vh-100">
           <header className="tc">
-            <h1 className="f1 fw7 ttu tracked relative dib">
-              4:6brew
-              <span
-                className={css`
-                  line-height: 1;
-                  transform: translate3d(40%, 75%, 0) rotate(-25deg);
-                  position: absolute;
-                  font-size: 60%;
-                  right: 0;
-                  text-align: center;
-                  font-family: Lobster, sans-serif;
-                  color: #e34b4c;
-                  letter-spacing: normal;
-                  text-transform: none;
-                `}>
-                Christmas
-                <br />
-                Edition
-              </span>
-            </h1>
+            <h1 className="f1 fw7 ttu tracked relative dib">4:6brew</h1>
             <Navigation />
           </header>
           <div>

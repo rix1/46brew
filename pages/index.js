@@ -2,7 +2,6 @@
 import React, { PureComponent, createRef } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
-import { css } from 'emotion';
 import ColorButton from '../components/ColorButton';
 import BrewTracker from '../components/BrewTracker/BrewTracker';
 import Content from '../components/Content';

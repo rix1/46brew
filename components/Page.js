@@ -2,22 +2,11 @@
 import React, { type Node } from 'react';
 import Head from 'next/head';
 
-import { css, keyframes } from 'react-emotion';
-
 type Props = {
   children: Node,
   title?: string,
   description?: string,
 };
-
-const leanIn = keyframes`
-  from, to {
-    transform: translateX(100%) rotate(0deg);
-  }
-  20%, 80% {
-    transform: translateX(90%) rotate(-45deg);
-  }
-`;
 
 const Page = ({
   children,
@@ -36,20 +25,6 @@ const Page = ({
       />
     </Head>
     {children}
-    <img
-      className={css`
-        position: absolute;
-        z-index: -1;
-        right: 0;
-        top: 8rem;
-        transform: translateX(100%) rotate(0deg);
-        transform-origin: bottom left;
-        animation: ${leanIn} 4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        animation-delay: 2s;
-      `}
-      alt="Ole kan laga kaffi"
-      src="/static/ole.png"
-    />
   </section>
 );
 
