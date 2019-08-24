@@ -116,11 +116,8 @@ class Index extends PureComponent<*, State> {
               <StepHeading done={!!taste && !!strength}>
                 Set taste profile
               </StepHeading>
-              <p className="f3">
-                Use the two sliders below to adjust taste profile.{' '}
-                <span className="f6 mt3 silver">
-                  Lines indicate the number of pours
-                </span>
+              <p className="f3 fl">
+                Use the two sliders below to adjust taste profile.
               </p>
               <div className="mv4">
                 <ProfileSlider

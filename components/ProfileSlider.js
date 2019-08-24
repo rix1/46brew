@@ -76,33 +76,47 @@ class ProfileSlider extends PureComponent<Props, State> {
     const hasChanged = strengthValueSet || tasteValueSet;
     return (
       <Fragment>
-        <p className="mv4">
-          <span className="fw5">Taste:</span> {tasteValue}{' '}
-          {getStringFromValue(tasteValue, [
-            'Sweeter',
-            'Normal',
-            'More acidity',
-          ])}
-          <span className="ml3 fw5">Strength:</span> {strengthValue}{' '}
-          {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
-          {hasChanged &&
-            (tasteValue !== DEFAULT_TASTE_VALUE ||
-              strengthValue !== DEFAULT_STRENGTH_VALUE) && (
-              <BlankButton
-                onClick={() => {
-                  this.setState({
-                    tasteValue: DEFAULT_TASTE_VALUE,
-                    tasteValueSet: true,
-                    strengthValue: DEFAULT_STRENGTH_VALUE,
-                    strengthValueSet: true,
-                  });
-                }}>
-                Reset
-              </BlankButton>
-            )}
+        {hasChanged &&
+          (tasteValue !== DEFAULT_TASTE_VALUE ||
+            strengthValue !== DEFAULT_STRENGTH_VALUE) && (
+            <BlankButton
+              css="
+                  padding-top: 0;
+                  padding-bottom: 0;
+                "
+              className="fr"
+              onClick={() => {
+                this.setState({
+                  tasteValue: DEFAULT_TASTE_VALUE,
+                  tasteValueSet: true,
+                  strengthValue: DEFAULT_STRENGTH_VALUE,
+                  strengthValueSet: true,
+                });
+              }}>
+              Reset
+            </BlankButton>
+          )}
+        <p
+          className="mv4 flex w-100"
+          css={`
+            font-feature-settings: 'tnum';
+            font-variant-numeric: tabular-nums;
+          `}>
+          <span className="w-40">
+            <span className="fw5">Taste:</span> {tasteValue}{' '}
+            {getStringFromValue(tasteValue, [
+              'Sweeter',
+              'Normal',
+              'More acidity',
+            ])}
+          </span>
+          <span className="w-60">
+            <span className="fw5">Strength:</span> {strengthValue}{' '}
+            {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
+          </span>
         </p>
 
-        <div className="flex mb4">
+        <div className="flex">
           <Range
             className="w-40"
             onChange={this.onChange('tasteValue')}
@@ -132,6 +146,9 @@ class ProfileSlider extends PureComponent<Props, State> {
             }
           />
         </div>
+        <span className="f6 mt3 silver w-100 db tc mb4">
+          Lines indicate the number of pours
+        </span>
 
         <ColorButton
           onClick={() => {
