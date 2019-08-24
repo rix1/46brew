@@ -2,8 +2,6 @@
 import React, { PureComponent, createRef } from 'react';
 import { ThemeProvider } from 'emotion-theming';
 
-import ColorButton from '../components/ColorButton';
-import BrewTracker from '../components/BrewTracker/BrewTracker';
 import Content from '../components/Content';
 import SetAmountStep from '../components/SetAmountStep';
 import Page from '../components/Page';
@@ -11,8 +9,9 @@ import ProfileSlider from '../components/ProfileSlider';
 import ResetScaleStep from '../components/ResetScaleStep';
 import StepHeading from '../components/StepHeading';
 import StepWrapper from '../components/StepWrapper';
-import Timer from '../components/Timer';
-import BrewViz from '../components/BrewViz';
+
+import BrewStep from '../components/BrewStep';
+import { TimerContextProvider } from '../components/Timer/Timer';
 
 const colors = {
   dusty: 'rgba(217, 229, 214, 1);',
@@ -109,7 +108,6 @@ class Index extends PureComponent<*, State> {
                 }}
               />
             </StepWrapper>
-
             <StepWrapper
               forwardRef={this.stepRefs.profileStep}
               isActive={activeStep === 'profile' || (!!taste && !!strength)}>
@@ -132,7 +130,6 @@ class Index extends PureComponent<*, State> {
                 />
               </div>
             </StepWrapper>
-
             <StepWrapper
               isActive={activeStep === 'reset' || !!resetWeight}
               forwardRef={this.stepRefs.resetScaleStep}>
@@ -148,37 +145,20 @@ class Index extends PureComponent<*, State> {
                 }}
               />
             </StepWrapper>
-
-            <Timer>
-              {(timeElapsed, isRunning, toggleRunning) => (
-                <StepWrapper
-                  forwardRef={this.stepRefs.brewTrackerStep}
-                  className="mb7"
-                  // isActive={activeStep === 'brew'}
-                  isActive>
-                  <div className="flex justify-between items-end">
-                    <StepHeading done={false}>It&apos;s brew time!</StepHeading>
-                    <span>
-                      <ColorButton className="mb3" onClick={toggleRunning}>
-                        {isRunning ? 'Pause' : 'Start'}
-                      </ColorButton>
-                    </span>
-                  </div>
-                  <BrewTracker
-                    time={timeElapsed}
-                    taste={taste || 0}
-                    strength={strength || 0}
-                    baseWeight={Number(baseWeight) || 0}
-                    baseMesurement={baseMeasurement}
-                    onFinished={toggleRunning}
-                    resetWeight={Number(resetWeight)}>
-                    {timerProps => (
-                      <BrewViz time={timeElapsed} {...timerProps} />
-                    )}
-                  </BrewTracker>
-                </StepWrapper>
-              )}
-            </Timer>
+            <StepWrapper
+              forwardRef={this.stepRefs.brewTrackerStep}
+              className="mb7"
+              isActive={activeStep === 'brew'}>
+              <TimerContextProvider>
+                <BrewStep
+                  baseMeasurement={baseMeasurement}
+                  baseWeight={Number(baseWeight)}
+                  resetWeight={Number(resetWeight)}
+                  strength={Number(strength)}
+                  taste={Number(taste)}
+                />
+              </TimerContextProvider>
+            </StepWrapper>
           </Content>
         </Page>
       </ThemeProvider>

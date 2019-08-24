@@ -9,8 +9,6 @@ import {
 
 import { getCoffeeWeight } from '../../lib/conversion';
 
-import { type State } from './BrewTracker';
-
 export const convertTasteToWeight = (baseWeight: number, taste: number) => {
   const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_BASE_PARTS;
   return [
@@ -43,7 +41,7 @@ export const getWeightSteps = (
   ];
 };
 
-export const getTimeToNextStep = (state: State, time: number) => {
+export const getTimeToNextStep = (state: {}, time: number) => {
   const { pouringTimeTarget, waitingTimeTarget, activity } = state;
 
   if (activity === 'pouring') {

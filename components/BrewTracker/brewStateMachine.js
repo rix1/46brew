@@ -2,9 +2,7 @@
 import { TIME_BETWEEN_POURS, POUR_TIME } from '../../lib/constants';
 import { getWeightSteps } from './utils';
 
-import type { Props, State } from './BrewTracker';
-
-export default function(nextProps: Props, prevState: State): State | null {
+export default function(nextProps: {}, prevState: {}): {} | null {
   const { time, baseWeight, baseMesurement, taste, strength } = nextProps;
   const {
     pourNumber,
