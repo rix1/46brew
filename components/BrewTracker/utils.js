@@ -1,5 +1,4 @@
 // @flow
-import { getSeparators } from '../ProfileSlider';
 
 import {
   TASTE_BASE_PARTS,
@@ -9,6 +8,8 @@ import {
 
 import { getCoffeeWeight } from '../../lib/conversion';
 
+import { createLineSegments, stengthToSegments } from '../Range/Range';
+
 export const convertTasteToWeight = (baseWeight: number, taste: number) => {
   const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_BASE_PARTS;
   return [
@@ -17,13 +18,13 @@ export const convertTasteToWeight = (baseWeight: number, taste: number) => {
   ];
 };
 
-export const convertStrenghtToWeight = (
+export const convertStrenghtToWeights = (
   baseWeight: number,
   strength: number,
 ): Array<number> => {
   const strenghtWeight = baseWeight * COFFEE_MULTIPLIER * STRENGTH_BASE_PARTS;
-  const separators = getSeparators(strength);
-  return [...Array(separators.length + 1)].map((el, i, array) =>
+  const pours = createLineSegments(stengthToSegments(strength));
+  return [...Array(pours.length + 1)].map((el, i, array) =>
     Math.round(strenghtWeight / array.length),
   );
 };
@@ -37,7 +38,7 @@ export const getWeightSteps = (
   const coffeeWeight = getCoffeeWeight(baseWeight, baseMesurement);
   return [
     ...convertTasteToWeight(coffeeWeight, taste),
-    ...convertStrenghtToWeight(coffeeWeight, strength),
+    ...convertStrenghtToWeights(coffeeWeight, strength),
   ];
 };
 

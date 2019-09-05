@@ -2,7 +2,7 @@
 import React, { PureComponent, Fragment } from 'react';
 
 import getStringFromValue from '../lib/getStringFromValue';
-import Range from './Range/Range';
+import Range, { stengthToSegments } from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';
 import BlankButton from './BlankButton';
@@ -18,19 +18,6 @@ type State = {
   strengthValue: number,
   strengthValueSet: boolean,
   tasteValueSet: boolean,
-};
-
-export const getSeparators = (val: number) => {
-  let separators = 3;
-  if (val < 33) {
-    separators -= 1;
-  } else if (val > 66) {
-    separators += 1;
-  }
-
-  return [...Array(separators)]
-    .map((el, index, array) => Math.round(index * (100 / array.length)))
-    .filter(Boolean);
 };
 
 class ProfileSlider extends PureComponent<Props, State> {
@@ -74,6 +61,9 @@ class ProfileSlider extends PureComponent<Props, State> {
       tasteValueSet,
     } = this.state;
     const hasChanged = strengthValueSet || tasteValueSet;
+
+    const separators = stengthToSegments(strengthValue);
+
     return (
       <Fragment>
         {hasChanged &&
@@ -121,7 +111,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             className="w-40"
             onChange={this.onChange('tasteValue')}
             value={tasteValue}
-            separators={[50]}
+            separators={2}
             idleSlider="😴"
             activeSliders={['🤤', '😏']}
             onBlur={() =>
@@ -136,7 +126,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             className="w-60"
             onChange={this.onChange('strengthValue')}
             value={strengthValue}
-            separators={getSeparators(strengthValue)}
+            separators={separators}
             idleSlider="😴"
             activeSliders={['😌', '😊', '😛']}
             onBlur={() =>
@@ -147,7 +137,7 @@ class ProfileSlider extends PureComponent<Props, State> {
           />
         </div>
         <span className="f6 mt3 silver w-100 db tc mb4">
-          Lines indicate the number of pours
+          Space between lines indicate the number of pours: {separators + 2}
         </span>
 
         <ColorButton

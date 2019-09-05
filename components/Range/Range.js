@@ -6,10 +6,26 @@ import uuid from 'uuid/v4';
 import Line from '../Line';
 import StyledRange from './StyledRange';
 
+export function stengthToSegments(value: number) {
+  const baseline = 3;
+  if (value < 33) {
+    return baseline - 1;
+  }
+  if (value > 66) {
+    return baseline + 1;
+  }
+  return baseline;
+}
+
+export const createLineSegments = (segments: number) =>
+  [...Array(segments)]
+    .map((el, index, array) => Math.round(index * (100 / array.length)))
+    .filter(Boolean);
+
 type Props = {
   className?: string,
   idleSlider?: string,
-  separators?: Array<number>,
+  separators?: number,
   activeSliders?: Array<string>,
   onChange: (SyntheticInputEvent<HTMLFormElement>) => void,
   value: number,
@@ -21,7 +37,7 @@ type State = {
 class Range extends PureComponent<Props, State> {
   static defaultProps = {
     className: '',
-    separators: [],
+    separators: 1,
     activeSliders: ['😳'],
     idleSlider: '😴',
   };
@@ -57,8 +73,8 @@ class Range extends PureComponent<Props, State> {
         style={{
           backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
         }}>
-        {separators &&
-          separators.map(separator => (
+        {!!separators &&
+          createLineSegments(separators).map(separator => (
             <Line key={uuid()} position={separator} />
           ))}
         <StyledRange
