@@ -37,7 +37,7 @@ type State = {
 class Range extends PureComponent<Props, State> {
   static defaultProps = {
     className: '',
-    separators: 1,
+    separators: 0,
     activeSliders: ['😳'],
     idleSlider: '😴',
   };

@@ -64,50 +64,55 @@ class ProfileSlider extends PureComponent<Props, State> {
 
     const separators = stengthToSegments(strengthValue);
 
+    const showResetButton =
+      hasChanged &&
+      (tasteValue !== DEFAULT_TASTE_VALUE ||
+        strengthValue !== DEFAULT_STRENGTH_VALUE);
+
     return (
       <Fragment>
-        {hasChanged &&
-          (tasteValue !== DEFAULT_TASTE_VALUE ||
-            strengthValue !== DEFAULT_STRENGTH_VALUE) && (
-            <BlankButton
-              css="
-                  padding-top: 0;
-                  padding-bottom: 0;
-                "
-              className="fr"
-              onClick={() => {
-                this.setState({
-                  tasteValue: DEFAULT_TASTE_VALUE,
-                  tasteValueSet: true,
-                  strengthValue: DEFAULT_STRENGTH_VALUE,
-                  strengthValueSet: true,
-                });
-              }}>
-              Reset
-            </BlankButton>
-          )}
-        <p
+        <div
           className="mv4 flex w-100"
           css={`
             font-feature-settings: 'tnum';
             font-variant-numeric: tabular-nums;
           `}>
           <span className="w-40">
-            <span className="fw5">Taste:</span> {tasteValue}{' '}
+            <span className="fw5 db dib-ns">Taste:</span> {tasteValue}{' '}
             {getStringFromValue(tasteValue, [
               'Sweeter',
               'Normal',
               'More acidity',
             ])}
           </span>
-          <span className="w-60">
-            <span className="fw5">Strength:</span> {strengthValue}{' '}
+          <span className="mr-auto">
+            <span className="fw5 db dib-ns">Strength:</span> {strengthValue}{' '}
             {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
           </span>
-        </p>
+
+          <BlankButton
+            css="
+              padding-top: 0;
+              padding-bottom: 0;
+                "
+            className="fr self-baseline"
+            hidden={!showResetButton}
+            onClick={() => {
+              this.setState({
+                tasteValue: DEFAULT_TASTE_VALUE,
+                tasteValueSet: true,
+                strengthValue: DEFAULT_STRENGTH_VALUE,
+                strengthValueSet: true,
+              });
+            }}>
+            Reset
+          </BlankButton>
+        </div>
 
         <div className="flex">
           <Range
+            min={10}
+            max={90}
             className="w-40"
             onChange={this.onChange('tasteValue')}
             value={tasteValue}
