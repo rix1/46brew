@@ -17,8 +17,9 @@ const StepWrapper = ({
 }: StepWrapperProps = {}) => (
   <div
     ref={forwardRef}
+    tabIndex="-1"
     className={cx(
-      'mv6',
+      'mv6 outline-0',
       className,
       css`
         opacity: ${isActive ? 1 : 0.5};

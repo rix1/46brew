@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { coffeeConverter, coffeeToWater } from '../lib/conversion';
 
@@ -23,7 +23,8 @@ class SetAmountStep extends PureComponent<Props, State> {
     inputError: false,
   };
 
-  completeStep = () => {
+  completeStep = (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const { onCompleted } = this.props;
     const { type, value } = this.state;
     if (type && value) {
@@ -66,7 +67,7 @@ class SetAmountStep extends PureComponent<Props, State> {
     const cups = Math.round(Number(this.getWater() / COFFE_CUP_SIZE) * 10) / 10;
 
     return (
-      <Fragment>
+      <form onSubmit={this.completeStep}>
         <p className="f3">
           Please let me know how much coffee (or water) you are going to use:
           <InlineInput
@@ -83,8 +84,8 @@ class SetAmountStep extends PureComponent<Props, State> {
           {converted} grams of {this.getType(converted)}
         </span>
         <span className="ml3 db mb3 lh-copy">{cups} cups of coffee</span>
-        <ColorButton onClick={this.completeStep}>Next</ColorButton>
-      </Fragment>
+        <ColorButton type="submit">Next</ColorButton>
+      </form>
     );
   }
 }
