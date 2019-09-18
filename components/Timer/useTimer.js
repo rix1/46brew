@@ -9,34 +9,34 @@ function useInterval(callback: Function, delay: ?number) {
     savedCallback.current = callback;
   });
 
-  useEffect(
-    () => {
-      function tick() {
-        if (savedCallback.current) {
-          savedCallback.current();
-        }
+  useEffect(() => {
+    function tick() {
+      if (savedCallback.current) {
+        savedCallback.current();
       }
-      let id;
-      if (delay) {
-        id = setInterval(tick, delay);
+    }
+    let id;
+    if (delay) {
+      id = setInterval(tick, delay);
+    }
+    return () => {
+      if (id) {
+        clearInterval(id);
       }
-      return () => {
-        if (id) {
-          clearInterval(id);
-        }
-      };
-    },
-    [delay],
-  );
+    };
+  }, [delay]);
 }
 
 export function useTimer(multiplier: number = 1) {
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
 
-  useInterval(() => {
-    setTime(time + 1);
-  }, isRunning ? 1000 / multiplier : null);
+  useInterval(
+    () => {
+      setTime(time + 1);
+    },
+    isRunning ? 1000 / multiplier : null,
+  );
 
   function toggleTimer() {
     setIsRunning(!isRunning);

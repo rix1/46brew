@@ -3,14 +3,14 @@ import React from 'react';
 import { cx, css } from 'react-emotion';
 import { withTheme } from 'emotion-theming';
 
-type Props = { className?: string, error?: boolean };
+type Props = { className: string, error: boolean };
 
 const InlineInput = ({
-  className = '',
+  className,
+  error,
   theme,
-  error = false,
   ...rest
-}: Props & Brew$ThemeProps = {}) => (
+}: Props & Brew$ThemeProps) => (
   <input
     className={cx(
       'ph2',
@@ -31,4 +31,10 @@ const InlineInput = ({
 );
 
 const Wrapped: React$ComponentType<Props> = withTheme(InlineInput);
+
+Wrapped.defaultProps = {
+  className: '',
+  error: false,
+};
+
 export default Wrapped;

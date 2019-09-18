@@ -11,7 +11,8 @@
     "react/jsx-props-no-spreading": [
       "error",
       {
-        "html": "ignore"
+        "html": "ignore",
+        "exceptions": ["StyledRange"]
       }
     ],
     "react/default-props-match-prop-types": [
@@ -19,6 +20,7 @@
       {
         "allowRequiredDefaults": true
       }
-    ]
+    ],
+    "react/state-in-constructor": ["off"]
   }
 }

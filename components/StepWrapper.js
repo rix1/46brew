@@ -6,15 +6,15 @@ type StepWrapperProps = {
   children: React$Node,
   isActive: boolean,
   forwardRef: React$Ref<'div'>,
-  className?: string,
+  className: string,
 };
 
 const StepWrapper = ({
   children,
   isActive,
   forwardRef,
-  className = '',
-}: StepWrapperProps = {}) => (
+  className,
+}: StepWrapperProps) => (
   <div
     ref={forwardRef}
     tabIndex="-1"
@@ -28,5 +28,9 @@ const StepWrapper = ({
     {children}
   </div>
 );
+
+StepWrapper.defaultProps = {
+  className: '',
+};
 
 export default StepWrapper;

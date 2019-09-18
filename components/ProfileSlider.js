@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 
 import getStringFromValue from '../lib/getStringFromValue';
 import Range, { stengthToSegments } from './Range/Range';
@@ -70,7 +70,7 @@ class ProfileSlider extends PureComponent<Props, State> {
         strengthValue !== DEFAULT_STRENGTH_VALUE);
 
     return (
-      <Fragment>
+      <>
         <div
           className="mv4 flex w-100"
           css={`
@@ -163,7 +163,7 @@ class ProfileSlider extends PureComponent<Props, State> {
           }}>
           {hasChanged ? 'Next' : 'Use defaults'}
         </ColorButton>
-      </Fragment>
+      </>
     );
   }
 }

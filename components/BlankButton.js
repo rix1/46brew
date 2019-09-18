@@ -4,10 +4,10 @@ import { cx } from 'emotion';
 
 type Props = {
   children: React$Node,
-  className?: string,
+  className: string,
 };
 
-const BlankButton = ({ children, className = '', ...rest }: Props = {}) => (
+const BlankButton = ({ children, className, ...rest }: Props) => (
   <button
     type="button"
     className={cx(
@@ -18,5 +18,9 @@ const BlankButton = ({ children, className = '', ...rest }: Props = {}) => (
     {children}
   </button>
 );
+
+BlankButton.deafultProps = {
+  className: '',
+};
 
 export default BlankButton;

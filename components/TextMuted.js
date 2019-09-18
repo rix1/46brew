@@ -4,17 +4,17 @@ import { cx } from 'react-emotion';
 
 type TextMutedProps = {
   children: React$Node,
-  className?: string,
+  className: string,
 };
 
-const TextMuted = ({
-  children,
-  className = '',
-  ...rest
-}: TextMutedProps = {}) => (
+const TextMuted = ({ children, className, ...rest }: TextMutedProps) => (
   <span className={cx('dib f6 moon-gray', className)} {...rest}>
     {children}
   </span>
 );
+
+TextMuted.defaultProps = {
+  className: '',
+};
 
 export default TextMuted;

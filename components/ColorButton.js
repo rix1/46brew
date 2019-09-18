@@ -5,15 +5,15 @@ import { withTheme } from 'emotion-theming';
 
 type Props = {
   children: React$Node,
-  className?: string,
+  className: string,
 };
 
 const ColorButton = ({
   children,
-  className = '',
+  className,
   theme,
   ...rest
-}: Props & Brew$ThemeProps = {}) => (
+}: Props & Brew$ThemeProps) => (
   <button
     type="button"
     className={cx(
@@ -29,4 +29,9 @@ const ColorButton = ({
 );
 
 const Wrapped: React$ComponentType<Props> = withTheme(ColorButton);
+
+Wrapped.defaultProps = {
+  className: '',
+};
+
 export default Wrapped;

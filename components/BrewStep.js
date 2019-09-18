@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment } from 'react';
+import React from 'react';
 
 import { timeToString } from '../lib/formatTime';
 import BrewControls from './BrewTracker/BrewControls';
@@ -36,7 +36,7 @@ const BrewStep = ({
   const { time } = useTimerContext();
 
   return (
-    <Fragment>
+    <>
       <div className="flex justify-between items-end">
         <StepHeading done={false}>It&apos;s brew time!</StepHeading>
         <BrewControls />
@@ -53,16 +53,14 @@ const BrewStep = ({
       </div>
 
       <BrewViz
-        {...{
-          activity,
-          currentWeight,
-          pourNumber,
-          weightSteps,
-          targetWeight,
-          timeToNextStep,
-        }}
+        activity={activity}
+        currentWeight={currentWeight}
+        pourNumber={pourNumber}
+        weightSteps={weightSteps}
+        targetWeight={targetWeight}
+        timeToNextStep={timeToNextStep}
       />
-    </Fragment>
+    </>
   );
 };
 

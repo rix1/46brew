@@ -5,7 +5,7 @@ import { withTheme } from 'emotion-theming';
 
 type Props = {
   position: number,
-  contained?: boolean,
+  contained: boolean,
 };
 
 const StyledLine = styled.div`
@@ -18,10 +18,10 @@ const StyledLine = styled.div`
 
 const Line = ({
   position,
-  contained = false,
+  contained,
   theme,
   ...rest
-}: Props & Brew$ThemeProps = {}) => {
+}: Props & Brew$ThemeProps) => {
   if (contained) {
     return (
       <div
@@ -30,12 +30,19 @@ const Line = ({
           position: relative;
           z-index: 1;
         `}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <StyledLine theme={theme} position={position} {...rest} />
       </div>
     );
   }
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <StyledLine theme={theme} position={position} {...rest} />;
 };
 
 const Wrapped: React$ComponentType<Props> = withTheme(Line);
+
+Wrapped.defaultProps = {
+  contained: false,
+};
+
 export default Wrapped;

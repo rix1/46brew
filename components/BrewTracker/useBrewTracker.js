@@ -31,34 +31,42 @@ export function useBrewTracker(
   const [weightSteps, setWeightSteps] = useState([]);
   const [activity, setActivity] = useState('start');
 
-  useEffect(
-    () => {
-      const nextState = brewStateMachine(
-        {
-          time,
-          baseMesurement,
-          baseWeight,
-          strength,
-          taste,
-        },
-        {
-          pourNumber,
-          pouringTimeTarget,
-          waitingTimeTarget,
-          weightSteps,
-          activity,
-        },
-      );
-      if (nextState) {
-        setPourNumber(nextState.pourNumber);
-        setPouringTimeTarget(nextState.pouringTimeTarget);
-        setWaitingTimeTarget(nextState.waitingTimeTarget);
-        setWeightSteps(nextState.weightSteps);
-        setActivity(nextState.activity);
-      }
-    },
-    [time],
-  );
+  useEffect(() => {
+    const nextState = brewStateMachine(
+      {
+        time,
+        baseMesurement,
+        baseWeight,
+        strength,
+        taste,
+      },
+      {
+        pourNumber,
+        pouringTimeTarget,
+        waitingTimeTarget,
+        weightSteps,
+        activity,
+      },
+    );
+    if (nextState) {
+      setPourNumber(nextState.pourNumber);
+      setPouringTimeTarget(nextState.pouringTimeTarget);
+      setWaitingTimeTarget(nextState.waitingTimeTarget);
+      setWeightSteps(nextState.weightSteps);
+      setActivity(nextState.activity);
+    }
+  }, [
+    activity,
+    baseMesurement,
+    baseWeight,
+    pourNumber,
+    pouringTimeTarget,
+    strength,
+    taste,
+    time,
+    waitingTimeTarget,
+    weightSteps,
+  ]);
 
   return {
     activity,
