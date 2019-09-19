@@ -10,7 +10,3 @@ declare type Brew$ThemeType = {
     [Brew$ColorTypes]: string,
   },
 };
-
-declare type Brew$ThemeProps = {
-  theme: Brew$ThemeType,
-};

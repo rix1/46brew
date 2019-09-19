@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent, createRef } from 'react';
-import { ThemeProvider } from 'emotion-theming';
 
 import Content from '../components/Content';
 import SetAmountStep from '../components/SetAmountStep';
@@ -12,7 +11,6 @@ import StepWrapper from '../components/StepWrapper';
 
 import BrewStep from '../components/BrewStep';
 import { TimerContextProvider } from '../components/Timer/Timer';
-import theme from '../lib/theme';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
@@ -76,79 +74,77 @@ class Index extends PureComponent<*, State> {
       taste,
     } = this.state;
     return (
-      <ThemeProvider theme={theme}>
-        <Page>
-          <Content>
-            <StepWrapper forwardRef={this.stepRefs.amountStep} isActive>
-              <StepHeading done={!!baseMeasurement && !!baseWeight}>
-                How much?
-              </StepHeading>
-              <SetAmountStep
-                onCompleted={data => {
-                  this.setState({
-                    baseMeasurement: data.baseMeasurement,
-                    baseWeight: data.baseWeight,
-                    activeStep: 'profile',
-                  });
+      <Page>
+        <Content>
+          <StepWrapper ref={this.stepRefs.amountStep} isActive>
+            <StepHeading done={!!baseMeasurement && !!baseWeight}>
+              How much?
+            </StepHeading>
+            <SetAmountStep
+              onCompleted={data => {
+                this.setState({
+                  baseMeasurement: data.baseMeasurement,
+                  baseWeight: data.baseWeight,
+                  activeStep: 'profile',
+                });
 
-                  this.scrollToStep('profileStep');
+                this.scrollToStep('profileStep');
+              }}
+            />
+          </StepWrapper>
+          <StepWrapper
+            ref={this.stepRefs.profileStep}
+            isActive={activeStep === 'profile' || (!!taste && !!strength)}>
+            <StepHeading done={!!taste && !!strength}>
+              Set taste profile
+            </StepHeading>
+            <p className="lh-copy gray">
+              Use the two sliders below to adjust taste profile.
+            </p>
+            <div className="mv4">
+              <ProfileSlider
+                onComplete={data => {
+                  this.setState({
+                    taste: data.taste,
+                    strength: data.strength,
+                    activeStep: 'reset',
+                  });
+                  this.scrollToStep('resetScaleStep');
                 }}
               />
-            </StepWrapper>
-            <StepWrapper
-              forwardRef={this.stepRefs.profileStep}
-              isActive={activeStep === 'profile' || (!!taste && !!strength)}>
-              <StepHeading done={!!taste && !!strength}>
-                Set taste profile
-              </StepHeading>
-              <p className="lh-copy gray">
-                Use the two sliders below to adjust taste profile.
-              </p>
-              <div className="mv4">
-                <ProfileSlider
-                  onComplete={data => {
-                    this.setState({
-                      taste: data.taste,
-                      strength: data.strength,
-                      activeStep: 'reset',
-                    });
-                    this.scrollToStep('resetScaleStep');
-                  }}
-                />
-              </div>
-            </StepWrapper>
-            <StepWrapper
-              isActive={activeStep === 'reset' || !!resetWeight}
-              forwardRef={this.stepRefs.resetScaleStep}>
-              <StepHeading done={!!resetWeight}>Get ready</StepHeading>
+            </div>
+          </StepWrapper>
+          <StepWrapper
+            isActive={activeStep === 'reset' || !!resetWeight}
+            ref={this.stepRefs.resetScaleStep}>
+            <StepHeading done={!!resetWeight}>Get ready</StepHeading>
 
-              <ResetScaleStep
-                onCompleted={data => {
-                  this.setState({
-                    resetWeight: data.resetWeight,
-                    activeStep: 'brew',
-                  });
-                  this.scrollToStep('brewTrackerStep');
-                }}
+            <ResetScaleStep
+              onCompleted={data => {
+                this.setState({
+                  resetWeight: data.resetWeight,
+                  activeStep: 'brew',
+                });
+                this.scrollToStep('brewTrackerStep');
+              }}
+            />
+          </StepWrapper>
+          <StepWrapper
+            ref={this.stepRefs.brewTrackerStep}
+            className="mb7"
+            isActive={activeStep === 'brew'}>
+            <TimerContextProvider>
+              <BrewStep
+                baseMeasurement={baseMeasurement}
+                baseWeight={Number(baseWeight)}
+                resetWeight={Number(resetWeight)}
+                strength={Number(strength)}
+                taste={Number(taste)}
               />
-            </StepWrapper>
-            <StepWrapper
-              forwardRef={this.stepRefs.brewTrackerStep}
-              className="mb7"
-              isActive={activeStep === 'brew'}>
-              <TimerContextProvider>
-                <BrewStep
-                  baseMeasurement={baseMeasurement}
-                  baseWeight={Number(baseWeight)}
-                  resetWeight={Number(resetWeight)}
-                  strength={Number(strength)}
-                  taste={Number(taste)}
-                />
-              </TimerContextProvider>
-            </StepWrapper>
-          </Content>
-        </Page>
-      </ThemeProvider>
+            </TimerContextProvider>
+          </StepWrapper>
+        </Content>
+      </Page>
     );
   }
 }

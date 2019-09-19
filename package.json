@@ -17,14 +17,9 @@
     "test": "NODE_ENV=test jest"
   },
   "dependencies": {
-    "babel-plugin-emotion": "^9.2.6",
-    "emotion": "^9.2.6",
-    "emotion-server": "^9.2.6",
-    "emotion-theming": "^9.2.6",
     "next": "^9.0.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-emotion": "^9.2.6",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
