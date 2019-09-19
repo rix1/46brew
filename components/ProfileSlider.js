@@ -2,6 +2,7 @@
 import React, { PureComponent } from 'react';
 
 import getStringFromValue from '../lib/getStringFromValue';
+import theme from '../lib/theme';
 import Range, { stengthToSegments } from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';
@@ -9,7 +10,6 @@ import BlankButton from './BlankButton';
 
 const DEFAULT_TASTE_VALUE = 50;
 const DEFAULT_STRENGTH_VALUE = 50;
-
 type Props = {
   onComplete: ({ taste: number, strength: number }) => void,
 };
@@ -126,8 +126,10 @@ class ProfileSlider extends PureComponent<Props, State> {
             }
           />
 
-          <Line position={0} contained />
+          <Line position={0} wrapped />
           <Range
+            min={10}
+            max={90}
             className="w-60"
             onChange={this.onChange('strengthValue')}
             value={strengthValue}

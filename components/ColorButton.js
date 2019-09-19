@@ -1,37 +1,30 @@
 // @flow
 import React from 'react';
-import { cx, css } from 'emotion';
-import { withTheme } from 'emotion-theming';
+import theme from '../lib/theme';
 
 type Props = {
   children: React$Node,
   className: string,
 };
 
-const ColorButton = ({
-  children,
-  className,
-  theme,
-  ...rest
-}: Props & Brew$ThemeProps) => (
-  <button
-    type="button"
-    className={cx(
-      css`
+const ColorButton = ({ children, className, ...rest }: Props) => (
+  <>
+    <style jsx>{`
+      button {
         background-color: ${theme.colors.orange};
-      `,
-      'f4 fw4 white-90 pointer pv1 bn br2 w-100 pv2',
-      className,
-    )}
-    {...rest}>
-    {children}
-  </button>
+      }
+    `}</style>
+    <button
+      type="button"
+      className={`f4 fw4 white-90 pointer pv1 bn br2 w-100 pv2 ${className}`}
+      {...rest}>
+      {children}
+    </button>
+  </>
 );
 
-const Wrapped: React$ComponentType<Props> = withTheme(ColorButton);
-
-Wrapped.defaultProps = {
+ColorButton.defaultProps = {
   className: '',
 };
 
-export default Wrapped;
+export default ColorButton;

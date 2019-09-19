@@ -1,6 +1,5 @@
 // @flow
 import React, { useState } from 'react';
-import { cx } from 'react-emotion';
 import uuid from 'uuid/v4';
 
 import Line from '../Line';
@@ -32,7 +31,7 @@ type Props = {
 };
 
 const Range = (props: Props) => {
-  const [hasChanged, setHasChanged] = useState(true); // disable idle state for now
+  const [hasChanged, setHasChanged] = useState(false);
 
   function onChangeHandler(event: SyntheticInputEvent<HTMLFormElement>) {
     const { onChange } = props;
@@ -52,7 +51,7 @@ const Range = (props: Props) => {
 
   return (
     <div
-      className={cx('relative br3 f4 f3-ns', className)}
+      className={`relative br3 f4 f3-ns ${className}`}
       style={{
         backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
       }}>
@@ -61,12 +60,12 @@ const Range = (props: Props) => {
           <Line key={uuid()} position={separator} />
         ))}
       <StyledRange
-        type="range"
-        value={value}
         activeSliders={activeSliders}
+        hasChanged={hasChanged}
         idleSlider={idleSlider}
         onChange={onChangeHandler}
-        hasChanged={hasChanged}
+        type="range"
+        value={value}
         {...rest}
       />
     </div>

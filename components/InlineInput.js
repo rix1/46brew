@@ -1,40 +1,33 @@
 // @flow
 import React from 'react';
-import { cx, css } from 'react-emotion';
-import { withTheme } from 'emotion-theming';
+import theme from '../lib/theme';
 
 type Props = { className: string, error: boolean };
 
-const InlineInput = ({
-  className,
-  error,
-  theme,
-  ...rest
-}: Props & Brew$ThemeProps) => (
-  <input
-    className={cx(
-      'ph2',
-      className,
-      css`
+const InlineInput = ({ className, error, ...rest }: Props) => (
+  <>
+    <style jsx>{`
+      input {
         border: none;
-        border-bottom: ${theme.sizes.lineWidth} dotted ${error ? 'red' : 'gray'};
+        border-bottom: ${theme.sizes.lineWidth} dotted gray;
         outline: none;
         width: 3em;
         text-align: right;
-        &:focus {
-          border-bottom: ${theme.sizes.lineWidth} solid ${theme.colors.orange};
-        }
-      `,
-    )}
-    {...rest}
-  />
+      }
+      input:focus {
+        border-bottom: ${theme.sizes.lineWidth} solid ${theme.colors.orange};
+      }
+      .error {
+        border-bottom-color: red;
+      }
+    `}</style>
+    <input className={`ph2 ${className} ${error ? 'error' : ''}`} {...rest} />
+  </>
 );
 
-const Wrapped: React$ComponentType<Props> = withTheme(InlineInput);
-
-Wrapped.defaultProps = {
+InlineInput.defaultProps = {
   className: '',
   error: false,
 };
 
-export default Wrapped;
+export default InlineInput;
