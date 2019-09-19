@@ -1,13 +1,10 @@
 // @flow
 import React from 'react';
-import uuidv4 from 'uuid/v4';
-import { withTheme } from 'emotion-theming';
-import styled, { cx, css } from 'react-emotion';
 
-import { sumArrayTo } from '../../lib/sumArrayTo';
 import Stat from '../Stat';
 
 import BrewActivity from './BrewActivity';
+import VisualizePours from './VisualizePours';
 
 type Props = {
   activity: string,
@@ -18,13 +15,6 @@ type Props = {
   weightSteps: Array<number>,
 };
 
-const LineSegment = withTheme(styled.span`
-  width: ${props => Math.round(props.w)}%;
-  height: 4px;
-  background-color: ${props =>
-    props.active ? props.theme.colors.peach : props.theme.colors.dusty};
-`);
-
 const BrewViz = ({
   activity,
   pourNumber,
@@ -33,34 +23,24 @@ const BrewViz = ({
   timeToNextStep,
   weightSteps,
 }: Props) => {
-  const sum = sumArrayTo(weightSteps, weightSteps.length);
-  const conversionFactor = 100 / sum;
-
   return (
     <div className="flex justify-between flex-wrap">
       <div className="w-100">
-        {weightSteps.map((el, index) => (
-          <LineSegment
-            active={pourNumber - 1 === index}
-            className="dib br3"
-            key={uuidv4()}
-            w={el * conversionFactor}
-          />
-        ))}
+        <VisualizePours steps={weightSteps} activePour={pourNumber} />
       </div>
       <div className="relative w-100 tc">
         <div className="tc">
-          <span
-            css={`
+          <style jsx>{`
+            span {
+              color: #333333;
               font-feature-settings: 'tnum';
               font-variant-numeric: tabular-nums;
-            `}
-            className={cx(
-              'f-headline lh-solid fw2',
-              css`
-                color: ${activity === 'waiting' ? '#AAAAAA' : '#333333'};
-              `,
-            )}>
+            }
+            .waiting {
+              color: #aaaaaa;
+            }
+          `}</style>
+          <span className={`f-headline lh-solid fw2 ${activity}`}>
             {timeToNextStep}
           </span>
         </div>
