@@ -14,7 +14,7 @@ import { TimerContextProvider } from '../components/Timer/Timer';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
-  baseMeasurement: ?Brew$UnitType,
+  brewUnit: ?Brew$UnitType,
   baseWeight: ?string,
   resetWeight: ?string,
   strength: ?number,
@@ -36,7 +36,7 @@ type StepTypes = {
 class Index extends PureComponent<*, State> {
   state = {
     activeStep: 'weight',
-    baseMeasurement: null,
+    brewUnit: null,
     baseWeight: null,
     resetWeight: null,
     strength: null,
@@ -67,7 +67,7 @@ class Index extends PureComponent<*, State> {
   render() {
     const {
       activeStep,
-      baseMeasurement,
+      brewUnit,
       baseWeight,
       resetWeight,
       strength,
@@ -77,13 +77,13 @@ class Index extends PureComponent<*, State> {
       <Page>
         <Content>
           <StepWrapper ref={this.stepRefs.amountStep} isActive>
-            <StepHeading done={!!baseMeasurement && !!baseWeight}>
+            <StepHeading done={!!brewUnit && !!baseWeight}>
               How much?
             </StepHeading>
             <SetAmountStep
               onCompleted={data => {
                 this.setState({
-                  baseMeasurement: data.baseMeasurement,
+                  brewUnit: 'coffee', // todo remove hard coded value
                   baseWeight: data.baseWeight,
                   activeStep: 'profile',
                 });
@@ -135,7 +135,7 @@ class Index extends PureComponent<*, State> {
             isActive={activeStep === 'brew'}>
             <TimerContextProvider>
               <BrewStep
-                baseMeasurement={baseMeasurement}
+                brewUnit={brewUnit}
                 baseWeight={Number(baseWeight)}
                 resetWeight={Number(resetWeight)}
                 strength={Number(strength)}

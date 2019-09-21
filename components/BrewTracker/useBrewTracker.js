@@ -7,15 +7,15 @@ import brewStateMachine from './brewStateMachine';
 import { getTimeToNextStep } from './utils';
 
 export type State = {|
-  pourNumber: number,
+  pourNumber: Brew$PourNumber,
   pouringTimeTarget: number,
   waitingTimeTarget: number,
-  weightSteps: Array<number>,
-  activity: 'start' | 'pouring' | 'waiting' | 'done',
+  weightSteps: Brew$WeightSteps,
+  activity: Brew$Activity,
 |};
 
 export function useBrewTracker(
-  baseMesurement,
+  brewUnit,
   baseWeight,
   resetWeight,
   strength,
@@ -35,7 +35,7 @@ export function useBrewTracker(
     const nextState = brewStateMachine(
       {
         time,
-        baseMesurement,
+        brewUnit,
         baseWeight,
         strength,
         taste,
@@ -57,7 +57,7 @@ export function useBrewTracker(
     }
   }, [
     activity,
-    baseMesurement,
+    brewUnit,
     baseWeight,
     pourNumber,
     pouringTimeTarget,

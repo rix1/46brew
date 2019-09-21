@@ -11,7 +11,7 @@ import TextMuted from './TextMuted';
 import { useTimerContext } from './Timer/Timer';
 
 type Props = {
-  baseMeasurement: ?Brew$UnitType, // eslint-disable-linesl
+  brewUnit: ?Brew$UnitType, // eslint-disable-linesl
   baseWeight: number, // eslint-disable-linesl
   resetWeight?: number,
   strength: number, // eslint-disable-linesl
@@ -19,7 +19,7 @@ type Props = {
 };
 
 const BrewStep = ({
-  baseMeasurement,
+  brewUnit,
   baseWeight,
   resetWeight,
   strength,
@@ -32,7 +32,7 @@ const BrewStep = ({
     weightSteps,
     targetWeight,
     timeToNextStep,
-  } = useBrewTracker(baseMeasurement, baseWeight, resetWeight, strength, taste);
+  } = useBrewTracker(brewUnit, baseWeight, resetWeight, strength, taste);
   const { time } = useTimerContext();
 
   return (
