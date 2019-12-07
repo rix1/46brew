@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link
             rel="stylesheet"
-            href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"
+            href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
           />
           <link
             rel="stylesheet"
