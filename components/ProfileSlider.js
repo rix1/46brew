@@ -29,11 +29,9 @@ class ProfileSlider extends PureComponent<Props, State> {
 
   componentDidMount() {}
 
-  onChange = (type: string) => (
-    event: SyntheticInputEvent<HTMLFormElement>,
-  ) => {
+  onChange = (type: string) => (value: number) => {
     this.setState({
-      [type]: event.target.value,
+      [type]: value,
       [`${type}Set`]: true,
     });
   };

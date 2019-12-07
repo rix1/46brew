@@ -10,8 +10,8 @@ type StyledRangeProps = {|
   value: number,
   max: number | string,
   min: number | string,
-  onChange: (SyntheticInputEvent<HTMLFormElement>) => void,
-  onBlur: (SyntheticFocusEvent<HTMLFormElement>) => void,
+  onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
+  onBlur: (SyntheticFocusEvent<HTMLInputElement>) => void,
 |};
 
 const StyledRange = ({
@@ -60,7 +60,7 @@ const StyledRange = ({
           transform: translateY(-2px);
         }
       `}</style>
-      <input type="range" {...rest} />
+      <input type="range" {...rest} value={value} />
     </>
   );
 };

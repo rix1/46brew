@@ -25,15 +25,16 @@ type Props = {|
   className: string,
   separators: number,
   ...React$ElementConfig<typeof StyledRange>,
+  onChange: number => void,
 |};
 
 const Range = (props: Props) => {
   const [hasChanged, setHasChanged] = useState(false);
 
-  function onChangeHandler(event: SyntheticInputEvent<HTMLFormElement>) {
+  function onChangeHandler(event) {
     const { onChange } = props;
     setHasChanged(true);
-    onChange(event);
+    onChange(Number(event.currentTarget.value));
   }
 
   const {
