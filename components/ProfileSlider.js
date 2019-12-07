@@ -2,7 +2,6 @@
 import React, { PureComponent } from 'react';
 
 import getStringFromValue from '../lib/getStringFromValue';
-import theme from '../lib/theme';
 import Range, { stengthToSegments } from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';

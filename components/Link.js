@@ -1,9 +1,9 @@
 // @flow
-import React, { type Node } from 'react';
+import React from 'react';
 import NextLink from 'next/link';
 
 type LinkProps = {
-  children: Node,
+  children: React$Node,
   href: string,
 };
 

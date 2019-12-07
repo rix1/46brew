@@ -11,11 +11,11 @@ import TextMuted from './TextMuted';
 import { useTimerContext } from './Timer/Timer';
 
 type Props = {
-  brewUnit: ?Brew$UnitType, // eslint-disable-linesl
-  baseWeight: number, // eslint-disable-linesl
+  brewUnit: ?Brew$UnitType,
+  baseWeight: number,
   resetWeight?: number,
-  strength: number, // eslint-disable-linesl
-  taste: number, // eslint-disable-linesl
+  strength: number,
+  taste: number,
 };
 
 const BrewStep = ({

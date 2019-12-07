@@ -15,7 +15,7 @@ const BlankButton = ({ children, className, ...rest }: Props) => (
   </button>
 );
 
-BlankButton.deafultProps = {
+BlankButton.defaultProps = {
   className: '',
 };
 

@@ -1,8 +1,8 @@
 // @flow
-import React, { type Node } from 'react';
+import React from 'react';
 
 type Props = {
-  children: Node,
+  children: React$Node,
 };
 
 const Content = ({ children }: Props) => (
