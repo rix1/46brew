@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import getStringFromValue from '../../lib/getStringFromValue';
+import getArrayValueFromPercent from '../../lib/getArrayValueFromPercent';
 import createInlineSVG from './createInlineSVG';
 
 type StyledRangeProps = {|
@@ -22,7 +22,7 @@ const StyledRange = ({
   ...rest
 }: StyledRangeProps) => {
   const icon = hasChanged
-    ? getStringFromValue(value, sliderIcons)
+    ? getArrayValueFromPercent(value, sliderIcons)
     : idleSlider;
 
   return (

@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import getStringFromValue from '../lib/getStringFromValue';
+import getArrayValueFromPercent from '../lib/getArrayValueFromPercent';
 import Range, { stengthToSegments } from './Range/Range';
 import Line from './Line';
 import ColorButton from './ColorButton';
@@ -73,7 +73,7 @@ class ProfileSlider extends PureComponent<Props, State> {
         <div className="mv4 flex w-100 tnum">
           <span className="w-40">
             <span className="fw5 db dib-ns">Taste:</span> {tasteValue}{' '}
-            {getStringFromValue(tasteValue, [
+            {getArrayValueFromPercent(tasteValue, [
               'Sweeter',
               'Normal',
               'More acidity',
@@ -81,7 +81,11 @@ class ProfileSlider extends PureComponent<Props, State> {
           </span>
           <span className="mr-auto">
             <span className="fw5 db dib-ns">Strength:</span> {strengthValue}{' '}
-            {getStringFromValue(strengthValue, ['Weak', 'Normal', 'Strong'])}
+            {getArrayValueFromPercent(strengthValue, [
+              'Weak',
+              'Normal',
+              'Strong',
+            ])}
           </span>
 
           <BlankButton
