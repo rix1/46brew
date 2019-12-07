@@ -11,7 +11,7 @@ type Props = {|
 const BlankButton = ({ children, className, ...rest }: Props) => (
   <button
     type="button"
-    className={`f5 fw4 dim link navy underline pointer pv1 bg-transparent bn ${className}`}
+    className={`f5 fw4 dim link navy underline pointer bg-transparent bn pv0 ${className}`}
     {...rest}>
     {children}
   </button>
