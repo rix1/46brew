@@ -2,7 +2,6 @@ import React from 'react';
 import App from 'next/app';
 
 import Navigation from '../components/Navigation';
-import Link from '../components/Link';
 
 export default class MyApp extends App {
   render() {
@@ -19,9 +18,9 @@ export default class MyApp extends App {
 
         <footer className="tc f6 moon-gray mb3 mt7">
           Created by{' '}
-          <Link className="underline silver" href="https://twitter.com/rix1">
+          <a className="underline silver" href="https://twitter.com/rix1">
             rix1
-          </Link>{' '}
+          </a>{' '}
           a weekend in August 2018
         </footer>
       </div>
