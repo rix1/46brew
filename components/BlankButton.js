@@ -1,10 +1,12 @@
 // @flow
 import React from 'react';
 
-type Props = {
+type Props = {|
   children: React$Node,
   className: string,
-};
+  onClick: (SyntheticEvent<HTMLButtonElement>) => void,
+  hidden: boolean,
+|};
 
 const BlankButton = ({ children, className, ...rest }: Props) => (
   <button
@@ -17,6 +19,8 @@ const BlankButton = ({ children, className, ...rest }: Props) => (
 
 BlankButton.defaultProps = {
   className: '',
+  onClick: () => {},
+  hidden: false,
 };
 
 export default BlankButton;

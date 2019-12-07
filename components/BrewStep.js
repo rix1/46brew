@@ -43,13 +43,7 @@ const BrewStep = ({
       </div>
       <div className="flex justify-between">
         <TextMuted>Pour no. {pourNumber}</TextMuted>
-        <TextMuted
-          css={`
-            font-feature-settings: 'tnum';
-            font-variant-numeric: tabular-nums;
-          `}>
-          {timeToString(time)}
-        </TextMuted>
+        <TextMuted className="tnum">{timeToString(time)}</TextMuted>
       </div>
 
       <BrewViz

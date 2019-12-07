@@ -2,10 +2,12 @@
 import React from 'react';
 import theme from '../lib/theme';
 
-type Props = {
+type Props = {|
   children: React$Node,
   className: string,
-};
+  type: string,
+  onClick: (SyntheticEvent<HTMLButtonElement>) => void,
+|};
 
 const ColorButton = ({ children, className, ...rest }: Props) => (
   <>
@@ -25,6 +27,8 @@ const ColorButton = ({ children, className, ...rest }: Props) => (
 
 ColorButton.defaultProps = {
   className: '',
+  onClick: () => {},
+  type: 'button',
 };
 
 export default ColorButton;

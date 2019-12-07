@@ -2,7 +2,13 @@
 import React from 'react';
 import theme from '../lib/theme';
 
-type Props = { className: string, error: boolean };
+type Props = {|
+  className: string,
+  error: boolean,
+  onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
+  type: string,
+  value: string | string[] | number,
+|};
 
 const InlineInput = ({ className, error, ...rest }: Props) => (
   <>

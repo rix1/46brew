@@ -36,7 +36,7 @@ class SetAmountStep extends PureComponent<Props, State> {
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLFormElement>) => {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (!Number.isNaN(Number(value))) {
       this.setState({
@@ -59,11 +59,11 @@ class SetAmountStep extends PureComponent<Props, State> {
         <p className="f3">
           Please let me know how much coffee (or water) you are going to use:
           <InlineInput
-            type="number"
             className="ph1"
+            error={inputError}
+            type="number"
             value={value}
             onChange={this.handleChange}
-            error={inputError}
           />{' '}
           {`g of ${this.getType(value)}.`}
         </p>

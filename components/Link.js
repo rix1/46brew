@@ -2,10 +2,10 @@
 import React from 'react';
 import NextLink from 'next/link';
 
-type LinkProps = {
+type LinkProps = {|
   children: React$Node,
   href: string,
-};
+|};
 
 const Link = ({ children, href, ...rest }: LinkProps) => (
   <NextLink href={href}>

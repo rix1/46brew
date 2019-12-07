@@ -3,12 +3,16 @@ import React from 'react';
 import getStringFromValue from '../../lib/getStringFromValue';
 import createInlineSVG from './createInlineSVG';
 
-type StyledRangeProps = {
+type StyledRangeProps = {|
   activeSliders: string[],
   hasChanged: boolean,
   idleSlider: string,
   value: number,
-};
+  max: number | string,
+  min: number | string,
+  onChange: (SyntheticInputEvent<HTMLFormElement>) => void,
+  onBlur: (SyntheticFocusEvent<HTMLFormElement>) => void,
+|};
 
 const StyledRange = ({
   activeSliders,
@@ -56,9 +60,17 @@ const StyledRange = ({
           transform: translateY(-2px);
         }
       `}</style>
-      <input {...rest} />
+      <input type="range" {...rest} />
     </>
   );
+};
+
+StyledRange.defaultProps = {
+  max: 100,
+  min: 0,
+  activeSliders: ['😳'],
+  idleSlider: '😴',
+  hasChanged: false,
 };
 
 export default StyledRange;

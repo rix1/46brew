@@ -21,14 +21,11 @@ export const createLineSegments = (segments: number) =>
     .map((el, index, array) => Math.round(index * (100 / array.length)))
     .filter(Boolean);
 
-type Props = {
+type Props = {|
   className: string,
-  idleSlider: string,
   separators: number,
-  activeSliders: Array<string>,
-  onChange: (SyntheticInputEvent<HTMLFormElement>) => void,
-  value: number,
-};
+  ...React$ElementConfig<typeof StyledRange>,
+|};
 
 const Range = (props: Props) => {
   const [hasChanged, setHasChanged] = useState(false);
@@ -64,7 +61,6 @@ const Range = (props: Props) => {
         hasChanged={hasChanged}
         idleSlider={idleSlider}
         onChange={onChangeHandler}
-        type="range"
         value={value}
         {...rest}
       />
@@ -75,8 +71,6 @@ const Range = (props: Props) => {
 Range.defaultProps = {
   className: '',
   separators: 0,
-  activeSliders: ['😳'],
-  idleSlider: '😴',
 };
 
 export default Range;

@@ -10,6 +10,12 @@ type Props = {
 
 const Page = ({ children, title, description }: Props) => (
   <section className="flex-auto relative overflow-hidden">
+    <style jsx global>{`
+      .tnum {
+        font-feature-settings: 'tnum';
+        font-variant-numeric: tabular-nums;
+      }
+    `}</style>
     <Head>
       <title>{title}</title>
       <meta key="og:title" property="og:title" content={title} />

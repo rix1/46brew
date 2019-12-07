@@ -70,12 +70,7 @@ class ProfileSlider extends PureComponent<Props, State> {
 
     return (
       <>
-        <div
-          className="mv4 flex w-100"
-          css={`
-            font-feature-settings: 'tnum';
-            font-variant-numeric: tabular-nums;
-          `}>
+        <div className="mv4 flex w-100 tnum">
           <span className="w-40">
             <span className="fw5 db dib-ns">Taste:</span> {tasteValue}{' '}
             {getStringFromValue(tasteValue, [
@@ -90,10 +85,6 @@ class ProfileSlider extends PureComponent<Props, State> {
           </span>
 
           <BlankButton
-            css="
-              padding-top: 0;
-              padding-bottom: 0;
-                "
             className="fr self-baseline"
             hidden={!showResetButton}
             onClick={() => {

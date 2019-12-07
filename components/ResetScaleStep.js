@@ -33,7 +33,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLFormElement>) => {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (!Number.isNaN(Number(value))) {
       this.setState({
