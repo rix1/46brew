@@ -8,7 +8,7 @@ import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {
-  onCompleted: ({ baseWeight: number }) => void,
+  onCompleted: Brew$Weight => void,
 };
 type State = {
   value: number,
@@ -26,9 +26,7 @@ class SetAmountStep extends PureComponent<Props, State> {
     const { onCompleted } = this.props;
     const { value } = this.state;
     if (value) {
-      onCompleted({
-        baseWeight: value,
-      });
+      onCompleted(value);
     } else {
       this.setState({
         inputError: true,

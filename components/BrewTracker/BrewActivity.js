@@ -3,7 +3,7 @@ import React from 'react';
 import TextMuted from '../TextMuted';
 
 type Props = {
-  activity: 'start' | 'pouring' | 'waiting' | 'done',
+  activity: Brew$Activity,
 };
 const BrewActivity = ({ activity }: Props) => {
   // TODO: ADD BREW CONTEXT

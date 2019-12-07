@@ -4,7 +4,7 @@ import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {
-  onCompleted: ({ resetWeight: string }) => void,
+  onCompleted: Brew$Weight => void,
 };
 
 type State = {
@@ -23,9 +23,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
     const { onCompleted } = this.props;
     const { resetWeight } = this.state;
     if (resetWeight) {
-      onCompleted({
-        resetWeight,
-      });
+      onCompleted(Number(resetWeight));
     } else {
       this.setState({
         inputError: true,

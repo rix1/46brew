@@ -7,12 +7,12 @@ import BrewActivity from './BrewActivity';
 import VisualizePours from './VisualizePours';
 
 type Props = {
-  activity: string,
-  pourNumber: number,
-  currentWeight: number,
-  targetWeight: number,
-  timeToNextStep: number,
-  weightSteps: Array<number>,
+  activity: $PropertyType<Brew$State, 'activity'>,
+  pourNumber: $PropertyType<Brew$State, 'pourNumber'>,
+  currentWeight: Brew$Weight,
+  targetWeight: Brew$Weight,
+  timeToNextStep: Brew$Time,
+  weightSteps: $PropertyType<Brew$State, 'weightSteps'>,
 };
 
 const BrewViz = ({

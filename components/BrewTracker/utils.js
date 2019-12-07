@@ -42,9 +42,12 @@ export const getWeightSteps = (
   ];
 };
 
-export const getTimeToNextStep = (state: {}, time: number) => {
-  const { pouringTimeTarget, waitingTimeTarget, activity } = state;
-
+export const getTimeToNextStep = (
+  activity: $PropertyType<Brew$State, 'activity'>,
+  pouringTimeTarget: $PropertyType<Brew$State, 'pouringTimeTarget'>,
+  waitingTimeTarget: $PropertyType<Brew$State, 'waitingTimeTarget'>,
+  time: $PropertyType<Brew$MachineProps, 'time'>,
+) => {
   if (activity === 'pouring') {
     return pouringTimeTarget - time;
   }

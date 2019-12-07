@@ -14,11 +14,11 @@ import { TimerContextProvider } from '../components/Timer/Timer';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
-  brewUnit: ?Brew$UnitType,
-  baseWeight: ?string,
-  resetWeight: ?string,
-  strength: ?number,
-  taste: ?number,
+  brewUnit: Brew$UnitType,
+  baseWeight: Brew$Weight,
+  resetWeight: Brew$Weight,
+  strength: Brew$Strength,
+  taste: Brew$Taste,
 };
 type StepNames =
   | 'amountStep'
@@ -36,11 +36,11 @@ type StepTypes = {
 class Index extends PureComponent<*, State> {
   state = {
     activeStep: 'weight',
-    brewUnit: null,
-    baseWeight: null,
-    resetWeight: null,
-    strength: null,
-    taste: null,
+    brewUnit: 'coffee',
+    baseWeight: 0,
+    resetWeight: 0,
+    strength: 0,
+    taste: 0,
   };
 
   stepRefs: StepTypes = {
@@ -81,10 +81,10 @@ class Index extends PureComponent<*, State> {
               How much?
             </StepHeading>
             <SetAmountStep
-              onCompleted={data => {
+              onCompleted={weight => {
                 this.setState({
                   brewUnit: 'coffee', // todo remove hard coded value
-                  baseWeight: data.baseWeight,
+                  baseWeight: weight,
                   activeStep: 'profile',
                 });
 
@@ -120,9 +120,9 @@ class Index extends PureComponent<*, State> {
             <StepHeading done={!!resetWeight}>Get ready</StepHeading>
 
             <ResetScaleStep
-              onCompleted={data => {
+              onCompleted={weight => {
                 this.setState({
-                  resetWeight: data.resetWeight,
+                  resetWeight: weight,
                   activeStep: 'brew',
                 });
                 this.scrollToStep('brewTrackerStep');

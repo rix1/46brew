@@ -15,11 +15,11 @@ export type State = {|
 |};
 
 export function useBrewTracker(
-  brewUnit,
-  baseWeight,
-  resetWeight,
-  strength,
-  taste,
+  brewUnit: Brew$UnitType,
+  baseWeight: Brew$Weight,
+  resetWeight: Brew$Weight,
+  strength: Brew$Strength,
+  taste: Brew$Taste,
 ) {
   const { time } = useTimerContext();
 
@@ -81,7 +81,9 @@ export function useBrewTracker(
         ? 0
         : sumArrayTo(weightSteps, pourNumber + 1) + resetWeight,
     timeToNextStep: getTimeToNextStep(
-      { pouringTimeTarget, waitingTimeTarget, activity },
+      activity,
+      pouringTimeTarget,
+      waitingTimeTarget,
       time,
     ),
   };
