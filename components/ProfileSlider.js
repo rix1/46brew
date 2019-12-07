@@ -108,7 +108,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             value={tasteValue}
             separators={2}
             idleSlider="😴"
-            activeSliders={['🤤', '😏']}
+            sliderIcons={['🤤', '😏']}
             onBlur={() =>
               this.setState({
                 tasteValueSet: true,
@@ -125,7 +125,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             value={strengthValue}
             separators={separators}
             idleSlider="😴"
-            activeSliders={['😌', '😊', '😛']}
+            sliderIcons={['😌', '😊', '😛']}
             onBlur={() =>
               this.setState({
                 strengthValueSet: true,

@@ -4,7 +4,7 @@ import getStringFromValue from '../../lib/getStringFromValue';
 import createInlineSVG from './createInlineSVG';
 
 type StyledRangeProps = {|
-  activeSliders: string[],
+  sliderIcons: string[],
   hasChanged: boolean,
   idleSlider: string,
   value: number,
@@ -15,14 +15,14 @@ type StyledRangeProps = {|
 |};
 
 const StyledRange = ({
-  activeSliders,
+  sliderIcons,
   hasChanged,
   idleSlider,
   value,
   ...rest
 }: StyledRangeProps) => {
   const icon = hasChanged
-    ? getStringFromValue(value, activeSliders)
+    ? getStringFromValue(value, sliderIcons)
     : idleSlider;
 
   return (
@@ -68,7 +68,7 @@ const StyledRange = ({
 StyledRange.defaultProps = {
   max: 100,
   min: 0,
-  activeSliders: ['😳'],
+  sliderIcons: ['😳'],
   idleSlider: '😴',
   hasChanged: false,
 };

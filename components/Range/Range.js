@@ -39,7 +39,7 @@ const Range = (props: Props) => {
   const {
     className,
     separators,
-    activeSliders,
+    sliderIcons,
     idleSlider,
     value,
     onChange,
@@ -57,7 +57,7 @@ const Range = (props: Props) => {
           <Line key={uuid()} position={separator} />
         ))}
       <StyledRange
-        activeSliders={activeSliders}
+        sliderIcons={sliderIcons}
         hasChanged={hasChanged}
         idleSlider={idleSlider}
         onChange={onChangeHandler}
