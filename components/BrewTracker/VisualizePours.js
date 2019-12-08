@@ -10,7 +10,7 @@ type Props = {|
 |};
 
 const VisualizePours = ({ steps, activePour }: Props) => {
-  const sum = sumArrayTo(steps, steps.length);
+  const sum = sumArrayTo(steps, index => index < steps.length);
   const conversionFactor = 100 / sum;
 
   return steps.map<React$Node>((el, index) => (

@@ -14,7 +14,8 @@
     "start:dev": "next dev",
     "start": "next start",
     "eslint": "eslint . --cache",
-    "test": "NODE_ENV=test flow && eslint . --cache && jest"
+    "test": "NODE_ENV=test flow && eslint . --cache && jest",
+    "tdd": "jest --watch"
   },
   "dependencies": {
     "next": "^9.1.4",
