@@ -9,45 +9,46 @@ import {
 import { getCoffeeWeight } from '../../lib/conversion';
 
 import { createLineSegments, stengthToSegments } from '../Range/Range';
+import { sumArrayTo } from '../../lib/sumArrayTo';
 
-export const convertTasteToWeight = (baseWeight: number, taste: number) => {
+export function convertTasteToWeight(baseWeight: number, taste: number) {
   const tasteWeight = baseWeight * COFFEE_MULTIPLIER * TASTE_BASE_PARTS;
   return [
     Math.round(tasteWeight * (taste / 100)),
     Math.round(tasteWeight * ((100 - taste) / 100)),
   ];
-};
+}
 
-export const convertStrenghtToWeights = (
+export function convertStrenghtToWeights(
   baseWeight: number,
   strength: number,
-): Array<number> => {
+): Array<number> {
   const strenghtWeight = baseWeight * COFFEE_MULTIPLIER * STRENGTH_BASE_PARTS;
   const pours = createLineSegments(stengthToSegments(strength));
   return [...Array(pours.length + 1)].map((el, i, array) =>
     Math.round(strenghtWeight / array.length),
   );
-};
+}
 
-export const getWeightSteps = (
+export function getWeightSteps(
   baseWeight: number,
   brewUnit: Brew$UnitType,
   taste: number,
   strength: number,
-) => {
+) {
   const coffeeWeight = getCoffeeWeight(baseWeight, brewUnit);
   return [
     ...convertTasteToWeight(coffeeWeight, taste),
     ...convertStrenghtToWeights(coffeeWeight, strength),
   ];
-};
+}
 
-export const getTimeToNextStep = (
+export function getTimeToNextStep(
   activity: $PropertyType<Brew$State, 'activity'>,
   pouringTimeTarget: $PropertyType<Brew$State, 'pouringTimeTarget'>,
   waitingTimeTarget: $PropertyType<Brew$State, 'waitingTimeTarget'>,
   time: $PropertyType<Brew$MachineProps, 'time'>,
-) => {
+) {
   if (activity === 'pouring') {
     return pouringTimeTarget - time;
   }
@@ -55,4 +56,43 @@ export const getTimeToNextStep = (
     return waitingTimeTarget - time;
   }
   return 0;
-};
+}
+
+export function getCurrentWeightDisplay(
+  activity: Brew$Activity,
+  resetWeight: Brew$Weight,
+  weightSteps: $PropertyType<Brew$State, 'weightSteps'>,
+  pourNumber: $PropertyType<Brew$State, 'pourNumber'>,
+) {
+  switch (activity) {
+    case 'start':
+      return resetWeight;
+    case 'done':
+      return (
+        sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+      );
+    default:
+      if (pourNumber === 0) {
+        return (
+          sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+        );
+      }
+      return sumArrayTo(weightSteps, index => index < pourNumber) + resetWeight;
+  }
+}
+
+export function getTargetWeightDisplay(
+  activity: Brew$Activity,
+  resetWeight: Brew$Weight,
+  weightSteps: $PropertyType<Brew$State, 'weightSteps'>,
+  pourNumber: $PropertyType<Brew$State, 'pourNumber'>,
+) {
+  switch (activity) {
+    case 'done':
+      return sumArrayTo(weightSteps, index => index <= pourNumber);
+    default:
+      return (
+        sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+      );
+  }
+}

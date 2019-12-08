@@ -1,10 +1,13 @@
 // @flow
 import { useState, useEffect } from 'react';
 import { POUR_TIME, TIME_BETWEEN_POURS } from '../../lib/constants';
-import { sumArrayTo } from '../../lib/sumArrayTo';
 import { useTimerContext } from '../Timer/Timer';
 import brewStateMachine from './brewStateMachine';
-import { getTimeToNextStep } from './utils';
+import {
+  getTimeToNextStep,
+  getCurrentWeightDisplay,
+  getTargetWeightDisplay,
+} from './utils';
 
 export type State = {|
   pourNumber: Brew$PourNumber,
@@ -21,7 +24,7 @@ export function useBrewTracker(
   strength: Brew$Strength,
   taste: Brew$Taste,
 ) {
-  const { time } = useTimerContext();
+  const { time, isRunning, toggleTimer } = useTimerContext();
 
   const [pourNumber, setPourNumber] = useState(0);
   const [pouringTimeTarget, setPouringTimeTarget] = useState(POUR_TIME);
@@ -49,6 +52,9 @@ export function useBrewTracker(
       },
     );
     if (nextState) {
+      if (nextState.activity === 'done' && isRunning) {
+        toggleTimer();
+      }
       setPourNumber(nextState.pourNumber);
       setPouringTimeTarget(nextState.pouringTimeTarget);
       setWaitingTimeTarget(nextState.waitingTimeTarget);
@@ -57,13 +63,15 @@ export function useBrewTracker(
     }
   }, [
     activity,
-    brewUnit,
     baseWeight,
-    pourNumber,
+    brewUnit,
+    isRunning,
     pouringTimeTarget,
+    pourNumber,
     strength,
     taste,
     time,
+    toggleTimer,
     waitingTimeTarget,
     weightSteps,
   ]);
@@ -72,14 +80,18 @@ export function useBrewTracker(
     activity,
     weightSteps,
     pourNumber,
-    currentWeight:
-      activity === 'done'
-        ? sumArrayTo(weightSteps, pourNumber + 1 + resetWeight)
-        : sumArrayTo(weightSteps, pourNumber) + resetWeight,
-    targetWeight:
-      activity === 'done'
-        ? 0
-        : sumArrayTo(weightSteps, pourNumber + 1) + resetWeight,
+    currentWeight: getCurrentWeightDisplay(
+      activity,
+      resetWeight,
+      weightSteps,
+      pourNumber,
+    ),
+    targetWeight: getTargetWeightDisplay(
+      activity,
+      resetWeight,
+      weightSteps,
+      pourNumber,
+    ),
     timeToNextStep: getTimeToNextStep(
       activity,
       pouringTimeTarget,

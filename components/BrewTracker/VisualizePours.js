@@ -15,7 +15,7 @@ const VisualizePours = ({ steps, activePour }: Props) => {
 
   return steps.map<React$Node>((el, index) => (
     <PourVisualizer
-      active={activePour - 1 === index}
+      active={activePour === index}
       key={uuidv4()}
       width={el * conversionFactor}
     />

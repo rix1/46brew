@@ -83,11 +83,10 @@ class Index extends PureComponent<*, State> {
             <SetAmountStep
               onCompleted={weight => {
                 this.setState({
-                  brewUnit: 'coffee', // todo remove hard coded value
+                  brewUnit: 'coffee', // TODO: remove hard coded value
                   baseWeight: weight,
                   activeStep: 'profile',
                 });
-
                 this.scrollToStep('profileStep');
               }}
             />

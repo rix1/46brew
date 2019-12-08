@@ -38,11 +38,13 @@ const BrewStep = ({
   return (
     <>
       <div className="flex justify-between items-end">
-        <StepHeading done={false}>It&apos;s brew time!</StepHeading>
+        <StepHeading done={activity === 'done'}>
+          It&apos;s brew time!
+        </StepHeading>
         <BrewControls />
       </div>
       <div className="flex justify-between">
-        <TextMuted>Pour no. {pourNumber}</TextMuted>
+        <TextMuted>Pour no. {pourNumber + 1}</TextMuted>
         <TextMuted className="tnum">{timeToString(time)}</TextMuted>
       </div>
 
