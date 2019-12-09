@@ -26,7 +26,7 @@ const BrewViz = ({
 }: Props) => {
   return (
     <div className="flex justify-between flex-wrap">
-      <div className="w-100">
+      <div className="w-100 mv4-ns mv3">
         <VisualizePours steps={weightSteps} activePour={pourNumber} />
       </div>
       <div className="relative w-100 tc">
@@ -41,7 +41,7 @@ const BrewViz = ({
               color: #aaaaaa;
             }
           `}</style>
-          <span className={`f-headline lh-solid fw2 ${activity}`}>
+          <span className={`f-headline lh-title fw2 ${activity}`}>
             {timeToNextStep}
           </span>
         </div>
@@ -50,7 +50,7 @@ const BrewViz = ({
         </TextMuted>
       </div>
 
-      <div className="relative w-100 bt bb flex flex-wrap pv4 mv4 b--light-gray">
+      <div className="relative w-100 bt bb flex flex-wrap pv4 mb4 mt4 mt5-ns b--light-gray">
         <div className="db ttu tracked tc w-100">Weight</div>
         <Stat desc="Current">{currentWeight}</Stat>
         <Stat desc="Target">{targetWeight}</Stat>

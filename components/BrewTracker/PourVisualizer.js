@@ -5,26 +5,31 @@ import theme from '../../lib/theme';
 type Props = {|
   active: boolean,
   width: number,
+  weight: Brew$Weight,
 |};
 
-const PourVisualizer = ({ active, width }: Props) => (
-  <>
-    <style jsx>{`
-      span {
-        height: 4px;
-        background-color: ${theme.colors.dusty};
-      }
-      .active {
-        background-color: ${theme.colors.peach};
-      }
-    `}</style>
-    <style jsx>{`
-      span {
-        width: ${Math.round(width)}%;
-      }
-    `}</style>
-    <span className={`dib br3 ${active ? 'active' : ''}`} />
-  </>
-);
+const PourVisualizer = ({ active, width, weight }: Props) => {
+  return (
+    <>
+      <style jsx>{`
+        .line-wrapper {
+          height: 4px;
+          background-color: ${theme.colors.dusty};
+        }
+        .active {
+          background-color: ${theme.colors.peach};
+        }
+      `}</style>
+      <style jsx>{`
+        .line-wrapper {
+          width: ${Math.round(width)}%;
+        }
+      `}</style>
+      <span className={`line-wrapper dib br3 ${active ? 'active' : ''}`}>
+        <span className="f6 moon-gray db tc mt3">{weight}g</span>
+      </span>
+    </>
+  );
+};
 
 export default PourVisualizer;

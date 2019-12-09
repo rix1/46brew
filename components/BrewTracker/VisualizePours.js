@@ -18,6 +18,7 @@ const VisualizePours = ({ steps, activePour }: Props) => {
       active={activePour === index}
       key={uuidv4()}
       width={el * conversionFactor}
+      weight={el}
     />
   ));
 };
