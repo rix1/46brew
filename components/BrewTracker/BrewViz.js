@@ -5,6 +5,7 @@ import Stat from '../Stat';
 
 import BrewActivity from './BrewActivity';
 import VisualizePours from './VisualizePours';
+import TextMuted from '../TextMuted';
 
 type Props = {
   activity: $PropertyType<Brew$State, 'activity'>,
@@ -44,7 +45,9 @@ const BrewViz = ({
             {timeToNextStep}
           </span>
         </div>
-        <BrewActivity activity={activity} />
+        <TextMuted>
+          <BrewActivity activity={activity} />
+        </TextMuted>
       </div>
 
       <div className="relative w-100 bt bb flex flex-wrap pv4 mv4 b--light-gray">
