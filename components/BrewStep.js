@@ -9,6 +9,7 @@ import { useBrewTracker } from './BrewTracker/useBrewTracker';
 
 import TextMuted from './TextMuted';
 import { useTimerContext } from './Timer/Timer';
+import BrewActivity from './BrewTracker/BrewActivity';
 
 type Props = {
   brewUnit: Brew$UnitType,
@@ -34,12 +35,15 @@ const BrewStep = ({
     timeToNextStep,
   } = useBrewTracker(brewUnit, baseWeight, resetWeight, strength, taste);
   const { time } = useTimerContext();
-
   return (
     <>
       <div className="flex justify-between items-end">
         <StepHeading done={activity === 'done'}>
-          It&apos;s brew time!
+          {activity === 'start' ? (
+            "It's brew time"
+          ) : (
+            <BrewActivity activity={activity} />
+          )}
         </StepHeading>
         <BrewControls />
       </div>
