@@ -2,10 +2,10 @@
 import React from 'react';
 import theme from '../lib/theme';
 
-type Props = {
+type Props = {|
   position: number,
   wrapped: boolean,
-};
+|};
 
 const Line = ({ position, wrapped }: Props) => (
   <>

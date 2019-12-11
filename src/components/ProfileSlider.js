@@ -9,9 +9,9 @@ import BlankButton from './BlankButton';
 
 const DEFAULT_TASTE_VALUE = 50;
 const DEFAULT_STRENGTH_VALUE = 50;
-type Props = {
+type Props = {|
   onComplete: ({ taste: number, strength: number }) => void,
-};
+|};
 type State = {
   tasteValue: number,
   strengthValue: number,

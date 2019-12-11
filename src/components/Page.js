@@ -2,12 +2,12 @@
 import React from 'react';
 import Head from 'next/head';
 
-type Props = {
+type Props = {|
   children: React$Node,
   title: string,
   description: string,
   enableScroll: boolean,
-};
+|};
 
 const Page = ({ children, title, description, enableScroll }: Props) => (
   <section

@@ -2,9 +2,9 @@
 import React from 'react';
 import Navigation from './Navigation';
 
-type Props = {
+type Props = {|
   children: React$Node,
-};
+|};
 
 const PageLayout = ({ children }: Props) => {
   return (

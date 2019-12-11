@@ -7,13 +7,14 @@ import { COFFE_CUP_SIZE } from '../lib/constants';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
-type Props = {
+type Props = {|
   onCompleted: Brew$Weight => void,
-};
-type State = {
+|};
+
+type State = {|
   value: number,
   inputError: boolean,
-};
+|};
 
 class SetAmountStep extends PureComponent<Props, State> {
   state = {

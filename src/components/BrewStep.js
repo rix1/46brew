@@ -11,12 +11,12 @@ import TextMuted from './TextMuted';
 import { useTimerContext } from './Timer/Timer';
 import BrewActivity from './BrewTracker/BrewActivity';
 
-type Props = {
+type Props = {|
   baseWeight: Brew$Weight,
   resetWeight: Brew$Weight,
   strength: Brew$Strength,
   taste: Brew$Taste,
-};
+|};
 
 const BrewStep = ({ baseWeight, resetWeight, strength, taste }: Props) => {
   const {

@@ -1,11 +1,9 @@
 // @flow
 
-type Props = {
+type Props = {|
   activity: Brew$Activity,
-};
+|};
 const BrewActivity = ({ activity }: Props) => {
-  // TODO: ADD BREW CONTEXT
-
   switch (activity) {
     case 'start':
       return 'Wating to start';
