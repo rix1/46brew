@@ -1,78 +1,77 @@
 // @flow
-import React, { PureComponent } from 'react';
-import { cx } from 'react-emotion';
+import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 
 import Line from '../Line';
 import StyledRange from './StyledRange';
 
-type Props = {
-  className?: string,
-  idleSlider?: string,
-  separators?: Array<number>,
-  activeSliders?: Array<string>,
-  onChange: (SyntheticInputEvent<HTMLFormElement>) => void,
-  value: number,
-};
-type State = {
-  hasChanged: boolean,
-};
-
-class Range extends PureComponent<Props, State> {
-  static defaultProps = {
-    className: '',
-    separators: [],
-    activeSliders: ['😳'],
-    idleSlider: '😴',
-  };
-
-  state = {
-    hasChanged: true, // Disable idle state for now
-  };
-
-  onChange = (event: SyntheticInputEvent<HTMLFormElement>) => {
-    const { onChange } = this.props;
-    this.setState({
-      hasChanged: true,
-    });
-    onChange(event);
-  };
-
-  render() {
-    const {
-      className,
-      separators,
-      activeSliders,
-      idleSlider,
-      value,
-      onChange,
-      ...rest
-    } = this.props;
-
-    const { hasChanged } = this.state;
-
-    return (
-      <div
-        className={cx('relative br3 f4 f3-ns', className)}
-        style={{
-          backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
-        }}>
-        {separators &&
-          separators.map(separator => (
-            <Line key={uuid()} position={separator} />
-          ))}
-        <StyledRange
-          type="range"
-          value={value}
-          activeSliders={activeSliders}
-          idleSlider={idleSlider}
-          onChange={this.onChange}
-          hasChanged={hasChanged}
-          {...rest}
-        />
-      </div>
-    );
+export function stengthToSegments(value: number) {
+  const baseline = 3;
+  if (value < 33) {
+    return baseline - 1;
   }
+  if (value > 66) {
+    return baseline + 1;
+  }
+  return baseline;
 }
+
+export const createLineSegments = (segments: number) =>
+  [...Array(segments)]
+    .map((el, index, array) => Math.round(index * (100 / array.length)))
+    .filter(Boolean);
+
+type Props = {|
+  className: string,
+  separators: number,
+  ...React$ElementConfig<typeof StyledRange>,
+  onChange: number => void,
+|};
+
+const Range = (props: Props) => {
+  const [hasChanged, setHasChanged] = useState(false);
+
+  function onChangeHandler(event) {
+    const { onChange } = props;
+    setHasChanged(true);
+    onChange(Number(event.currentTarget.value));
+  }
+
+  const {
+    className,
+    separators,
+    sliderIcons,
+    idleSlider,
+    value,
+    onChange,
+    ...rest
+  } = props;
+
+  return (
+    <div
+      className={`relative br3 f4 f3-ns ${className}`}
+      style={{
+        backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
+      }}>
+      {!!separators &&
+        createLineSegments(separators).map(separator => (
+          <Line key={uuid()} position={separator} />
+        ))}
+      <StyledRange
+        sliderIcons={sliderIcons}
+        hasChanged={hasChanged}
+        idleSlider={idleSlider}
+        onChange={onChangeHandler}
+        value={value}
+        {...rest}
+      />
+    </div>
+  );
+};
+
+Range.defaultProps = {
+  className: '',
+  separators: 0,
+};
 
 export default Range;

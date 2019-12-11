@@ -1,10 +1,10 @@
 // @flow
-import React, { PureComponent, Fragment } from 'react';
+import React, { PureComponent } from 'react';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {
-  onCompleted: ({ resetWeight: string }) => void,
+  onCompleted: Brew$Weight => void,
 };
 
 type State = {
@@ -18,13 +18,12 @@ class ResetScaleStep extends PureComponent<Props, State> {
     inputError: false,
   };
 
-  completeStep = () => {
+  completeStep = (event: SyntheticEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const { onCompleted } = this.props;
     const { resetWeight } = this.state;
     if (resetWeight) {
-      onCompleted({
-        resetWeight,
-      });
+      onCompleted(Number(resetWeight));
     } else {
       this.setState({
         inputError: true,
@@ -32,7 +31,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLFormElement>) => {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     const { value } = event.target;
     if (!Number.isNaN(Number(value))) {
       this.setState({
@@ -44,10 +43,10 @@ class ResetScaleStep extends PureComponent<Props, State> {
   render() {
     const { resetWeight, inputError } = this.state;
     return (
-      <Fragment>
-        <p>
-          Place your container on the scale and zero out. Place (wet) filter and
-          add coffee.
+      <form onSubmit={this.completeStep}>
+        <p className="lh-copy gray">
+          First place your container on the scale and zero out. Then add your
+          (wet) filter and add coffee.
         </p>
         <p className="f3">
           Now, let me know what the scale reads:
@@ -60,8 +59,8 @@ class ResetScaleStep extends PureComponent<Props, State> {
           />{' '}
           grams.
         </p>
-        <ColorButton onClick={this.completeStep}>Next</ColorButton>
-      </Fragment>
+        <ColorButton type="submit">Next</ColorButton>
+      </form>
     );
   }
 }

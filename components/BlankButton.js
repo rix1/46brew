@@ -1,22 +1,26 @@
 // @flow
 import React from 'react';
-import { cx } from 'emotion';
 
-type Props = {
+type Props = {|
   children: React$Node,
-  className?: string,
-};
+  className: string,
+  onClick: (SyntheticEvent<HTMLButtonElement>) => void,
+  hidden: boolean,
+|};
 
-const BlankButton = ({ children, className = '', ...rest }: Props = {}) => (
+const BlankButton = ({ children, className, ...rest }: Props) => (
   <button
     type="button"
-    className={cx(
-      'f5 fw4 dim link navy underline pointer pv1 bg-transparent bn',
-      className,
-    )}
+    className={`f5 fw4 dim link navy underline pointer bg-transparent bn pv0 ${className}`}
     {...rest}>
     {children}
   </button>
 );
+
+BlankButton.defaultProps = {
+  className: '',
+  onClick: () => {},
+  hidden: false,
+};
 
 export default BlankButton;

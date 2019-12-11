@@ -2,10 +2,11 @@
 import { TIME_BETWEEN_POURS, POUR_TIME } from '../../lib/constants';
 import { getWeightSteps } from './utils';
 
-import type { Props, State } from './BrewTracker';
-
-export default function(nextProps: Props, prevState: State): State | null {
-  const { time, baseWeight, baseMesurement, taste, strength } = nextProps;
+export default function(
+  nextProps: Brew$MachineProps,
+  prevState: Brew$State,
+): Brew$State | null {
+  const { time, baseWeight, brewUnit, taste, strength } = nextProps;
   const {
     pourNumber,
     pouringTimeTarget,
@@ -16,10 +17,10 @@ export default function(nextProps: Props, prevState: State): State | null {
 
   // Initial setup
 
-  if (baseWeight && baseMesurement && taste && strength) {
+  if (baseWeight && brewUnit && taste && strength) {
     const newWeightSteps = getWeightSteps(
       baseWeight,
-      baseMesurement,
+      brewUnit,
       taste,
       strength,
     );

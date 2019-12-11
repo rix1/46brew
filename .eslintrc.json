@@ -1,7 +1,27 @@
 {
   "env": {
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "parser": "babel-eslint",
-  "extends": ["otovo/react-recommended"]
+  "extends": ["@otovo/eslint-config-otovo/react-flow-recommended"],
+  "plugins": ["react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": [
+      "error",
+      {
+        "html": "ignore",
+        "exceptions": ["StyledRange"]
+      }
+    ],
+    "react/default-props-match-prop-types": [
+      "error",
+      {
+        "allowRequiredDefaults": true
+      }
+    ],
+    "react/state-in-constructor": ["off"]
+  }
 }
