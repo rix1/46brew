@@ -3,14 +3,14 @@ import React, { PureComponent } from 'react';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
-type Props = {
+type Props = {|
   onCompleted: Brew$Weight => void,
-};
+|};
 
-type State = {
+type State = {|
   resetWeight: string,
   inputError: boolean,
-};
+|};
 
 class ResetScaleStep extends PureComponent<Props, State> {
   state = {

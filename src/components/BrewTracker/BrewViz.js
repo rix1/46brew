@@ -3,18 +3,18 @@ import React from 'react';
 
 import Stat from '../Stat';
 
+import TextMuted from '../TextMuted';
 import BrewActivity from './BrewActivity';
 import VisualizePours from './VisualizePours';
-import TextMuted from '../TextMuted';
 
-type Props = {
+type Props = {|
   activity: $PropertyType<Brew$State, 'activity'>,
   pourNumber: $PropertyType<Brew$State, 'pourNumber'>,
   currentWeight: Brew$Weight,
   targetWeight: Brew$Weight,
   timeToNextStep: Brew$Time,
   weightSteps: $PropertyType<Brew$State, 'weightSteps'>,
-};
+|};
 
 const BrewViz = ({
   activity,

@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent, createRef } from 'react';
 
-import Content from '../components/Content';
 import SetAmountStep from '../components/SetAmountStep';
 import Page from '../components/Page';
 import ProfileSlider from '../components/ProfileSlider';
@@ -11,10 +10,10 @@ import StepWrapper from '../components/StepWrapper';
 
 import BrewStep from '../components/BrewStep';
 import { TimerContextProvider } from '../components/Timer/Timer';
+import PageLayout from '../components/PageLayout';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
-  brewUnit: Brew$UnitType,
   baseWeight: Brew$Weight,
   resetWeight: Brew$Weight,
   strength: Brew$Strength,
@@ -36,7 +35,6 @@ type StepTypes = {
 class Index extends PureComponent<*, State> {
   state = {
     activeStep: 'weight',
-    brewUnit: 'coffee',
     baseWeight: 0,
     resetWeight: 0,
     strength: 0,
@@ -65,25 +63,15 @@ class Index extends PureComponent<*, State> {
   };
 
   render() {
-    const {
-      activeStep,
-      brewUnit,
-      baseWeight,
-      resetWeight,
-      strength,
-      taste,
-    } = this.state;
+    const { activeStep, baseWeight, resetWeight, strength, taste } = this.state;
     return (
-      <Page>
-        <Content>
+      <Page enableScroll={activeStep !== 'profile'}>
+        <PageLayout>
           <StepWrapper ref={this.stepRefs.amountStep} isActive>
-            <StepHeading done={!!brewUnit && !!baseWeight}>
-              How much?
-            </StepHeading>
+            <StepHeading done={!!baseWeight}>How much?</StepHeading>
             <SetAmountStep
               onCompleted={weight => {
                 this.setState({
-                  brewUnit: 'coffee', // TODO: remove hard coded value
                   baseWeight: weight,
                   activeStep: 'profile',
                 });
@@ -134,7 +122,6 @@ class Index extends PureComponent<*, State> {
             isActive={activeStep === 'brew'}>
             <TimerContextProvider>
               <BrewStep
-                brewUnit={brewUnit}
                 baseWeight={Number(baseWeight)}
                 resetWeight={Number(resetWeight)}
                 strength={Number(strength)}
@@ -142,7 +129,7 @@ class Index extends PureComponent<*, State> {
               />
             </TimerContextProvider>
           </StepWrapper>
-        </Content>
+        </PageLayout>
       </Page>
     );
   }

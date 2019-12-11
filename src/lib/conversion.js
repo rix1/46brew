@@ -12,7 +12,7 @@ export function waterToCoffee(amount: number): number {
   return Math.round(amount * COFFEE_TO_WATER_RATIO * 10) / 10;
 }
 
-function getType(value: number): Brew$UnitType {
+export function getType(value: number): Brew$UnitType {
   return value > 100 ? 'water' : 'coffee';
 }
 
@@ -24,8 +24,8 @@ export function coffeeConverter(amount: number): number {
   return coffeeToWater(amount);
 }
 
-export function getCoffeeWeight(baseWeight: number, brewUnit: Brew$UnitType) {
-  if (brewUnit === 'coffee') {
+export function getCoffeeWeight(baseWeight: number) {
+  if (getType(baseWeight) === 'coffee') {
     return baseWeight;
   }
   return waterToCoffee(baseWeight);

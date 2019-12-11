@@ -18,7 +18,6 @@ export type State = {|
 |};
 
 export function useBrewTracker(
-  brewUnit: Brew$UnitType,
   baseWeight: Brew$Weight,
   resetWeight: Brew$Weight,
   strength: Brew$Strength,
@@ -38,7 +37,6 @@ export function useBrewTracker(
     const nextState = brewStateMachine(
       {
         time,
-        brewUnit,
         baseWeight,
         strength,
         taste,
@@ -64,7 +62,6 @@ export function useBrewTracker(
   }, [
     activity,
     baseWeight,
-    brewUnit,
     isRunning,
     pouringTimeTarget,
     pourNumber,

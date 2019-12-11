@@ -1,10 +1,10 @@
 // @flow
 import React from 'react';
 
-type Props = {
+type Props = {|
   children: React$Node,
   desc: string,
-};
+|};
 
 const Stat = ({ desc, children }: Props) => (
   <div className="mv3 db tc w-50">

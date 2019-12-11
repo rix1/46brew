@@ -1,19 +1,20 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import { coffeeConverter } from '../lib/conversion';
+import { coffeeConverter, getType } from '../lib/conversion';
 
 import { COFFE_CUP_SIZE } from '../lib/constants';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
-type Props = {
+type Props = {|
   onCompleted: Brew$Weight => void,
-};
-type State = {
+|};
+
+type State = {|
   value: number,
   inputError: boolean,
-};
+|};
 
 class SetAmountStep extends PureComponent<Props, State> {
   state = {
@@ -44,8 +45,6 @@ class SetAmountStep extends PureComponent<Props, State> {
     }
   };
 
-  getType = (value: number) => (value > 100 ? 'water' : 'coffee');
-
   render() {
     const { value, inputError } = this.state;
     const converted = coffeeConverter(value) || 0;
@@ -63,11 +62,11 @@ class SetAmountStep extends PureComponent<Props, State> {
             value={value}
             onChange={this.handleChange}
           />{' '}
-          {`g of ${this.getType(value)}.`}
+          {`g of ${getType(value)}.`}
         </p>
         <span className="db lh-copy fw5">That is...</span>
         <span className="ml3 db lh-copy">
-          {converted} grams of {this.getType(converted)}
+          {converted} grams of {getType(converted)}
         </span>
         <span className="ml3 db mb3 lh-copy">{cups} cups of coffee</span>
         <ColorButton type="submit">Next</ColorButton>
