@@ -19,8 +19,7 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
       }
       body {
         font-size: 18px;
-        font-family: Lobster, Avenir, 'Segoe UI', Tahoma, Geneva, Verdana,
-          sans-serif;
+        font-family: Lato, Helvetica, sans-serif;
       }
     `}</style>
     <Head>
@@ -38,12 +37,13 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link
         rel="stylesheet"
-        href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
+        // href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
+        href="/static/tachyons.min.css"
       />
-      <link
+      {/* <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Lobster"
-      />
+        href="https://fonts.googleapis.com/css?family=Lato"
+      /> */}
     </Head>
     {children}
   </section>

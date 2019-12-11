@@ -52,13 +52,17 @@ class Index extends PureComponent<*, State> {
     const stepRef = this.stepRefs[stepName];
     const node = stepRef.current;
     if (node) {
-      node.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
-      setTimeout(() => {
-        node.focus();
-      }, 400);
+      window.requestAnimationFrame(() =>
+        window.requestAnimationFrame(() => {
+          node.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+          setTimeout(() => {
+            node.focus();
+          }, 1500);
+        }),
+      );
     }
   };
 
