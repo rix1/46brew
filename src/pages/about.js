@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
 import Page from '../components/Page';
-import Content from '../components/Content';
+import PageLayout from '../components/PageLayout';
 
 const About = () => (
   <Page title="About us">
-    <Content>
+    <PageLayout>
       <div className="measure f4 f3-ns center mv5 black-80">
         <h1>About 4:6</h1>
         <p className="lh-copy">
@@ -32,7 +32,7 @@ const About = () => (
           />
         </div>
       </div>
-    </Content>
+    </PageLayout>
   </Page>
 );
 

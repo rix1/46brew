@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent, createRef } from 'react';
 
-import Content from '../components/Content';
 import SetAmountStep from '../components/SetAmountStep';
 import Page from '../components/Page';
 import ProfileSlider from '../components/ProfileSlider';
@@ -11,6 +10,7 @@ import StepWrapper from '../components/StepWrapper';
 
 import BrewStep from '../components/BrewStep';
 import { TimerContextProvider } from '../components/Timer/Timer';
+import PageLayout from '../components/PageLayout';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
@@ -74,8 +74,8 @@ class Index extends PureComponent<*, State> {
       taste,
     } = this.state;
     return (
-      <Page>
-        <Content>
+      <Page enableScroll={activeStep !== 'profile'}>
+        <PageLayout>
           <StepWrapper ref={this.stepRefs.amountStep} isActive>
             <StepHeading done={!!brewUnit && !!baseWeight}>
               How much?
@@ -142,7 +142,7 @@ class Index extends PureComponent<*, State> {
               />
             </TimerContextProvider>
           </StepWrapper>
-        </Content>
+        </PageLayout>
       </Page>
     );
   }
