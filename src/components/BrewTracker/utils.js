@@ -32,11 +32,10 @@ export function convertStrenghtToWeights(
 
 export function getWeightSteps(
   baseWeight: number,
-  brewUnit: Brew$UnitType,
   taste: number,
   strength: number,
 ) {
-  const coffeeWeight = getCoffeeWeight(baseWeight, brewUnit);
+  const coffeeWeight = getCoffeeWeight(baseWeight);
   return [
     ...convertTasteToWeight(coffeeWeight, taste),
     ...convertStrenghtToWeights(coffeeWeight, strength),

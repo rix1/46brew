@@ -18,7 +18,6 @@ declare type Brew$State = {|
 |};
 
 declare type Brew$MachineProps = {|
-  brewUnit: ?Brew$UnitType,
   baseWeight: Brew$Weight,
   resetWeight?: Brew$Weight,
   strength: Brew$Strength,

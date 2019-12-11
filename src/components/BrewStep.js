@@ -12,20 +12,13 @@ import { useTimerContext } from './Timer/Timer';
 import BrewActivity from './BrewTracker/BrewActivity';
 
 type Props = {
-  brewUnit: Brew$UnitType,
   baseWeight: Brew$Weight,
   resetWeight: Brew$Weight,
   strength: Brew$Strength,
   taste: Brew$Taste,
 };
 
-const BrewStep = ({
-  brewUnit,
-  baseWeight,
-  resetWeight,
-  strength,
-  taste,
-}: Props) => {
+const BrewStep = ({ baseWeight, resetWeight, strength, taste }: Props) => {
   const {
     activity,
     currentWeight,
@@ -33,7 +26,7 @@ const BrewStep = ({
     weightSteps,
     targetWeight,
     timeToNextStep,
-  } = useBrewTracker(brewUnit, baseWeight, resetWeight, strength, taste);
+  } = useBrewTracker(baseWeight, resetWeight, strength, taste);
   const { time } = useTimerContext();
   return (
     <>

@@ -6,7 +6,7 @@ export default function(
   nextProps: Brew$MachineProps,
   prevState: Brew$State,
 ): Brew$State | null {
-  const { time, baseWeight, brewUnit, taste, strength } = nextProps;
+  const { time, baseWeight, taste, strength } = nextProps;
   const {
     pourNumber,
     pouringTimeTarget,
@@ -17,13 +17,8 @@ export default function(
 
   // Initial setup
 
-  if (baseWeight && brewUnit && taste && strength) {
-    const newWeightSteps = getWeightSteps(
-      baseWeight,
-      brewUnit,
-      taste,
-      strength,
-    );
+  if (baseWeight && taste && strength) {
+    const newWeightSteps = getWeightSteps(baseWeight, taste, strength);
 
     if (weightSteps.length !== newWeightSteps.length) {
       return {
