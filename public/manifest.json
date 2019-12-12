@@ -1,0 +1,21 @@
+{
+  "short_name": "46 Brew",
+  "name": "46 Brew | Let's make some coffee",
+  "icons": [
+    {
+      "src": "/static/logo_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/logo_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#F39F55",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#F39F55"
+}

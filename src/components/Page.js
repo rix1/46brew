@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import Head from 'next/head';
+import PWATags from './PWATags';
 
 type Props = {|
   children: React$Node,
@@ -23,10 +24,11 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
       }
     `}</style>
     <Head>
-      <title>{title}</title>
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+      <title>{title}</title>
       <meta key="og:title" property="og:title" content={title} />
       <meta key="description" property="description" content={description} />
       <meta
@@ -34,12 +36,12 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
         property="og:description"
         content={description}
       />
-      <link rel="shortcut icon" href="/static/favicon.ico" />
       <link
         rel="stylesheet"
         href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
       />
     </Head>
+    <PWATags />
     {children}
   </section>
 );
