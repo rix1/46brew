@@ -11,6 +11,7 @@ import StepWrapper from '../components/StepWrapper';
 import BrewStep from '../components/BrewStep';
 import { TimerContextProvider } from '../components/Timer/Timer';
 import PageLayout from '../components/PageLayout';
+import { setupServiceWorker } from '../lib/serviceWorker';
 
 type State = {
   activeStep: 'weight' | 'profile' | 'reset' | 'brew',
@@ -40,6 +41,10 @@ class Index extends PureComponent<*, State> {
     strength: 0,
     taste: 0,
   };
+
+  componentDidMount() {
+    setupServiceWorker();
+  }
 
   stepRefs: StepTypes = {
     amountStep: createRef(),

@@ -1,6 +1,13 @@
 // @flow
+/* eslint-disable react/self-closing-comp */
 import React from 'react';
 import Head from 'next/head';
+
+const CSSDependencies = [
+  'https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css',
+  'https://fonts.googleapis.com/css?family=Lato',
+  '/static/tachyons.min.css',
+];
 
 type Props = {|
   children: React$Node,
@@ -35,17 +42,12 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
         content={description}
       />
       <link rel="shortcut icon" href="/static/favicon.ico" />
-      <link
-        rel="stylesheet"
-        // href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
-        href="/static/tachyons.min.css"
-      />
-      {/* <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Lato"
-      /> */}
+      {CSSDependencies.map(url => (
+        <link key={url} rel="stylesheet" href={url} />
+      ))}
     </Head>
     {children}
+    <script src="/sw.js"></script>
   </section>
 );
 
