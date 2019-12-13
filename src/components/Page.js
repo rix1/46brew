@@ -37,13 +37,8 @@ const Page = ({ children, title, description, enableScroll }: Props) => (
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link
         rel="stylesheet"
-        // href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
-        href="/static/tachyons.min.css"
+        href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
       />
-      {/* <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Lato"
-      /> */}
     </Head>
     {children}
   </section>
