@@ -58,7 +58,7 @@ class SetAmountStep extends PureComponent<Props, State> {
             className="ph1"
             error={inputError}
             type="number"
-            value={value}
+            value={value || ''}
             onChange={this.handleChange}
           />{' '}
           {`g of ${getType(value)}.`}
