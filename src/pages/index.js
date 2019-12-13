@@ -58,9 +58,9 @@ class Index extends PureComponent<*, State> {
             behavior: 'smooth',
             block: 'start',
           });
-          setTimeout(() => {
-            node.focus();
-          }, 1500);
+          // setTimeout(() => {
+          //   node.focus();
+          // }, 1500);
         }),
       );
     }

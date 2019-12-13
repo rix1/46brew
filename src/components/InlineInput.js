@@ -17,7 +17,7 @@ const InlineInput = ({ className, error, ...rest }: Props) => (
         border: none;
         border-bottom: ${theme.sizes.lineWidth} dotted gray;
         outline: none;
-        width: 3em;
+        width: 3.6em;
         text-align: right;
       }
       input:focus {
