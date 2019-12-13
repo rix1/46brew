@@ -7,6 +7,10 @@ const nextConfig = {
   // turn on the SW in dev mode so that we can actually test it
   generateInDevMode: true,
   workboxOpts: {
+    modifyURLPrefix: {
+      'static/': '_next/static/',
+      'public/': '/',
+    },
     swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
