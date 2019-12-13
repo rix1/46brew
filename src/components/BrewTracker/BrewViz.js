@@ -53,7 +53,9 @@ const BrewViz = ({
       <div className="relative w-100 bt bb flex flex-wrap pv4 mb4 mt4 mt5-ns b--light-gray">
         <div className="db ttu tracked tc w-100">Weight</div>
         <Stat desc="Current">{currentWeight}</Stat>
-        <Stat desc="Target">{targetWeight}</Stat>
+        <Stat desc={activity !== 'done' ? 'Next' : 'Target'}>
+          {targetWeight}
+        </Stat>
       </div>
     </div>
   );
