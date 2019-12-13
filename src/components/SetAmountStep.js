@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from 'react';
 
-import { coffeeConverter, getType } from '../lib/conversion';
+import { coffeeConverter, getType, getCups } from '../lib/conversion';
 
 import { COFFE_CUP_SIZE } from '../lib/constants';
 import InlineInput from './InlineInput';
@@ -48,8 +48,7 @@ class SetAmountStep extends PureComponent<Props, State> {
   render() {
     const { value, inputError } = this.state;
     const converted = coffeeConverter(value) || 0;
-    const cups =
-      Math.round(Number(coffeeConverter(value) / COFFE_CUP_SIZE) * 10) / 10;
+    const cups = getCups(value);
 
     return (
       <form onSubmit={this.completeStep}>

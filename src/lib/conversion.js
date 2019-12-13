@@ -1,6 +1,6 @@
 // @flow
 
-import { COFFEE_TO_WATER_RATIO } from './constants';
+import { COFFEE_TO_WATER_RATIO, COFFE_CUP_SIZE } from './constants';
 
 // 26g coffee yields 400g of water
 export function coffeeToWater(amount: number): number {
@@ -22,6 +22,14 @@ export function coffeeConverter(amount: number): number {
     return waterToCoffee(amount);
   }
   return coffeeToWater(amount);
+}
+
+export function getCups(amount: number): number {
+  const type = getType(amount);
+  if (type === 'coffee') {
+    return Math.round(Number(coffeeToWater(amount) / COFFE_CUP_SIZE) * 10) / 10;
+  }
+  return Math.round(Number(amount / COFFE_CUP_SIZE) * 10) / 10;
 }
 
 export function getCoffeeWeight(baseWeight: number) {
