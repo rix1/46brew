@@ -30,7 +30,7 @@ export function requestPermission() {
 
 export function vibrationExample() {
   if (hasSupport()) {
-    navigator.serviceWorker.ready.then(function(registration) {
+    navigator.serviceWorker.getRegistration('/').then(registration => {
       const title = 'Vibrate Notification';
       const options = {
         // Star Wars shamelessly taken from the awesome Peter Beverloo
@@ -64,7 +64,7 @@ export function testNotification() {
   if (hasSupport()) {
     Notification.requestPermission(function(result) {
       if (result === 'granted') {
-        navigator.serviceWorker.ready.then(function(registration) {
+        navigator.serviceWorker.getRegistration('/').then(registration => {
           registration.showNotification('Vibration Sample', {
             body: 'Buzz! Buzz!',
             vibrate: [200, 100, 200, 100, 200, 100, 200],
@@ -78,7 +78,7 @@ export function testNotification() {
 
 export function checkSubscription() {
   if (hasSupport()) {
-    return navigator.serviceWorker.ready.then(registration => {
+    return navigator.serviceWorker.getRegistration('/').then(registration => {
       return registration.pushManager.getSubscription().then(subscription => {
         const isSubscribed = !(subscription === null);
         if (isSubscribed) {
