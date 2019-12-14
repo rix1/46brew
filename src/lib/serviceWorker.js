@@ -23,39 +23,71 @@ export function initServiceWorker() {
 
 export function requestPermission() {
   if (hasSupport()) {
-    Notification.requestPermission(result => {
-      console.log(
-        'Notification permission:',
-        result === 'granted' ? '✅' : '❌',
-      );
+    return Notification.requestPermission();
+  }
+  return Promise.reject();
+}
+
+export function vibrationExample() {
+  if (hasSupport()) {
+    navigator.serviceWorker.ready.then(function(registration) {
+      const title = 'Vibrate Notification';
+      const options = {
+        // Star Wars shamelessly taken from the awesome Peter Beverloo
+        // https://tests.peter.sh/notification-generator/
+        vibrate: [
+          500,
+          110,
+          500,
+          110,
+          450,
+          110,
+          200,
+          110,
+          170,
+          40,
+          450,
+          110,
+          200,
+          110,
+          170,
+          40,
+          500,
+        ],
+      };
+      registration.showNotification(title, options);
     });
   }
 }
 
 export function testNotification() {
   if (hasSupport()) {
-    if (Notification.permission === 'granted') {
-      navigator.serviceWorker.getRegistration().then(reg => {
-        reg.showNotification('Hello world!');
-        console.log('should show notification');
-      });
-    }
+    Notification.requestPermission(function(result) {
+      if (result === 'granted') {
+        navigator.serviceWorker.ready.then(function(registration) {
+          registration.showNotification('Vibration Sample', {
+            body: 'Buzz! Buzz!',
+            vibrate: [200, 100, 200, 100, 200, 100, 200],
+            tag: 'vibration-sample',
+          });
+        });
+      }
+    });
   }
 }
 
 export function checkSubscription() {
   if (hasSupport()) {
-    navigator.serviceWorker.ready.then(registration => {
-      if (registration) {
-        registration.pushManager.getSubscription().then(subscription => {
-          const isSubscribed = !(subscription === null);
-          if (isSubscribed) {
-            console.log('User is subscribed.');
-          } else {
-            console.log('User is NOT subscribed.');
-          }
-        });
-      }
+    return navigator.serviceWorker.ready.then(registration => {
+      return registration.pushManager.getSubscription().then(subscription => {
+        const isSubscribed = !(subscription === null);
+        if (isSubscribed) {
+          console.log('User is subscribed.');
+        } else {
+          console.log('User is NOT subscribed.');
+        }
+      });
     });
   }
+  return Promise.reject();
 }
