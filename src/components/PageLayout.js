@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import Navigation from './Navigation';
+import ServiceWorkerPanel from './ServiceWorkerPanel';
 
 type Props = {|
   children: React$Node,
@@ -13,7 +14,7 @@ const PageLayout = ({ children }: Props) => {
         <h1 className="f1 fw7 ttu tracked relative dib">4:6brew</h1>
         <Navigation />
       </header>
-
+      <ServiceWorkerPanel />
       <div className="ph3">
         <div className="mw8 center">{children}</div>
       </div>

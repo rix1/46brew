@@ -1,6 +1,9 @@
 // @flow
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
+
+import { initServiceWorker } from '../lib/serviceWorker';
+
 import PWATags from './PWATags';
 import GlobalStyles from './GlobalStyles';
 
@@ -12,6 +15,10 @@ type Props = {|
 |};
 
 const Page = ({ children, title, description, enableScroll }: Props) => {
+  useEffect(() => {
+    initServiceWorker();
+  }, []);
+
   return (
     <section
       className={`relative overflow-y-${enableScroll ? 'scroll' : 'hidden'}`}>
