@@ -80,4 +80,4 @@ Using Prettier for formatting, Eslint for linting and Flowtype for static type c
 
 ## Licensing
 
-Not yet decided, so for now it's free for anyone to do whatever 🙃
+MIT
