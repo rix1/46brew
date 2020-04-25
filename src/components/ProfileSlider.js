@@ -58,6 +58,8 @@ class ProfileSlider extends PureComponent<Props, State> {
       tasteValueSet,
     } = this.state;
     const hasChanged = strengthValueSet || tasteValueSet;
+    const stepSize =
+      typeof window !== 'undefined' && window.innerWidth < 600 ? 5 : 1;
 
     const separators = stengthToSegments(strengthValue);
 
@@ -105,6 +107,7 @@ class ProfileSlider extends PureComponent<Props, State> {
           <Range
             min={10}
             max={90}
+            step={stepSize}
             className="w-40"
             onChange={this.onChange('tasteValue')}
             value={tasteValue}
@@ -122,6 +125,7 @@ class ProfileSlider extends PureComponent<Props, State> {
           <Range
             min={10}
             max={90}
+            step={stepSize}
             className="w-60"
             onChange={this.onChange('strengthValue')}
             value={strengthValue}
