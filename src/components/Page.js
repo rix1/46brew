@@ -45,6 +45,11 @@ const Page = ({ children, title, description, enableScroll }: Props) => {
           property="og:description"
           content={description}
         />
+
+        <meta property="og:site_name" content="46 Brew" />
+        <meta property="og:image" content="/static/46-brew-social-card.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+
         <link
           rel="stylesheet"
           href="https://unpkg.com/tachyons@4.11.1/css/tachyons.min.css"
