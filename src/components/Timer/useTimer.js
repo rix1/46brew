@@ -27,30 +27,41 @@ function useInterval(callback: Function, delay: ?number) {
   }, [delay]);
 }
 
-export function useTimer(multiplier: number = 1) {
-  const [isRunning, setIsRunning] = useState(false);
+export function useTimer(multiplier: number = 1, onChange: () => void) {
+  // const [isRunning, setIsRunning] = useState(false);
+  const [status, setStatus] = useState('ready');
   const [time, setTime] = useState(0);
 
   useInterval(
     () => {
       setTime(time + 1);
     },
-    isRunning ? 1000 / multiplier : null,
+    status === 'running' ? 1000 / multiplier : null,
   );
 
   function toggleTimer() {
-    setIsRunning(!isRunning);
+    switch (status) {
+      case 'ready':
+      case 'paused':
+        return setStatus('running');
+      case 'running':
+        return setStatus('paused');
+      case 'done':
+        return setStatus('ready');
+      default:
+        throw new Error(`Status ${status} not supported`);
+    }
   }
 
-  function reset() {
+  function stop() {
     setTime(0);
-    setIsRunning(false);
+    setStatus('done');
   }
 
   return {
     time,
-    isRunning,
+    isRunning: status === 'running',
     toggleTimer,
-    reset,
+    stop,
   };
 }

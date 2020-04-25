@@ -121,7 +121,11 @@ class Index extends PureComponent<void, State> {
             ref={this.stepRefs.brewTrackerStep}
             className="mb7"
             isActive={activeStep === 'brew'}>
-            <TimerContextProvider>
+            <TimerContextProvider
+              multiplier={15}
+              onChange={status => {
+                console.log('timer changed', status);
+              }}>
               <BrewStep
                 baseWeight={Number(baseWeight)}
                 resetWeight={Number(resetWeight)}

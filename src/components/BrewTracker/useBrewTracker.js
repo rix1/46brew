@@ -23,7 +23,7 @@ export function useBrewTracker(
   strength: Brew$Strength,
   taste: Brew$Taste,
 ) {
-  const { time, isRunning, toggleTimer } = useTimerContext();
+  const { time, isRunning, toggleTimer, stop } = useTimerContext();
 
   const [pourNumber, setPourNumber] = useState(0);
   const [pouringTimeTarget, setPouringTimeTarget] = useState(POUR_TIME);
@@ -51,7 +51,7 @@ export function useBrewTracker(
     );
     if (nextState) {
       if (nextState.activity === 'done' && isRunning) {
-        toggleTimer();
+        stop();
       }
       setPourNumber(nextState.pourNumber);
       setPouringTimeTarget(nextState.pouringTimeTarget);

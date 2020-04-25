@@ -11,11 +11,14 @@ type TimerContextProviderProps = {|
 export const TimerContextProvider = ({
   children,
   multiplier,
+  onChange,
 }: TimerContextProviderProps) => {
-  const { time, isRunning, toggleTimer, reset } = useTimer(multiplier);
-  const context = { time, isRunning, toggleTimer, reset };
+  // const { time, isRunning, toggleTimer, stop } = ;
+  // const context = { time, isRunning, toggleTimer, stop };
   return (
-    <TimerContext.Provider value={context}>{children}</TimerContext.Provider>
+    <TimerContext.Provider value={useTimer(multiplier, onChange)}>
+      {children}
+    </TimerContext.Provider>
   );
 };
 
