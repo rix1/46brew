@@ -8,7 +8,6 @@ const About = () => (
     <PageLayout>
       <div className="measure f4 f3-ns center mv5 black-80">
         <h1>About 4:6</h1>
-        {process.env.ANALYTICS_GA_ID}
         <p className="lh-copy">
           This is a simple app I built to make it easier to brew coffee using
           the the 4:6 brewing method. This method was created by Tetsu Kasuya
