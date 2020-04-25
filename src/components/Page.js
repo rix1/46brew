@@ -10,22 +10,15 @@ type Props = {|
   title: string,
   description: string,
   enableScroll: boolean,
-  config: Brew$AppConfig,
 |};
 
-const Page = ({
-  children,
-  title,
-  description,
-  enableScroll,
-  config,
-}: Props) => {
+const Page = ({ children, title, description, enableScroll }: Props) => {
   useEffect(() => {
     if (!window.GA_INITIALIZED) {
-      initGA(config);
+      initGA();
     }
     logPageView();
-  }, [config]);
+  }, []);
   return (
     <section
       className={`relative overflow-y-${enableScroll ? 'scroll' : 'hidden'}`}>

@@ -1,8 +1,6 @@
 // @flow
 import React, { PureComponent, createRef } from 'react';
 
-import getGlobalConfig from '../lib/getGlobalConfig';
-
 import SetAmountStep from '../components/SetAmountStep';
 import Page from '../components/Page';
 import ProfileSlider from '../components/ProfileSlider';
@@ -34,7 +32,7 @@ type StepTypes = {
   brewTrackerStep: { current: null | HTMLDivElement },
 };
 
-class Index extends PureComponent<Brew$AppConfigProp, State> {
+class Index extends PureComponent<void, State> {
   state = {
     activeStep: 'weight',
     baseWeight: 0,
@@ -67,9 +65,8 @@ class Index extends PureComponent<Brew$AppConfigProp, State> {
 
   render() {
     const { activeStep, baseWeight, resetWeight, strength, taste } = this.state;
-    const { config } = this.props;
     return (
-      <Page enableScroll={activeStep !== 'profile'} config={config}>
+      <Page enableScroll={activeStep !== 'profile'}>
         <PageLayout>
           <StepWrapper ref={this.stepRefs.amountStep} isActive>
             <StepHeading done={!!baseWeight}>How much?</StepHeading>
@@ -137,14 +134,6 @@ class Index extends PureComponent<Brew$AppConfigProp, State> {
       </Page>
     );
   }
-}
-
-export async function getStaticProps() {
-  return {
-    props: {
-      config: getGlobalConfig(),
-    },
-  };
 }
 
 export default Index;

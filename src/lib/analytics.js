@@ -1,22 +1,22 @@
 // @flow
 import ReactGA from 'react-ga';
 
-export const initGA = (config: Brew$AppConfig) => {
-  if (!config.ANALYTICS_ENABLED) {
+export const initGA = () => {
+  if (!process.env.ANALYTICS_ENABLED) {
     return null;
   }
 
-  if (!config.ANALYTICS_GA_ID) {
+  if (!process.env.ANALYTICS_GA_ID) {
     return console.info('ANALYTICS_GA_ID missing. Analytics is disabled.');
   }
 
-  ReactGA.initialize(config.ANALYTICS_GA_ID, {
-    debug: config.ENV === 'development',
+  ReactGA.initialize(process.env.ANALYTICS_GA_ID, {
+    debug: process.env.ENV === 'development',
     titleCase: false,
   });
   ReactGA.set({ anonymizeIp: true });
-  ReactGA.set({ appName: config.NAME });
-  ReactGA.set({ appVersion: config.VERSION });
+  ReactGA.set({ appName: process.env.NAME });
+  ReactGA.set({ appVersion: process.env.VERSION });
 
   window.GA_INITIALIZED = true;
 
