@@ -35,6 +35,7 @@ const InlineInput = ({ className, error, ...rest }: Props) => (
 InlineInput.defaultProps = {
   className: '',
   error: false,
+  min: undefined,
 };
 
 export default InlineInput;
