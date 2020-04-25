@@ -8,6 +8,7 @@ type Props = {|
   onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
   type: string,
   value: string | string[] | number,
+  min?: number,
 |};
 
 const InlineInput = ({ className, error, ...rest }: Props) => (
