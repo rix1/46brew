@@ -2,9 +2,10 @@
 import React from 'react';
 import Page from '../components/Page';
 import PageLayout from '../components/PageLayout';
+import getGlobalConfig from '../lib/getGlobalConfig';
 
-const About = () => (
-  <Page title="About us">
+const About = ({ config }: Brew$AppConfigProp) => (
+  <Page title="About us" config={config}>
     <PageLayout>
       <div className="measure f4 f3-ns center mv5 black-80">
         <h1>About 4:6</h1>
@@ -35,5 +36,13 @@ const About = () => (
     </PageLayout>
   </Page>
 );
+
+export async function getStaticProps() {
+  return {
+    props: {
+      config: getGlobalConfig(),
+    },
+  };
+}
 
 export default About;
