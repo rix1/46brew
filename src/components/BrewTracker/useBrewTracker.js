@@ -1,5 +1,6 @@
 // @flow
 import { useState, useEffect } from 'react';
+import screenLock from '../../lib/screenLock';
 import { POUR_TIME, TIME_BETWEEN_POURS } from '../../lib/constants';
 import { useTimerContext } from '../Timer/Timer';
 import brewStateMachine from './brewStateMachine';
@@ -52,7 +53,16 @@ export function useBrewTracker(
     if (nextState) {
       if (nextState.activity === 'done' && isRunning) {
         toggleTimer();
+
+        screenLock.release();
       }
+
+      if (nextState.activity === 'pouring') {
+        if (!screenLock.hasLock()) {
+          screenLock.request();
+        }
+      }
+
       setPourNumber(nextState.pourNumber);
       setPouringTimeTarget(nextState.pouringTimeTarget);
       setWaitingTimeTarget(nextState.waitingTimeTarget);
