@@ -11,7 +11,7 @@ export const initGA = () => {
   }
 
   ReactGA.initialize(process.env.ANALYTICS_GA_ID, {
-    debug: process.env.ENV === 'development',
+    debug: process.env.NODE_ENV === 'development',
     titleCase: false,
   });
   ReactGA.set({ anonymizeIp: true });

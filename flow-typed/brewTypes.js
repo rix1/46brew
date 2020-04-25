@@ -1,15 +1,5 @@
 // @flow
 
-declare type Brew$AppConfig = {|
-  ANALYTICS_ENABLED: boolean,
-  ANALYTICS_GA_ID: ?string,
-  NAME: string,
-  ENV: 'development' | 'test' | 'production',
-  VERSION: string,
-|};
-
-declare type Brew$AppConfigProp = { config: Brew$AppConfig };
-
 declare type Brew$Activity = 'start' | 'pouring' | 'waiting' | 'done';
 declare type Brew$PourNumber = number;
 declare type Brew$Strength = number;
