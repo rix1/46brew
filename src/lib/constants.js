@@ -1,6 +1,6 @@
 // @flow
 
-export const COFFE_CUP_SIZE = 200; // ml or grams – shouldn't matter
+export const COFFEE_CUP_SIZE = 200; // ml or grams – shouldn't matter
 export const TIME_BETWEEN_POURS = 35;
 export const POUR_TIME = 8;
 
