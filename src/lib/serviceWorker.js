@@ -79,15 +79,29 @@ export function testNotification() {
 export function checkSubscription() {
   if (hasSupport()) {
     return navigator.serviceWorker.getRegistration('/').then(registration => {
-      return registration.pushManager.getSubscription().then(subscription => {
+      registration.pushManager.getSubscription().then(subscription => {
         const isSubscribed = !(subscription === null);
         if (isSubscribed) {
-          console.log('User is subscribed.');
+          console.log('User is subscribed.', subscription);
         } else {
-          console.log('User is NOT subscribed.');
+          console.log('User is NOT subscribed.', subscription);
         }
       });
     });
   }
   return Promise.reject();
+}
+
+function gr() {
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    console.log(regs);
+    regs[0].pushManager.getSubscription().then(subscription => {
+      const isSubscribed = !(subscription === null);
+      if (isSubscribed) {
+        console.log('User is subscribed.', subscription);
+      } else {
+        console.log('User is NOT subscribed.', subscription);
+      }
+    });
+  });
 }
