@@ -47,8 +47,17 @@ const Page = ({ children, title, description, enableScroll }: Props) => {
         />
 
         <meta property="og:site_name" content="46 Brew" />
-        <meta property="og:image" content="/static/46-brew-social-card.png" />
+        <meta
+          property="og:image"
+          content="https://46brew.app/static/46-brew-social-card.png"
+        />
+        <meta property="og:url" content="https://46brew.app" />
+        <meta property="twitter:site" content="@rix1" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:image"
+          content="https://46brew.app/static/46-brew-social-card.png"
+        />
 
         <link
           rel="stylesheet"
