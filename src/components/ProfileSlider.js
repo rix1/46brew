@@ -15,54 +15,43 @@ type Props = {|
 type State = {
   tasteValue: number,
   strengthValue: number,
-  strengthValueSet: boolean,
-  tasteValueSet: boolean,
+  valuesAdjusted: boolean,
+};
+
+const defaultState = {
+  tasteValue: DEFAULT_TASTE_VALUE,
+  strengthValue: DEFAULT_STRENGTH_VALUE,
+  valuesAdjusted: false,
 };
 
 class ProfileSlider extends PureComponent<Props, State> {
-  state = {
-    tasteValue: DEFAULT_TASTE_VALUE,
-    strengthValue: DEFAULT_STRENGTH_VALUE,
-    strengthValueSet: false,
-    tasteValueSet: false,
-  };
+  state = defaultState;
 
   componentDidMount() {}
 
   onChange = (type: string) => (value: number) => {
     this.setState({
       [type]: value,
-      [`${type}Set`]: true,
+      valuesAdjusted: true,
     });
   };
 
   onComplete = () => {
     const { onComplete } = this.props;
-    const {
-      tasteValue,
-      strengthValue,
-      strengthValueSet,
-      tasteValueSet,
-    } = this.state;
+    const { tasteValue, strengthValue, valuesAdjusted } = this.state;
 
-    if (onComplete && tasteValueSet && strengthValueSet) {
+    if (onComplete && valuesAdjusted) {
       onComplete({ taste: tasteValue, strength: strengthValue });
     }
   };
 
   render() {
-    const {
-      strengthValue,
-      tasteValue,
-      strengthValueSet,
-      tasteValueSet,
-    } = this.state;
-    const hasChanged = strengthValueSet || tasteValueSet;
+    const { strengthValue, tasteValue, valuesAdjusted } = this.state;
 
     const separators = stengthToSegments(strengthValue);
 
     const showResetButton =
-      hasChanged &&
+      valuesAdjusted &&
       (tasteValue !== DEFAULT_TASTE_VALUE ||
         strengthValue !== DEFAULT_STRENGTH_VALUE);
 
@@ -90,12 +79,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             className="fr self-baseline"
             hidden={!showResetButton}
             onClick={() => {
-              this.setState({
-                tasteValue: DEFAULT_TASTE_VALUE,
-                tasteValueSet: true,
-                strengthValue: DEFAULT_STRENGTH_VALUE,
-                strengthValueSet: true,
-              });
+              this.setState(defaultState);
             }}>
             Reset
           </BlankButton>
@@ -113,7 +97,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             sliderIcons={['🤤', '😏']}
             onBlur={() =>
               this.setState({
-                tasteValueSet: true,
+                valuesAdjusted: true,
               })
             }
           />
@@ -130,7 +114,7 @@ class ProfileSlider extends PureComponent<Props, State> {
             sliderIcons={['😌', '😊', '😛']}
             onBlur={() =>
               this.setState({
-                strengthValueSet: true,
+                valuesAdjusted: true,
               })
             }
           />
@@ -141,21 +125,20 @@ class ProfileSlider extends PureComponent<Props, State> {
 
         <ColorButton
           onClick={() => {
-            if (!hasChanged) {
+            if (valuesAdjusted) {
+              this.onComplete();
+            } else {
               this.setState(
                 {
                   tasteValue: DEFAULT_TASTE_VALUE,
-                  tasteValueSet: true,
                   strengthValue: DEFAULT_STRENGTH_VALUE,
-                  strengthValueSet: true,
+                  valuesAdjusted: true,
                 },
                 this.onComplete,
               );
-            } else {
-              this.onComplete();
             }
           }}>
-          {hasChanged ? 'Next' : 'Use defaults'}
+          {valuesAdjusted ? 'Next' : 'Use defaults'}
         </ColorButton>
       </>
     );
