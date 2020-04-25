@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react';
 
 import { coffeeConverter, getType, getCups } from '../lib/conversion';
 
-import { COFFE_CUP_SIZE } from '../lib/constants';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
