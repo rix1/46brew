@@ -6,6 +6,24 @@ type Props = {|
   children: React$Node,
 |};
 
+const GithubCommitLink = () => {
+  if (!process.env.VERCEL_GITHUB_COMMIT_SHA) {
+    return null;
+  }
+  const latestCommit = process.env.VERCEL_GITHUB_COMMIT_SHA;
+
+  return (
+    <span>
+      -
+      <a
+        className="underline silver"
+        href={`https://github.com/rix1/46brew/commits/${latestCommit}`}>
+        {latestCommit.slice(0, 4)}
+      </a>
+    </span>
+  );
+};
+
 const PageLayout = ({ children }: Props) => {
   return (
     <div className="flex flex-column vh-100">
@@ -26,9 +44,7 @@ const PageLayout = ({ children }: Props) => {
         a weekend in August 2018
         <span className="db mt2">
           v{process.env.VERSION}
-          {process.env.VERCEL_GITHUB_COMMIT_SHA
-            ? `-${process.env.VERCEL_GITHUB_COMMIT_SHA.slice(0, 4)}`
-            : ''}
+          <GithubCommitLink />
         </span>
       </footer>
     </div>
