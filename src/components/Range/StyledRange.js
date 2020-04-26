@@ -10,6 +10,7 @@ type StyledRangeProps = {|
   value: number,
   max: number | string,
   min: number | string,
+  step: number,
   onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
   onBlur: (SyntheticFocusEvent<HTMLInputElement>) => void,
 |};
@@ -68,6 +69,7 @@ const StyledRange = ({
 StyledRange.defaultProps = {
   max: 100,
   min: 0,
+  step: 1,
   sliderIcons: ['😳'],
   idleSlider: '😴',
   hasChanged: false,
