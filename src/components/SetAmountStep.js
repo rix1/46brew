@@ -60,6 +60,7 @@ class SetAmountStep extends PureComponent<Props, State> {
             value={value || ''}
             onChange={this.handleChange}
             min={0}
+            step={0.1}
           />{' '}
           {`g of ${getType(value)}.`}
         </p>
