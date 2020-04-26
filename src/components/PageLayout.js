@@ -24,6 +24,12 @@ const PageLayout = ({ children }: Props) => {
           rix1
         </a>{' '}
         a weekend in August 2018
+        <span className="db mt2">
+          v{process.env.VERSION}
+          {process.env.VERCEL_GITHUB_COMMIT_SHA
+            ? `-${process.env.VERCEL_GITHUB_COMMIT_SHA.slice(0, 4)}`
+            : ''}
+        </span>
       </footer>
     </div>
   );
