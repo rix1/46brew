@@ -1,6 +1,18 @@
 const withOffline = require('next-offline');
+require('dotenv').config();
+const pkg = require('./package.json');
 
-const nextConfig = {
+const baseConfig = {
+  env: {
+    ANALYTICS_ENABLED: process.env.ANALYTICS_ENABLED === 'true',
+    ANALYTICS_GA_ID: process.env.ANALYTICS_GA_ID,
+    NAME: pkg.name,
+    ENV: process.env.NODE_ENV,
+    VERSION: pkg.version,
+  },
+};
+
+const serviceWorkerConfig = {
   target: 'serverless',
   transformManifest: manifest => ['/'].concat(manifest), // add the homepage to the cache
   // Trying to set NODE_ENV=production when running yarn dev causes a build-time error so we
@@ -32,4 +44,7 @@ const nextConfig = {
   },
 };
 
-module.exports = withOffline(nextConfig);
+module.exports =
+  process.env.NODE_ENV === 'development'
+    ? baseConfig
+    : withOffline({ ...baseConfig, ...serviceWorkerConfig });

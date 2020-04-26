@@ -1,5 +1,15 @@
 // @flow
 
+declare class process {
+  static env: {|
+    ANALYTICS_ENABLED: boolean,
+    ANALYTICS_GA_ID: ?string,
+    NAME: string,
+    NODE_ENV: 'development' | 'test' | 'production',
+    VERSION: string,
+  |};
+}
+
 declare module 'next' {
   declare type NextApp = {
     prepare(): Promise<void>,

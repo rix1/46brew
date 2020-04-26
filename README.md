@@ -23,16 +23,22 @@ This project uses [Next.js](nextjs.org) which makes it easy to create React apps
 
 ### Prerequisites
 
-A fresh Node version (I think 7 is the minimum requirement).
+A fresh Node version (I think 11 is the minimum requirement).
 
 ### Setting up Dev
 
-To start developing, first clone the repo
+1. To start developing, first clone the repo
 
 ```shell
 git clone https://github.com/rix1/46brew.git 46brew
 cd 46brew/
 yarn install
+```
+
+2. Set local environment variables by copying the `dev-template.env` template file to `.env`:
+
+```shell
+cp dev-template.env .env
 ```
 
 That's it! To fire up a local dev server, do:
@@ -55,24 +61,14 @@ Nextjs is set up with Webpack(?) and Babel, and takes care of bundeling everyhin
 
 ### Deploying / Publishing
 
-_TODO..._
+The [46brew.app site](https://46brew.app/) is kept up to date with the `master` branch due to Vercel's Github integration.
+This integration also deploy previews of all branches.
 
-<!-- give instructions on how to build and release a new version
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
+I found it useful to do semantic versioning and tag major releases to make improve the analytics experience.
 
-```shell
-packagemanager deploy your-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does. -->
-
-## Configuration
-
-<!-- Here you should write what are all of the configurations a user can enter when
-using the project. -->
-
-_TODO_
+To do this, I've set up [np](https://github.com/sindresorhus/np) to create new releases. However, as
+this app isn't available on NPM, we've configured it to skip the actual publishing. This way, the tool only helps me
+bump version numbers, tag stuff correctly and use [Github's releases page](https://github.com/rix1/46brew/releases) with specific notes.
 
 ## Tests
 
@@ -84,4 +80,4 @@ Using Prettier for formatting, Eslint for linting and Flowtype for static type c
 
 ## Licensing
 
-Not yet decided, so for now it's free for anyone to do whatever 🙃
+MIT

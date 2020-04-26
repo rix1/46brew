@@ -32,7 +32,7 @@ type StepTypes = {
   brewTrackerStep: { current: null | HTMLDivElement },
 };
 
-class Index extends PureComponent<*, State> {
+class Index extends PureComponent<void, State> {
   state = {
     activeStep: 'weight',
     baseWeight: 0,

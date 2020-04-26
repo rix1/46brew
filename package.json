@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "release": "np",
     "flow": "flow",
     "start:dev": "next dev",
     "start": "next start",
@@ -17,11 +18,16 @@
     "test": "NODE_ENV=test flow && eslint . --cache && jest",
     "tdd": "jest --watch"
   },
+  "np": {
+    "publish": false
+  },
   "dependencies": {
-    "next": "^9.1.5",
-    "next-offline": "5.0.0-beta.9",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "dotenv": "^8.2.0",
+    "next": "^9.3.5",
+    "next-offline": "^5.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-ga": "^2.7.0",
     "uuid": "^3.3.3"
   },
   "devDependencies": {
@@ -43,6 +49,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "flow-bin": "^0.113.0",
     "jest": "^24.9.0",
+    "np": "^6.2.2",
     "prettier": "^1.19.1"
   }
 }

@@ -3,7 +3,6 @@ import React, { PureComponent } from 'react';
 
 import { coffeeConverter, getType, getCups } from '../lib/conversion';
 
-import { COFFE_CUP_SIZE } from '../lib/constants';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
@@ -60,6 +59,7 @@ class SetAmountStep extends PureComponent<Props, State> {
             type="number"
             value={value || ''}
             onChange={this.handleChange}
+            min={0}
           />{' '}
           {`g of ${getType(value)}.`}
         </p>
