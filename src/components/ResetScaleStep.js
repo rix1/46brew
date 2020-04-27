@@ -9,26 +9,23 @@ type Props = {|
 
 type State = {|
   resetWeight: string,
-  inputError: boolean,
 |};
 
 class ResetScaleStep extends PureComponent<Props, State> {
   state = {
     resetWeight: '',
-    inputError: false,
   };
 
   completeStep = (event: SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { onCompleted } = this.props;
     const { resetWeight } = this.state;
-    if (resetWeight) {
-      onCompleted(Number(resetWeight));
-    } else {
-      this.setState({
-        inputError: true,
-      });
+    if (!resetWeight) {
+      this.setState({ resetWeight: '0' }, () => this.completeStep(event));
+      return;
     }
+
+    const { onCompleted } = this.props;
+    onCompleted(Number(resetWeight || 0));
   };
 
   handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
@@ -41,7 +38,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
   };
 
   render() {
-    const { resetWeight, inputError } = this.state;
+    const { resetWeight } = this.state;
     return (
       <form onSubmit={this.completeStep}>
         <p className="lh-copy gray">
@@ -55,7 +52,6 @@ class ResetScaleStep extends PureComponent<Props, State> {
             className="ph1"
             value={resetWeight}
             onChange={this.handleChange}
-            error={inputError}
           />{' '}
           grams.
         </p>
