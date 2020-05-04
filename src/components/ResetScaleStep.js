@@ -52,6 +52,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
             className="ph1"
             value={resetWeight}
             onChange={this.handleChange}
+            step={0.1}
           />{' '}
           grams.
         </p>
