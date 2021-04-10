@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 import { sumArrayTo } from '../../lib/sumArrayTo';
 import PourVisualizer from './PourVisualizer';
 

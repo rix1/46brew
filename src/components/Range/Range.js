@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import Line from '../Line';
 import StyledRange from './StyledRange';
@@ -55,7 +55,7 @@ const Range = (props: Props): React.Element<'div'> => {
       }}>
       {!!separators &&
         createLineSegments(separators).map((separator) => (
-          <Line key={uuid()} position={separator} />
+          <Line key={uuidv4()} position={separator} />
         ))}
       <StyledRange
         sliderIcons={sliderIcons}
