@@ -3,7 +3,7 @@
 type Props = {|
   activity: Brew$Activity,
 |};
-const BrewActivity = ({ activity }: Props) => {
+const BrewActivity = ({ activity }: Props): null | string => {
   switch (activity) {
     case 'start':
       return 'Wating to start';

@@ -23,7 +23,14 @@ export function useBrewTracker(
   resetWeight: Brew$Weight,
   strength: Brew$Strength,
   taste: Brew$Taste,
-) {
+): {|
+  activity: 'done' | 'pouring' | 'start' | 'waiting',
+  currentWeight: any,
+  pourNumber: number,
+  targetWeight: any,
+  timeToNextStep: any,
+  weightSteps: Brew$WeightSteps | Array<Brew$Weight>,
+|} {
   const { time, isRunning, toggleTimer } = useTimerContext();
 
   const [pourNumber, setPourNumber] = useState(0);

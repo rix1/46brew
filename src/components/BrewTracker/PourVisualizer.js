@@ -1,5 +1,6 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 import theme from '../../lib/theme';
 
 type Props = {|
@@ -8,7 +9,7 @@ type Props = {|
   weight: Brew$Weight,
 |};
 
-const PourVisualizer = ({ active, width, weight }: Props) => {
+const PourVisualizer = ({ active, width, weight }: Props): React.Node => {
   return (
     <>
       <style jsx>{`

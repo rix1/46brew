@@ -1,15 +1,21 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 import Emoji from './Emoji';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
   done: boolean,
   emoji: string,
-  advanceButton: React$Node,
+  advanceButton: React.Node,
 |};
 
-const StepHeading = ({ advanceButton, children, emoji, done }: Props) => (
+const StepHeading = ({
+  advanceButton,
+  children,
+  emoji,
+  done,
+}: Props): React.Element<'div'> => (
   <div className="flex justify-between items-end">
     <h1 className="f3 f2-ns pt3">
       <span className="o-80 f3 v-mid">

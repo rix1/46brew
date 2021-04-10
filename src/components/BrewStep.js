@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 
 import { timeToString } from '../lib/formatTime';
 import BrewControls from './BrewTracker/BrewControls';
@@ -18,7 +18,12 @@ type Props = {|
   taste: Brew$Taste,
 |};
 
-const BrewStep = ({ baseWeight, resetWeight, strength, taste }: Props) => {
+const BrewStep = ({
+  baseWeight,
+  resetWeight,
+  strength,
+  taste,
+}: Props): React.Node => {
   const {
     activity,
     currentWeight,

@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import theme from '../lib/theme';
 
 type Props = {|
@@ -7,7 +7,7 @@ type Props = {|
   wrapped: boolean,
 |};
 
-const Line = ({ position, wrapped }: Props) => (
+const Line = ({ position, wrapped }: Props): React.Node => (
   <>
     <style jsx>{`
       .vertical-line {

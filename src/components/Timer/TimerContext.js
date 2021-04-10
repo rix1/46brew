@@ -8,4 +8,4 @@ type TimerContextType = {
   reset: () => void,
 };
 
-export default createContext<?TimerContextType>();
+export default (createContext<?TimerContextType>(): React$Context<?TimerContextType>);

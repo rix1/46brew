@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 
 import getArrayValueFromPercent from '../lib/getArrayValueFromPercent';
 import Range, { stengthToSegments } from './Range/Range';
@@ -24,19 +24,21 @@ const defaultState = {
   valuesAdjusted: false,
 };
 
-class ProfileSlider extends PureComponent<Props, State> {
-  state = defaultState;
+class ProfileSlider extends React.PureComponent<Props, State> {
+  state: State = defaultState;
 
   componentDidMount() {}
 
-  onChange = (type: string) => (value: number) => {
+  onChange: (type: string) => (value: number) => void = (type: string) => (
+    value: number,
+  ) => {
     this.setState({
       [type]: value,
       valuesAdjusted: true,
     });
   };
 
-  onComplete = () => {
+  onComplete: () => void = () => {
     const { onComplete } = this.props;
     const { tasteValue, strengthValue, valuesAdjusted } = this.state;
 
@@ -45,7 +47,7 @@ class ProfileSlider extends PureComponent<Props, State> {
     }
   };
 
-  render() {
+  render(): React.Node {
     const { strengthValue, tasteValue, valuesAdjusted } = this.state;
     const stepSize =
       typeof window !== 'undefined' && window.innerWidth < 768 ? 5 : 1;

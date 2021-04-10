@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import theme from '../lib/theme';
 
 type Props = {|
@@ -9,9 +9,10 @@ type Props = {|
   type: string,
   value: string | string[] | number,
   min: number | void,
+  step: number | void,
 |};
 
-const InlineInput = ({ className, error, ...rest }: Props) => (
+const InlineInput = ({ className, error, ...rest }: Props): React.Node => (
   <>
     <style jsx>{`
       input {

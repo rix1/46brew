@@ -1,11 +1,11 @@
 // @flow
-import React, { useState } from 'react';
+import * as React from 'react';
 import uuid from 'uuid/v4';
 
 import Line from '../Line';
 import StyledRange from './StyledRange';
 
-export function stengthToSegments(value: number) {
+export function stengthToSegments(value: number): number {
   const baseline = 3;
   if (value < 33) {
     return baseline - 1;
@@ -16,7 +16,7 @@ export function stengthToSegments(value: number) {
   return baseline;
 }
 
-export const createLineSegments = (segments: number) =>
+export const createLineSegments = (segments: number): number[] =>
   [...Array(segments)]
     .map((el, index, array) => Math.round(index * (100 / array.length)))
     .filter(Boolean);
@@ -28,8 +28,8 @@ type Props = {|
   onChange: (number) => void,
 |};
 
-const Range = (props: Props) => {
-  const [hasChanged, setHasChanged] = useState(false);
+const Range = (props: Props): React.Element<'div'> => {
+  const [hasChanged, setHasChanged] = React.useState(false);
 
   function onChangeHandler(event) {
     const { onChange } = props;

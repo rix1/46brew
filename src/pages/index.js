@@ -1,6 +1,5 @@
 // @flow
-import React, { PureComponent, createRef } from 'react';
-
+import * as React from 'react';
 import SetAmountStep from '../components/SetAmountStep';
 import Page from '../components/Page';
 import ProfileSlider from '../components/ProfileSlider';
@@ -32,8 +31,8 @@ type StepTypes = {
   brewTrackerStep: { current: null | HTMLDivElement },
 };
 
-class Index extends PureComponent<void, State> {
-  state = {
+class Index extends React.PureComponent<void, State> {
+  state: State = {
     activeStep: 'weight',
     baseWeight: 0,
     resetWeight: 0,
@@ -42,13 +41,13 @@ class Index extends PureComponent<void, State> {
   };
 
   stepRefs: StepTypes = {
-    amountStep: createRef(),
-    profileStep: createRef(),
-    resetScaleStep: createRef(),
-    brewTrackerStep: createRef(),
+    amountStep: React.createRef(),
+    profileStep: React.createRef(),
+    resetScaleStep: React.createRef(),
+    brewTrackerStep: React.createRef(),
   };
 
-  scrollToStep = (stepName: StepNames) => {
+  scrollToStep: (stepName: StepNames) => void = (stepName: StepNames) => {
     const stepRef = this.stepRefs[stepName];
     const node = stepRef.current;
     if (node) {
@@ -63,7 +62,7 @@ class Index extends PureComponent<void, State> {
     }
   };
 
-  render() {
+  render(): React.Node {
     const { activeStep, baseWeight, resetWeight, strength, taste } = this.state;
     return (
       <Page enableScroll={activeStep !== 'profile'}>

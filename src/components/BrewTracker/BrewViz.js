@@ -1,5 +1,6 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 
 import Stat from '../Stat';
 
@@ -23,7 +24,7 @@ const BrewViz = ({
   targetWeight,
   timeToNextStep,
   weightSteps,
-}: Props) => {
+}: Props): React.Element<'div'> => {
   return (
     <div className="flex justify-between flex-wrap">
       <div className="w-100 mv4-ns mv3">

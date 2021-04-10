@@ -1,13 +1,13 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import NextLink from 'next/link';
 
 type LinkProps = {|
-  children: React$Node,
+  children: React.Node,
   href: string,
 |};
 
-const Link = ({ children, href, ...rest }: LinkProps) => (
+const Link = ({ children, href, ...rest }: LinkProps): React.Node => (
   <NextLink href={href}>
     <a className="f5 fw4 dim link near-black pv1" {...rest}>
       {children}

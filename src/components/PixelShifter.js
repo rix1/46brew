@@ -1,15 +1,15 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 
 type Props = {|
   x: number,
   y: number,
   // eslint-disable-next-line react/no-unused-prop-types
   reason: string,
-  children: React$Node,
+  children: React.Node,
 |};
 
-const PixelShifter = ({ x, y, children }: Props) => (
+const PixelShifter = ({ x, y, children }: Props): React.Element<'span'> => (
   <span
     className="dib"
     style={{

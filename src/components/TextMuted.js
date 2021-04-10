@@ -1,12 +1,17 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 
 type TextMutedProps = {|
-  children: React$Node,
+  children: React.Node,
   className: string,
 |};
 
-const TextMuted = ({ children, className, ...rest }: TextMutedProps) => (
+const TextMuted = ({
+  children,
+  className,
+  ...rest
+}: TextMutedProps): React.Element<'span'> => (
   <span className={`dib f6 moon-gray ${className}`} {...rest}>
     {children}
   </span>

@@ -1,14 +1,18 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
   className: string,
   onClick: (SyntheticEvent<HTMLButtonElement>) => void,
   hidden: boolean,
 |};
 
-const BlankButton = ({ children, className, ...rest }: Props) => (
+const BlankButton = ({
+  children,
+  className,
+  ...rest
+}: Props): React.Element<'button'> => (
   <button
     type="button"
     className={`f5 fw4 dim link navy underline pointer bg-transparent bn pv0 ${className}`}

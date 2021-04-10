@@ -1,15 +1,15 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import theme from '../lib/theme';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
   className: string,
   type: string,
   onClick: (SyntheticEvent<HTMLButtonElement>) => void,
 |};
 
-const ColorButton = ({ children, className, ...rest }: Props) => (
+const ColorButton = ({ children, className, ...rest }: Props): React.Node => (
   <>
     <style jsx>{`
       button {

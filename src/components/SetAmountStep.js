@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 
 import { coffeeConverter, getType, getCups } from '../lib/conversion';
 
@@ -15,13 +15,15 @@ type State = {|
   inputError: boolean,
 |};
 
-class SetAmountStep extends PureComponent<Props, State> {
-  state = {
+class SetAmountStep extends React.PureComponent<Props, State> {
+  state: State = {
     value: 0,
     inputError: false,
   };
 
-  completeStep = (event: SyntheticEvent<HTMLFormElement>) => {
+  completeStep: (event: SyntheticEvent<HTMLFormElement>) => void = (
+    event: SyntheticEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
     const { onCompleted } = this.props;
     const { value } = this.state;
@@ -34,7 +36,9 @@ class SetAmountStep extends PureComponent<Props, State> {
     }
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void = (
+    event: SyntheticInputEvent<HTMLInputElement>,
+  ) => {
     const { value } = event.target;
     if (!Number.isNaN(Number(value))) {
       this.setState({
@@ -44,7 +48,7 @@ class SetAmountStep extends PureComponent<Props, State> {
     }
   };
 
-  render() {
+  render(): React.Element<'form'> {
     const { value, inputError } = this.state;
     const converted = coffeeConverter(value) || 0;
     const cups = getCups(value);

@@ -1,17 +1,22 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import Head from 'next/head';
 
 import PWATags from './PWATags';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
   title: string,
   description: string,
   enableScroll: boolean,
 |};
 
-const Page = ({ children, title, description, enableScroll }: Props) => {
+const Page = ({
+  children,
+  title,
+  description,
+  enableScroll,
+}: Props): React.Element<'section'> => {
   return (
     <section
       className={`relative overflow-y-${enableScroll ? 'scroll' : 'hidden'}`}>

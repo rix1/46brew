@@ -1,12 +1,13 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
   desc: string,
 |};
 
-const Stat = ({ desc, children }: Props) => (
+const Stat = ({ desc, children }: Props): React.Element<'div'> => (
   <div className="mv3 db tc w-50">
     <span className="f-subheadline fw2">{children}</span>
     <span className="f5 moon-gray">g.</span>

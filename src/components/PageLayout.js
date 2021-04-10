@@ -1,9 +1,9 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import Navigation from './Navigation';
 
 type Props = {|
-  children: React$Node,
+  children: React.Node,
 |};
 
 const GithubCommitLink = () => {
@@ -24,7 +24,7 @@ const GithubCommitLink = () => {
   );
 };
 
-const PageLayout = ({ children }: Props) => {
+const PageLayout = ({ children }: Props): React.Element<'div'> => {
   return (
     <div className="flex flex-column vh-100">
       <header className="tc">
