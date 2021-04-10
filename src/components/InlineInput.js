@@ -6,7 +6,6 @@ type Props = {|
   className: string,
   error: boolean,
   onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
-  type: string,
   value: string | string[] | number,
   min: number | void,
   step: number | void,
@@ -29,7 +28,13 @@ const InlineInput = ({ className, error, ...rest }: Props): React.Node => (
         border-bottom-color: red;
       }
     `}</style>
-    <input className={`ph2 ${className} ${error ? 'error' : ''}`} {...rest} />
+    <input
+      className={`ph2 ${className} ${error ? 'error' : ''}`}
+      inputMode="numeric"
+      pattern="[0-9]*"
+      type="text"
+      {...rest}
+    />
   </>
 );
 

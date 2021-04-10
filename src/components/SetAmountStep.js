@@ -60,7 +60,6 @@ class SetAmountStep extends React.PureComponent<Props, State> {
           <InlineInput
             className="ph1"
             error={inputError}
-            type="number"
             value={value || ''}
             onChange={this.handleChange}
             min={0}

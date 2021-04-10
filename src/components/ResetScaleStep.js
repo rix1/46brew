@@ -52,7 +52,6 @@ class ResetScaleStep extends React.PureComponent<Props, State> {
         <p className="f3">
           Now, let me know what the scale reads:
           <InlineInput
-            type="number"
             className="ph1"
             value={resetWeight}
             onChange={this.handleChange}
