@@ -1,17 +1,17 @@
 // @flow
-import React, { useContext } from 'react';
+import * as React from 'react';
 import { useTimer } from './useTimer';
 import TimerContext from './TimerContext';
 
 type TimerContextProviderProps = {|
-  children: React$Node,
+  children: React.Node,
   multiplier?: number,
 |};
 
 export const TimerContextProvider = ({
   children,
   multiplier,
-}: TimerContextProviderProps) => {
+}: TimerContextProviderProps): React.Node => {
   const { time, isRunning, toggleTimer, reset } = useTimer(multiplier);
   const context = { time, isRunning, toggleTimer, reset };
   return (
@@ -23,8 +23,8 @@ TimerContextProvider.defaultProps = {
   multiplier: undefined,
 };
 
-export function useTimerContext() {
-  const context = useContext(TimerContext);
+export function useTimerContext(): any {
+  const context = React.useContext(TimerContext);
 
   if (!context) {
     throw new Error(

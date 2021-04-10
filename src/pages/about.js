@@ -1,9 +1,9 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import Page from '../components/Page';
 import PageLayout from '../components/PageLayout';
 
-const About = () => (
+const About = (): React.Node => (
   <Page title="About us">
     <PageLayout>
       <div className="measure f4 f3-ns center mv5 black-80">

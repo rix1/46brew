@@ -6,6 +6,8 @@
 [libs]
 
 [options]
+emoji=true
+sharedmemory.heap_size=3221225472
 
 [strict]
 nonstrict-import

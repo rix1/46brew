@@ -27,7 +27,14 @@ function useInterval(callback: Function, delay: ?number) {
   }, [delay]);
 }
 
-export function useTimer(multiplier: number = 1) {
+export function useTimer(
+  multiplier: number = 1,
+): {|
+  isRunning: boolean,
+  reset: () => void,
+  time: number,
+  toggleTimer: () => void,
+|} {
   const [isRunning, setIsRunning] = useState(false);
   const [time, setTime] = useState(0);
 

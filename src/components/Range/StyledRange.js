@@ -1,5 +1,6 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 import getArrayValueFromPercent from '../../lib/getArrayValueFromPercent';
 import createInlineSVG from './createInlineSVG';
 
@@ -21,7 +22,7 @@ const StyledRange = ({
   idleSlider,
   value,
   ...rest
-}: StyledRangeProps) => {
+}: StyledRangeProps): React.Node => {
   const icon = hasChanged
     ? getArrayValueFromPercent(value, sliderIcons)
     : idleSlider;
@@ -29,10 +30,10 @@ const StyledRange = ({
   return (
     <>
       <style data-description="dynamic styles" jsx>{`
-      input::-webkit-slider-thumb {
-                background-image: url('${createInlineSVG(icon)}');
-      }
-    `}</style>
+        input::-webkit-slider-thumb {
+          background-image: url('${createInlineSVG(icon)}');
+        }
+      `}</style>
       <style jsx>{`
         input {
           -webkit-appearance: none;

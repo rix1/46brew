@@ -1,9 +1,10 @@
 // @flow
-import React from 'react';
+
+import * as React from 'react';
 import { useTimerContext } from '../Timer/Timer';
 import ColorButton from '../ColorButton';
 
-const BrewControls = () => {
+const BrewControls = (): React.Element<'span'> => {
   const { isRunning, toggleTimer } = useTimerContext();
   return (
     <span>

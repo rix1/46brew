@@ -1,22 +1,24 @@
 // @flow
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {|
-  onCompleted: Brew$Weight => void,
+  onCompleted: (Brew$Weight) => void,
 |};
 
 type State = {|
   resetWeight: string,
 |};
 
-class ResetScaleStep extends PureComponent<Props, State> {
-  state = {
+class ResetScaleStep extends React.PureComponent<Props, State> {
+  state: State = {
     resetWeight: '',
   };
 
-  completeStep = (event: SyntheticEvent<HTMLFormElement>) => {
+  completeStep: (event: SyntheticEvent<HTMLFormElement>) => void = (
+    event: SyntheticEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
     const { resetWeight } = this.state;
     if (!resetWeight) {
@@ -28,7 +30,9 @@ class ResetScaleStep extends PureComponent<Props, State> {
     onCompleted(Number(resetWeight || 0));
   };
 
-  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => void = (
+    event: SyntheticInputEvent<HTMLInputElement>,
+  ) => {
     const { value } = event.target;
     if (!Number.isNaN(Number(value))) {
       this.setState({
@@ -37,7 +41,7 @@ class ResetScaleStep extends PureComponent<Props, State> {
     }
   };
 
-  render() {
+  render(): React.Element<'form'> {
     const { resetWeight } = this.state;
     return (
       <form onSubmit={this.completeStep}>
@@ -48,7 +52,6 @@ class ResetScaleStep extends PureComponent<Props, State> {
         <p className="f3">
           Now, let me know what the scale reads:
           <InlineInput
-            type="number"
             className="ph1"
             value={resetWeight}
             onChange={this.handleChange}

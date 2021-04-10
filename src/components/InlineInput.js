@@ -1,17 +1,17 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import theme from '../lib/theme';
 
 type Props = {|
   className: string,
   error: boolean,
   onChange: (SyntheticInputEvent<HTMLInputElement>) => void,
-  type: string,
   value: string | string[] | number,
   min: number | void,
+  step: number | void,
 |};
 
-const InlineInput = ({ className, error, ...rest }: Props) => (
+const InlineInput = ({ className, error, ...rest }: Props): React.Node => (
   <>
     <style jsx>{`
       input {
@@ -28,7 +28,13 @@ const InlineInput = ({ className, error, ...rest }: Props) => (
         border-bottom-color: red;
       }
     `}</style>
-    <input className={`ph2 ${className} ${error ? 'error' : ''}`} {...rest} />
+    <input
+      className={`ph2 ${className} ${error ? 'error' : ''}`}
+      inputMode="numeric"
+      pattern="[0-9]*"
+      type="text"
+      {...rest}
+    />
   </>
 );
 

@@ -17,7 +17,7 @@ function request() {
 
   navigator.wakeLock
     .request('screen')
-    .then(lock => {
+    .then((lock) => {
       wakeLock = lock;
     })
     .catch(() => {
