@@ -1,11 +1,8 @@
 const withOffline = require('next-offline');
-require('dotenv').config();
 const pkg = require('./package.json');
 
 const baseConfig = {
   env: {
-    ANALYTICS_ENABLED: process.env.ANALYTICS_ENABLED === 'true',
-    ANALYTICS_GA_ID: process.env.ANALYTICS_GA_ID,
     NAME: pkg.name,
     ENV: process.env.NODE_ENV,
     VERSION: pkg.version,

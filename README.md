@@ -27,18 +27,12 @@ A fresh Node version (I think 11 is the minimum requirement).
 
 ### Setting up Dev
 
-1. To start developing, first clone the repo
+To start developing, first clone the repo
 
 ```shell
 git clone https://github.com/rix1/46brew.git 46brew
 cd 46brew/
 yarn install
-```
-
-2. Set local environment variables by copying the `dev-template.env` template file to `.env`:
-
-```shell
-cp dev-template.env .env
 ```
 
 That's it! To fire up a local dev server, do:

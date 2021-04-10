@@ -22,12 +22,10 @@
     "publish": false
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
     "next": "^9.3.5",
     "next-offline": "^5.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-ga": "^2.7.0",
     "uuid": "^3.3.3"
   },
   "devDependencies": {

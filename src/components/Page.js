@@ -1,8 +1,7 @@
 // @flow
-import React, { useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 
-import { initGA, logPageView } from '../lib/analytics';
 import PWATags from './PWATags';
 
 type Props = {|
@@ -13,12 +12,6 @@ type Props = {|
 |};
 
 const Page = ({ children, title, description, enableScroll }: Props) => {
-  useEffect(() => {
-    if (!window.GA_INITIALIZED) {
-      initGA();
-    }
-    logPageView();
-  }, []);
   return (
     <section
       className={`relative overflow-y-${enableScroll ? 'scroll' : 'hidden'}`}>
