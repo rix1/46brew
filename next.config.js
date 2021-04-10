@@ -7,4 +7,7 @@ module.exports = {
     VERSION: pkg.version,
     VERCEL_GITHUB_COMMIT_SHA: process.env.VERCEL_GITHUB_COMMIT_SHA,
   },
+  future: {
+    webpack5: true,
+  },
 };
