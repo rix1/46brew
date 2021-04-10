@@ -25,7 +25,7 @@ type Props = {|
   className: string,
   separators: number,
   ...React$ElementConfig<typeof StyledRange>,
-  onChange: number => void,
+  onChange: (number) => void,
 |};
 
 const Range = (props: Props) => {
@@ -54,7 +54,7 @@ const Range = (props: Props) => {
         backgroundColor: `hsla(48, ${value}%, ${100 - 0.25 * value}%, 1 )`,
       }}>
       {!!separators &&
-        createLineSegments(separators).map(separator => (
+        createLineSegments(separators).map((separator) => (
           <Line key={uuid()} position={separator} />
         ))}
       <StyledRange

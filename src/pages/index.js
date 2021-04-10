@@ -71,7 +71,7 @@ class Index extends PureComponent<void, State> {
           <StepWrapper ref={this.stepRefs.amountStep} isActive>
             <StepHeading done={!!baseWeight}>How much?</StepHeading>
             <SetAmountStep
-              onCompleted={weight => {
+              onCompleted={(weight) => {
                 this.setState({
                   baseWeight: weight,
                   activeStep: 'profile',
@@ -91,7 +91,7 @@ class Index extends PureComponent<void, State> {
             </p>
             <div className="mv4">
               <ProfileSlider
-                onComplete={data => {
+                onComplete={(data) => {
                   this.setState({
                     taste: data.taste,
                     strength: data.strength,
@@ -108,7 +108,7 @@ class Index extends PureComponent<void, State> {
             <StepHeading done={!!resetWeight}>Get ready</StepHeading>
 
             <ResetScaleStep
-              onCompleted={weight => {
+              onCompleted={(weight) => {
                 this.setState({
                   resetWeight: weight,
                   activeStep: 'brew',

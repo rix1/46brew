@@ -29,10 +29,10 @@ const StyledRange = ({
   return (
     <>
       <style data-description="dynamic styles" jsx>{`
-      input::-webkit-slider-thumb {
-                background-image: url('${createInlineSVG(icon)}');
-      }
-    `}</style>
+        input::-webkit-slider-thumb {
+          background-image: url('${createInlineSVG(icon)}');
+        }
+      `}</style>
       <style jsx>{`
         input {
           -webkit-appearance: none;

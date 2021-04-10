@@ -2,7 +2,7 @@
 import { TIME_BETWEEN_POURS, POUR_TIME } from '../../lib/constants';
 import { getWeightSteps } from './utils';
 
-export default function(
+export default function brewStateMachine(
   nextProps: Brew$MachineProps,
   prevState: Brew$State,
 ): Brew$State | null {

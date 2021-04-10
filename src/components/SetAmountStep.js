@@ -7,7 +7,7 @@ import InlineInput from './InlineInput';
 import ColorButton from './ColorButton';
 
 type Props = {|
-  onCompleted: Brew$Weight => void,
+  onCompleted: (Brew$Weight) => void,
 |};
 
 type State = {|

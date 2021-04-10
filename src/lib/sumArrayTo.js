@@ -2,7 +2,7 @@
 
 export const sumArrayTo = (
   arr: Array<number>,
-  compareFn: number => boolean,
+  compareFn: (number) => boolean,
 ) => {
   return arr.reduce((prev, next, index) => {
     if (compareFn(index)) {

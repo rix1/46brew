@@ -68,15 +68,17 @@ export function getCurrentWeightDisplay(
       return resetWeight;
     case 'done':
       return (
-        sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+        sumArrayTo(weightSteps, (index) => index <= pourNumber) + resetWeight
       );
     default:
       if (pourNumber === 0) {
         return (
-          sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+          sumArrayTo(weightSteps, (index) => index <= pourNumber) + resetWeight
         );
       }
-      return sumArrayTo(weightSteps, index => index < pourNumber) + resetWeight;
+      return (
+        sumArrayTo(weightSteps, (index) => index < pourNumber) + resetWeight
+      );
   }
 }
 
@@ -88,10 +90,10 @@ export function getTargetWeightDisplay(
 ) {
   switch (activity) {
     case 'done':
-      return sumArrayTo(weightSteps, index => index <= pourNumber);
+      return sumArrayTo(weightSteps, (index) => index <= pourNumber);
     default:
       return (
-        sumArrayTo(weightSteps, index => index <= pourNumber) + resetWeight
+        sumArrayTo(weightSteps, (index) => index <= pourNumber) + resetWeight
       );
   }
 }
